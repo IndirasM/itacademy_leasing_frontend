@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LeasingFormComponent } from './leasing-form/leasing-form.component';
 import { MatSliderModule } from '@angular/material';
+import { LeasingFormComponent } from './leasing-form/leasing-form.component';
 
 @NgModule({
   declarations: [

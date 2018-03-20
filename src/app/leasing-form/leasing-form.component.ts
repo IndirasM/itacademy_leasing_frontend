@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlider } from '@angular/material';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-leasing-form',
@@ -8,7 +9,7 @@ import { MatSlider } from '@angular/material';
 })
 export class LeasingFormComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }
