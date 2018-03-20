@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSlider } from '@angular/material';
 
 @Component({
   selector: 'app-leasing-form',
@@ -11,5 +12,9 @@ export class LeasingFormComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  pitch(event: any) {
+    console.log(event.value);
+  }  
 
 }
