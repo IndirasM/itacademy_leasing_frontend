@@ -1,26 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="leasingFormSummary">
 <head>
     <meta charset="UTF-8">
     <title>Sammary Show</title>
-    <h1>Summary Show</h1>
-</head>
-<body>
-<div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script>
+      var app = angular.module("leasingFormSummary", []);
 
-  Customer type:
-  Asset Type:
-  Make:
-  Model:
-  Year:
-  Engine power (kW:
-  Asset price:
-  Advance payment percentage:
-  Advance payment amount:
-  Lease period:
-  Margin:
-  Contract fee:
-  Payment date:
+      app.config(function config($interpolateProvider){
+        $interpolateProvider.startSymbol('*/');
+        $interpolateProvider.endSymbol('/*');
+
+      })
+
+      app.controller("leasingController", function () {
+        var lc = this;
+        lc.customerType = 'gay';
+        lc.assetType = 'still Gay';
+        lc.makeM = 'vW GAY';
+        lc.modelM = '99 gay';
+        lc.yearM = 'gay year';
+        lc.enginePower =  'gay engine'
+        lc.assetPrice = 'gay price'
+        lc.advancePaymentPercentage = 'gay %'
+        lc.advancePaymentAmount = 'gay $'
+        lc.leasePeriod = 'bloody'
+        lc.marginM = 'yep'
+        lc.contractFee = 'no control '
+        lc.paymentDate = ' no one likes you'
+
+      })
+    </script>
+  <h1>Summary Show</h1>
+</head>
+<body ng-controller='leasingController as lc'>
+<div >
+
+  Customer type: */lc.customerType/*
+  <br>Asset Type: */lc.assetType/*
+  <br>Make: */lc.makeM/*
+  <br>Model: */lc.modelM/*
+  <br>Year:  */lc.yearM/*
+  <br>Engine power (kW): */lc.enginePower/*
+  <br>Asset price: */lc.assetPrice/*
+  <br>Advance payment percentage: */lc.advancePaymentPercentage/*
+  <br>Advance payment amount: */lc.advancePaymentAmount/*
+  <br>Lease period: */lc.leasePeriod/*
+  <br>Margin: */lc.marginM/*
+  <br>Contract fee: */lc.contractFee/*
+  <br>Payment date: */lc.paymentDate/*\
+  <br><button type="button">lol</button>
 
 </div>
 
