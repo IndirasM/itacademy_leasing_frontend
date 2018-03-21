@@ -6,4 +6,9 @@ export class privateUserData{
     userAdress: string;
     phoneNumber: string;
     email: string;
+
+    constructor(values: Object = {})
+    {
+        Object.assign(this, values);
+    }
 }
