@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 @Component({
-    selector: 'course-dialog',
-    templateUrl: './private-leasing-form-dialog.html',
-    styleUrls: ['./private-leasing-form.component.css']
+    selector: 'private-user-form-dialog',
+    templateUrl: 'private-leasing-form-dialog.html',
+    styleUrls: []
 })
 
 export class PrivateLeasingFormDialogComponent implements OnInit {

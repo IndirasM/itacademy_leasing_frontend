@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { PrivateLeasingFormDialogComponent } from './private-leasing-form-dialog-component';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from "@angular/material";
 
-import {MatDialog, MatDialogConfig} from "@angular/material";
 
 @Component({
-  selector: 'app-private-leasing-form',
-  templateUrl: './private-leasing-form.component.html',
-  styleUrls: ['./private-leasing-form.component.css']
+  selector: 'private-user-data-form',
+  templateUrl: './private-user-data-form.component.html',
+  styleUrls: ['./private-user-data-form.component.css']
 })
-export class PrivateLeasingFormComponent implements OnInit {
+export class PrivateUserDataFormComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
-
   openDialog() {
     const dialogConfig = new MatDialogConfig();
 
@@ -33,38 +32,21 @@ export class PrivateLeasingFormComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
 
-
-
     dialogConfig.disableClose = true;
 
     dialogConfig.autoFocus = true;
 
-
-
     dialogConfig.data = {
-
         id: 1,
-
         title: 'Angular For Beginners'
-
     };
-
-
 
     this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
 
-    
-
     const dialogRef = this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
 
-
-
     dialogRef.afterClosed().subscribe(
-
         data => console.log("Dialog output:", data)
-
     );    
-
 }
-
 }
