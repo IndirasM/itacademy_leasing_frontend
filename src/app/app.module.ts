@@ -6,16 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PrivateLeasingFormComponent } from './private/private-leasing-form/private-leasing-form.component';
+import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PrivateLeasingFormComponent
+    PrivateLeasingFormComponent,
+    PrivateUserDataFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

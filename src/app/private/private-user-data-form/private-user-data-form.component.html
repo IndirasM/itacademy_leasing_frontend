@@ -1,0 +1,32 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+        <label for ="firstName"> First Name </label>
+        <input  id="firstName"  type="text" class="form-control">
+        <div class = "alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is required. </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName"> Last Name </label>
+      <input id="lastName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="personalCode"> Personal ID code</label>
+      <input id="personalCode" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="userAdress"> Adress </label>
+      <input id="userAdress" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber"> Phone Number </label>
+      <input id="phoneNumber" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email"> Email </label>
+      <input id="email" type="text" class="form-control">
+    </div>
+    <button class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>
