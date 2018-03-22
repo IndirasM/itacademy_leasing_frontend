@@ -2,11 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { PrivateLeasingFormComponent } from './private/private-leasing-form/private-leasing-form.component';
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { PrivateLeasingFormComponent } from './private/private-leasing-form-list/private-leasing-form/private-leasing-form.component';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -28,9 +25,7 @@ import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    PrivateLeasingFormComponent,
-    PrivateUserDataFormComponent
+    PrivateUserDataFormComponent,
     PageNotFoundComponent,
     PrivateLeasingFormDialogComponent,
     PrivateLeasingDataFormComponent,
@@ -40,7 +35,7 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatSliderModule,
     FormsModule,
     HttpClientModule,

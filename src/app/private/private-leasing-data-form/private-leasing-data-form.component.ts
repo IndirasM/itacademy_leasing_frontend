@@ -44,12 +44,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     {value: '1980', viewValue: '1980'}
   ];
 
-  seasons = [
-    'Winter',
-    'Spring',
-    'Summer',
-    'Autumn',
-  ];
   productTypes = ['Alfa Romeo',
    'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
     'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
@@ -113,7 +107,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       advancePaymentPercentage: new FormControl('', Validators.required),
       advancePaymentAmount: new FormControl('', Validators.required),
       leasePeriod: new FormControl('', Validators.required),
-      margin: new FormControl('', [Validators.required, Validators.minLength(11), ]),
+      margin: new FormControl('', [Validators.required ]),
       contactFee: new FormControl('', Validators.required),
       paymentDate: new FormControl('', Validators.required)
 
@@ -134,45 +128,28 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   ngOnInit() {
 
   }
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-  };
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-  }
-
-  penDialog() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-        id: 1,
-        title: 'Angular For Beginners'
-    };
-
-    this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    const dialogRef = this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(
-        data => console.log('Dialog output:', data)
-    );
-}
 
     pitch(event: any) {
       console.log(event.value);
     }
 
+    onSubmit() {
+        let formArray = {
+          assetType: this.productForm.value['assetType'],
+          carBrand: this.productForm.value['productType'],
+          carModel: this.productForm.value['product'],
+          years: this.productForm.value['year'],
+          enginePower: this.productForm.value['enginePower'],
+          assetPrice: this.productForm.value['assetPrice'],
+          advancePaymentPercentage: this.productForm.value['advancePaymentPercentage'],
+          advancePaymentAmount: this.productForm.value['advancePaymentAmount'],
+          leasePeriod: this.productForm.value['leasePeriod'],
+          margin: this.productForm.value['margin'],
+          contractFee: this.productForm.value['contactFee'],
+          paymentDate: this.productForm.value['paymentDate']
+        }
+
+        console.log(formArray);
+    }
 
 }
