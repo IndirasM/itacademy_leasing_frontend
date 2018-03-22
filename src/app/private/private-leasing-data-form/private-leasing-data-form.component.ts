@@ -150,6 +150,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         }
 
         console.log(formArray);
+        console.log('ernestas');
     }
 
 }
