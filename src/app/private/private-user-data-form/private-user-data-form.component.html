@@ -1,42 +1,33 @@
-<div class="container">
-  <form [formGroup]="privateUserData"> 
-    <div class="form-group">
-        <label > First Name </label>
-        <input  type="text" class="form-control" formControlName="firstName" required>
-            </div>
-    <div class="form-group">
-      <label for="lastName"> Last Name </label>
-      <input type="text" class="form-control" formControlName="lastName" required>
+<div *ngIf="!name; else forminfo">
+  <form [formGroup]="privateUserData" (ngSubmit)="addPost(privateUserData.value)">
+    <div class="form-container">
+      <div class="row columns">
+        <h1>My Reactive Form</h1>
+        <label>Name
+          <input type="text" formControlName="name">
+          <div class="alert" *ngIf="!privateUserData.controls['name'].ng-valid && privateUserData.controls['name'].ng-touched">{{ titleAlert }}</div>
+        </label>
+
+        <label>Description
+          <textarea  formControlName="description"></textarea>
+          <div class="alert" *ngIf="!privateUserData.controls['description'].ng-valid && privateUserData.controls['description'].ng-touched">You must specify a description that's between 30 and 500 characters.</div>
+        </label>
+
+        <label for="validate">Minimum of 3 Characters</label>
+        <input type="checkbox" name="validate" formControlName="validate" value="1"> On
+        
+        <input type="submit" class="button expanded" value="Submit Form" [disabled]="!privateUserData.valid">
+      </div>
     </div>
-    <div class="form-group">
-      <label > Personal ID code</label>
-      <input type="text" class="form-control" formControlName="personalCode" required>
-    </div>
-    <div class="form-group">
-      <label > Adress </label>
-      <input type="text" class="form-control" formControlName="adress">
-    </div>
-    <div class="form-group">
-      <label> Phone Number </label>
-      <input type="text" class="form-control" formControlName="phoneNumber">
-    </div>
-    <div class="form-group"
-    [ngClass]="{
-      'has-success': privateUserData.controls.email.valid &&
-      (privateUserData.controls.email.dirty || privateUserData.controls.email.touched),
-      'has-danger': privateUserData.controls.email.invalid&&
-      (privateUserData.controls.email.dirty || privateUserData.controls.email.touched)
-    }">
-      <label > Email:  </label> 
-      <input class="form-control" type="email" formControlName="email" required >
-  
-    </div>
-    <button class="btn btn-primary">
-      Submit
-    </button>
-    <pre> Dirty?{{privateUserData.controls.email.dirty}}</pre>
-    <pre>Pristine? {{ privateUserData.controls.email.pristine }}</pre>
-    <pre>{{privateUserData.value|json}}</pre>
   </form>
-  
 </div>
+
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+        <h1>{{ name }}</h1>
+
+        <p>{{ description }}</p>
+    </div>
+  </div>
+</ng-template>
