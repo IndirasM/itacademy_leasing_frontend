@@ -4,7 +4,6 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angula
 
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
 // import {ControlGroup} from '@angular/common';
-import {PrivateLeasingData} from './privateLeasingData';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
@@ -15,7 +14,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 })
 export class PrivateLeasingDataFormComponent implements OnInit {
   dialog: any;
-  brands = ['Alfa Romeo', 'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini', 'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
+  productTypes = ['Alfa Romeo',
+   'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
+    'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
     'Subaru', 'Volkswagen'];
   assetTypes = ['Vehicle'];
   allProducts = [
@@ -59,9 +60,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     {name: 'Polo', type: 'Wolkswagen'},
     {name: 'Accord', type: 'Honda'},
     {name: 'Civic', type: 'Honda'},
-
-
-
   ];
   productsAfterChangeEvent = [];
   productForm: FormGroup;
@@ -100,10 +98,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   submitForm() {
     console.log('Form Data', this.productForm.value);
   }
-
-
-   privateLeasingData: FormGroup;
-
   ngOnInit() {
 
   }
