@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-// import {privateUserData} from './privateUserData';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import {privateUserData} from './privateUserData';
+
 
 @Component({
   selector: 'private-user-data-form',
@@ -9,36 +10,51 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class PrivateUserDataFormComponent implements OnInit  {
   
-  privateUserData : FormGroup;
-  post:any;                       // A property for our submitted form
-  description: string = '';
-  name: string='';
-  titleAlert:string = 'This field is required';
+  public userForm : FormGroup;
 
-  constructor(private fb:FormBuilder){
-    this.privateUserData = fb.group({
-     'name':[null,Validators.required],
-     'description': [null,Validators.compose([Validators.required,Validators.minLength(30),Validators.maxLength(500)])],
-      'validate':''
-    });
+  constructor(fb: FormBuilder){
+    this.userForm = fb.group({
+      firstName: [null,[Validators.minLength(3),Validators.maxLength(15)]],
+      lastName: [null,[Validators.minLength(3),Validators.maxLength(20)]],
+      personalCode:[null,[Validators.pattern('(^[34])[0-9]{10}')]],
+      phoneNumber:[null,[Validators.pattern('[0-9]+')]],
+      email:[null,[Validators.email]],
+      adress:[null,[]]
+    })
+    this.send();
   }
-  addPost(post){
-    this.description = post.description;
-    this.name = post.name;
-  }
+get firstName(){
+  return this.userForm.get('firstName') as FormControl;
+}
+get lastName(){
+  return this.userForm.get('lastName') as FormControl;
+}
+get personalCode(){
+  return this.userForm.get('personalCode') as FormControl;
+}
+get phoneNumber(){
+  return this.userForm.get('phoneNumber') as FormControl;
+}
+get email(){
+  return this.userForm.get('email') as FormControl;
+}
+get adress(){
+  return this.userForm.get('adress') as FormControl;
+}
+ send(){
+  
+   let post ={
+     firstName: this.userForm.get('firstName').value,
+     lastName: this.userForm.get('lastName').value,
+     personalCode: this.userForm.get('personalCode').value,
+     phoneNumber: this.userForm.get('phoneNumber').value,
+     email: this.userForm.get('email').value,
+     address: this.userForm.get('adress').value,
+     leasId:1
+   }
+   console.log(post);
+ }
   ngOnInit() {
-    this.privateUserData.get('validate').valueChanges.subscribe(
-
-      (validate) => {
-
-          if (validate == '1') {
-              this.privateUserData.get('name').setValidators([Validators.required, Validators.minLength(3)]);
-              this.titleAlert = 'You need to specify at least 3 characters';
-          } else {
-              this.privateUserData.get('name').setValidators(Validators.required);
-          }
-          this.privateUserData.get('name').updateValueAndValidity();
-
-      });
+   
   }
 }
