@@ -12,13 +12,49 @@ import {MatDialogModule} from '@angular/material/dialog';
   templateUrl: './private-leasing-data-form.component.html',
   styleUrls: ['./private-leasing-data-form.component.css']
 })
+
 export class PrivateLeasingDataFormComponent implements OnInit {
+  startDate = new Date(1990, 0, 1);
+  autoTicks = false;
+  disabled = false;
+  invert = false;
+  max = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = false;
+  value = 0;
+  vertical = false;
+  get tickInterval(): number | 'auto' {
+    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
+  }
+  set tickInterval(v) {
+    this._tickInterval = Number(v);
+  }
+  private _tickInterval = 1;
   dialog: any;
+  favoriteSeason: string;
+
+  assetTypes = [
+    {value: '0', viewValue: 'Vehicle'},
+
+  ];
+
+  years = [
+    {value: '1980', viewValue: '1980'}
+  ];
+
+  seasons = [
+    'Winter',
+    'Spring',
+    'Summer',
+    'Autumn',
+  ];
   productTypes = ['Alfa Romeo',
    'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
     'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
     'Subaru', 'Volkswagen'];
-  assetTypes = ['Vehicle'];
+  
   allProducts = [
     {name: '147', type: 'Alfa Romeo'},
     {name: '155', type: 'Alfa Romeo'},
@@ -67,20 +103,17 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.productForm = fb.group({
-      brand: [],
-      model: [],
+      productType: [],
+      product: [],
       assetType: [],
-      customerType: new FormControl('Business', Validators.required),
-      year: new FormControl('', [
-        Validators.minLength(11),
-        Validators.required
-      ]),
+      customerType: new FormControl('Private', Validators.required),
+      year: [] ,
       enginePower: new FormControl('', Validators.required),
       assetPrice: new FormControl('', Validators.required),
       advancePaymentPercentage: new FormControl('', Validators.required),
       advancePaymentAmount: new FormControl('', Validators.required),
       leasePeriod: new FormControl('', Validators.required),
-      margin: new FormControl('', Validators.required),
+      margin: new FormControl('', [Validators.required, Validators.minLength(11), ]),
       contactFee: new FormControl('', Validators.required),
       paymentDate: new FormControl('', Validators.required)
 
@@ -88,8 +121,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
    // Rebuild the product list every time the product type changes.
   typeChanged() {
-    const brand = this.productForm.get('brand').value;
-    this.productsAfterChangeEvent = this.allProducts.filter(p => p.type === brand);
+    const productType = this.productForm.get('productType').value;
+    this.productsAfterChangeEvent = this.allProducts.filter(p => p.type === productType);
 
     const assetType = this.productForm.get('assetType').value;
     this.productsAfterChangeEvent = this.allProducts.filter(p => p.type === assetType);
@@ -136,4 +169,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         data => console.log('Dialog output:', data)
     );
 }
+
+    pitch(event: any) {
+      console.log(event.value);
+    }
+
+
 }

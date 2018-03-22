@@ -37,3 +37,58 @@ div {
     background-color: #ccc;
     width: 50%;
 }
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+mat-slider {
+    width: 300px;
+}
+
+.mat-radio-button~.mat-radio-button {
+    padding-right: 16px;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.example-selected-value {
+    margin: 15px 0;
+}
+
+.example-h2 {
+    margin: 10px;
+}
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.example-margin {
+    margin: 10px;
+}
+
+.mat-slider-horizontal {
+    width: 300px;
+}
+
+.mat-slider-vertical {
+    height: 300px;
+}
