@@ -1,2 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" routerLink="private"> Private </a>
+            <a class="nav-item nav-link" routerLink="business"> Business </a>
+        </div>
+    </div>
+</nav>
+
+<div style="text-align:center">
+    <h1>
+        Welcome to {{ title }}!
+    </h1>
+</div>
+<app-private-leasing-data-form></app-private-leasing-data-form>
 
 <router-outlet></router-outlet>
+
+<!-- <md-checkbox></md-checkbox> -->
