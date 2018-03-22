@@ -15,16 +15,12 @@ export class PrivateLeasingFormDialogComponent implements OnInit {
     description:string;
 
     constructor(
-        public fb: FormBuilder,
         public dialogRef: MatDialogRef<PrivateLeasingFormDialogComponent>,
         @Inject(MAT_DIALOG_DATA) data) {
         this.description = data.description;
     }
 
     ngOnInit() {
-        this.form = this.fb.group({
-            description: [this.description, []],
-        });
     }
     save() {
         this.dialogRef.close(this.form.value);

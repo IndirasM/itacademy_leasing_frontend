@@ -33,37 +33,22 @@ export class PrivateUserDataFormComponent implements OnInit {
   }
   openDialog() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
   };
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
     this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
   }
-
-  penDialog() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-        id: 1,
-        title: 'Angular For Beginners'
-    };
-
-    this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    const dialogRef = this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(
-        data => console.log("Dialog output:", data)
-    );    
 }
-}
+//   dialogWindow() {
+//     const dialogConfig = new MatDialogConfig();
+//     dialogConfig.disableClose = true;
+//     dialogConfig.autoFocus = true;
+//     dialogConfig.data = {
+//     };
+//     this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
+//     const dialogRef = this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
+//     dialogRef.afterClosed().subscribe(
+//     );    
+//   }
+// }
