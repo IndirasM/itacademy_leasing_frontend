@@ -15,7 +15,7 @@
 
       app.controller("leasingController", function () {
         var lc = this;
-        lc.customerType = 'gay';
+        lc.customerType;
         lc.assetType = 'still Gay';
         lc.makeM = 'vW GAY';
         lc.modelM = '99 gay';
@@ -29,6 +29,10 @@
         lc.contractFee = 'no control '
         lc.paymentDate = ' no one likes you'
 
+        addSomthing = function () {
+          push(newData);
+          newData = '';
+        }
       })
     </script>
   <h1>Summary Show</h1>
@@ -36,6 +40,9 @@
 <body ng-controller='leasingController as lc'>
 <div >
 
+  <form></form>
+  CT<input type="text" ng-model="newData.lc.customerType">
+  <button ng-click="addSomthing()">tipo addina</button>
   Customer type: */lc.customerType/*
   <br>Asset Type: */lc.assetType/*
   <br>Make: */lc.makeM/*
