@@ -1,14 +1,10 @@
-export class privateUserData{
+export class PrivateUserData{
 
     firstName: string;
-    lastName: string;
+    lastName: string;   
     personalCode: string;
-    userAdress: string;
     phoneNumber: string;
     email: string;
-
-    constructor(values: Object = {})
-    {
-        Object.assign(this, values);
-    }
+    address: string;
+    leasId: 1;
 }

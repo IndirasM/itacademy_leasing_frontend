@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import {privateUserData} from './privateUserData';
+import { PrivateUserData } from './privateUserData';
+import { LeaseToUserService } from '../../services/leasing-to-user.service';
+import { LeaseData } from '../private-leasing-data-form/private-leasing-data';
 
 
 @Component({
@@ -11,8 +13,10 @@ import {privateUserData} from './privateUserData';
 export class PrivateUserDataFormComponent implements OnInit  {
   
   public userForm : FormGroup;
+  public leaseData: LeaseData;
+  public userData: PrivateUserData;
 
-  constructor(fb: FormBuilder){
+  constructor(fb: FormBuilder, private leaseService: LeaseToUserService){
     this.userForm = fb.group({
       firstName: [null,[Validators.minLength(3),Validators.maxLength(15)]],
       lastName: [null,[Validators.minLength(3),Validators.maxLength(20)]],
@@ -23,6 +27,10 @@ export class PrivateUserDataFormComponent implements OnInit  {
     })
     this.send();
   }
+  ngOnInit() {
+    this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
+  }
+
 get firstName(){
   return this.userForm.get('firstName') as FormControl;
 }
@@ -43,7 +51,7 @@ get adress(){
 }
  send(){
   
-   let post ={
+   this.userData ={
      firstName: this.userForm.get('firstName').value,
      lastName: this.userForm.get('lastName').value,
      personalCode: this.userForm.get('personalCode').value,
@@ -52,9 +60,9 @@ get adress(){
      address: this.userForm.get('adress').value,
      leasId:1
    }
-   console.log(post);
- }
-  ngOnInit() {
+   console.log(this.userData);
+   console.log(this.leaseData);
+
    
-  }
+ }
 }

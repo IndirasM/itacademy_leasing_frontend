@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PrivateLeasingFormDialogComponent } from './private-leasing-form-dialog-component';
 import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angular/material';
 
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-// import {ControlGroup} from '@angular/common';
 import {MatDialogModule} from '@angular/material/dialog';
+
+import { LeaseToUserService } from '../../services/leasing-to-user.service';
+import { LeaseData } from './private-leasing-data';
 
 @Component({
   selector: 'app-private-leasing-data-form',
@@ -34,6 +35,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   private _tickInterval = 1;
   dialog: any;
   favoriteSeason: string;
+  leaseData: LeaseData;
 
   assetTypes = [
     {value: '0', viewValue: 'Vehicle'},
@@ -95,7 +97,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   productForm: FormGroup;
 
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService) {
     this.productForm = fb.group({
       productType: [],
       product: [],
@@ -126,7 +128,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     console.log('Form Data', this.productForm.value);
   }
   ngOnInit() {
-
+    this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
   }
 
     pitch(event: any) {
@@ -134,7 +136,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     }
 
     onSubmit() {
-        let formArray = {
+        this.leaseData = {
           assetType: this.productForm.value['assetType'],
           carBrand: this.productForm.value['productType'],
           carModel: this.productForm.value['product'],
@@ -149,7 +151,12 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           paymentDate: this.productForm.value['paymentDate']
         }
 
-        console.log(formArray);
+        console.log(this.leaseData);
+        this.leasingData.changeData(this.leaseData);
+    }
+
+    sendArray(){
+      this.leasingData.changeData(this.leaseData);
     }
 
 }
