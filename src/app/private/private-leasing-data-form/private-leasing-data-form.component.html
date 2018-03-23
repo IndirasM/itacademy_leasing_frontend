@@ -84,18 +84,13 @@
             <label> Advance payment percentage </label>
             <label></label>
             <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)"></mat-slider>
-        </div>
-
-        <div class="form-group">
-            <label> Advance payment amount  {{ advancePaymentPercentage / 100 * assetPrice }}</label>
-            <input type=number class="form-control" formControlName="advancePaymentAmount" required>
-
+            <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
         </div>
 
         <div class="form-group">
             <label>Lease Period</label>
             <label>
-                
+
             </label>
             <mat-slider formControlName="leasePeriod" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"></mat-slider>
         </div>
@@ -110,11 +105,7 @@
         </div>
 
         <div class="form-group">
-            <label> Contract fee percentage %</label>
-            <label>  </label>
-            <input type=number class="form-control" formControlName="contractFeePercentage" required>
-            <label> Contract Fee </label>
-            <input label="value" type=number class="form-control" formControlName="contractFee" required>
+            <label> Advance payment amount  {{ contractFee.toFixed(2) }}</label>
         </div>
 
         <div class="form-group">

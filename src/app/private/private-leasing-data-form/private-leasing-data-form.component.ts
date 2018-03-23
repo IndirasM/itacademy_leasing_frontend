@@ -28,6 +28,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   thumbLabel = false;
   value = 0;
   vertical = false;
+  leaseData: LeaseData;
   // get tickInterval(): number | 'auto' {
   //   return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
   // }
@@ -37,7 +38,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   private _tickInterval = 1;
   dialog: any;
   favoriteSeason: string;
-  leaseData: LeaseData;
 
   assetTypes = [
     {value: 'Vehicle', viewValue: 'Vehicle'},
@@ -115,31 +115,40 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.productForm = fb.group({
       enginePower : new FormControl('', Validators.required),
+      LeaseData: LeaseData,
       productType: [],
       product: [],
       assetType: [],
       customerType: new FormControl('Private', Validators.required),
       year: [] ,
-      assetPrice: new FormControl('', Validators.required),
-      advancePaymentPercentage: new FormControl(''),
+      assetPrice: new FormControl(0, Validators.required),
+      advancePaymentPercentage: new FormControl(0),
       advancePaymentAmount: new FormControl(0, Validators.required),
       leasePeriod: new FormControl(''),
       margin: new FormControl(3.2, [Validators.required ]),
       paymentDate: new FormControl('15'),
       contractFeePercentage: new FormControl(1),
       contractFee: new FormControl(200),
+      carModel: new FormControl('')
 
     });
   }
 
-
-  get advancePaymentPercentage() {
-    return this.productForm.get('advancePaymentPercentage');
+  get advancePaymentAmount() {
+    return this.productForm.get('assetPrice').value * this.productForm.get('advancePaymentPercentage').value / 100;
   }
 
-  get assetPrice() {
-    return this.productForm.get('assetPrice');
+  get contractFee() {
+    if(this.productForm.get('assetPrice').value * 0.01 > 200){
+      return 0.01 * this.productForm.get('assetPrice').value;
+    }
+    return 200;
   }
+
+  get getModel() {
+    return this.productForm.get('carModel');
+  }
+
    // Rebuild the product list every time the product type changes.
   typeChanged() {
     const productType = this.productForm.get('productType').value;
@@ -198,6 +207,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     }
 
     onSubmit() {
+
         this.leaseData = {
           assetType: this.productForm.value['assetType'],
           carBrand: this.productForm.value['productType'],
@@ -215,10 +225,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
         console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
-    }
-
-    sendArray(){
-      this.leasingData.changeData(this.leaseData);
     }
 
     // let calculateAdvancePaymentAmount = function(advancePaymentPercentage, assetPrice) {
