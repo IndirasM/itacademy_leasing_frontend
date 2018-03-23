@@ -77,9 +77,7 @@
         </div>
 
         <div class="form-group">
-            <label> Advance payment amount  {{ advancePaymentPercentage / 100 * assetPrice }}</label>
-            <input type=number class="form-control" formControlName="advancePaymentAmount" required>
-
+            <label>Advance payment amount {{advancePaymentAmount}}</label>
         </div>
 
         <div class="form-group">
@@ -103,8 +101,8 @@
             <label> Contract fee percentage %</label>
             <label>  </label>
             <input type=number class="form-control" formControlName="contractFeePercentage" required>
-            <label> Contract Fee </label>
-            <input label="value" type=number class="form-control" formControlName="contractFee" required>
+            <label> Contract Fee</label>
+            <label> {{ contractFee }} </label>
         </div>
 
         <div class="form-group">

@@ -94,8 +94,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       assetType: [],
       customerType: new FormControl('Private', Validators.required),
       year: [] ,
-      assetPrice: new FormControl('', Validators.required),
-      advancePaymentPercentage: new FormControl(''),
+      assetPrice: new FormControl(0, Validators.required),
+      advancePaymentPercentage: new FormControl(0),
       advancePaymentAmount: new FormControl(0, Validators.required),
       leasePeriod: new FormControl(''),
       margin: new FormControl(3.2, [Validators.required ]),
@@ -106,13 +106,12 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     });
   }
 
-
-  get advancePaymentPercentage() {
-    return this.productForm.get('advancePaymentPercentage');
+  get advancePaymentAmount() {
+    return this.productForm.get('assetPrice').value * this.productForm.get('advancePaymentPercentage').value / 100;
   }
 
-  get assetPrice() {
-    return this.productForm.get('assetPrice');
+  get contractFee() {
+    return this.productForm.get('contractFeePercentage').value / 100 * this.productForm.get('assetPrice').value;
   }
    // Rebuild the product list every time the product type changes.
   typeChanged() {
@@ -143,10 +142,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           enginePower: this.productForm.value['enginePower'],
           assetPrice: this.productForm.value['assetPrice'],
           advancePaymentPercentage: this.productForm.value['advancePaymentPercentage'],
-          advancePaymentAmount: this.productForm.value['advancePaymentAmount'],
+          advancePaymentAmount: this.advancePaymentAmount,
           leasePeriod: this.productForm.value['leasePeriod'],
           margin: this.productForm.value['margin'],
-          contractFee: this.productForm.value['contractFee'],
+          contractFee: this.contractFee,
           paymentDate: this.productForm.value['paymentDate']
         };
 
