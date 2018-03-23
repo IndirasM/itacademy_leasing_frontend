@@ -96,7 +96,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       year: [] ,
       assetPrice: new FormControl('', Validators.required),
       advancePaymentPercentage: new FormControl(''),
-      advancePaymentAmount: new FormControl('', Validators.required),
+      advancePaymentAmount: new FormControl(0, Validators.required),
       leasePeriod: new FormControl(''),
       margin: new FormControl(3.2, [Validators.required ]),
       paymentDate: new FormControl('15'),
@@ -104,6 +104,15 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       contractFee: new FormControl(200),
 
     });
+  }
+
+
+  get advancePaymentPercentage() {
+    return this.productForm.get('advancePaymentPercentage');
+  }
+
+  get assetPrice() {
+    return this.productForm.get('assetPrice');
   }
    // Rebuild the product list every time the product type changes.
   typeChanged() {
@@ -144,5 +153,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         console.log(formArray);
         console.log('ernestas');
     }
-    
-}
+
+    // let calculateAdvancePaymentAmount = function(advancePaymentPercentage, assetPrice) {
+
+    //   return this.productForm.value['assetType'] * this.productForm.value['advancePaymentPercentage'] / 100;
+    // };
+  }
