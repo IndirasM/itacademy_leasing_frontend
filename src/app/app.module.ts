@@ -25,6 +25,7 @@ import {MatCardModule} from '@angular/material/card';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 import { LeaseToUserService } from './services/leasing-to-user.service';
 import { BrandsAndModelsService } from './services/BrandsAndModelsService';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { BrandsAndModelsService } from './services/BrandsAndModelsService';
         MatDatepickerModule,
         MatSelectModule,
         MatCardModule,
-        MatDatepickerModule
+        MatCheckboxModule
   ],
   providers: [
     PrivateLeasingFormsService,

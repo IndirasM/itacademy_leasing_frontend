@@ -1,5 +1,12 @@
 label {
     display: inline-block;
+    margin: .5em;
+    color: #607D8B;
+    font-weight: bold;
+}
+
+h3 {
+    display: inline-block;
     width: 3em;
     margin: .5em;
     color: #607D8B;
@@ -37,17 +44,17 @@ div {
     background-color: #ccc;
     width: 50%;
 }
-
+/* 
 .ng-valid[required],
 .ng-valid.required {
     border-left: 5px solid #42A948;
-    /* green */
+    
 }
 
 .ng-invalid:not(form) {
     border-left: 5px solid #a94442;
-    /* red */
-}
+    
+} */
 
 mat-slider {
     width: 300px;
@@ -91,4 +98,14 @@ mat-slider {
 
 .mat-slider-vertical {
     height: 300px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
 }
