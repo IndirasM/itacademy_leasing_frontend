@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject'
 import { LeaseToUserService } from './services/leasing-to-user.service';
+import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LeaseToUserService } from './services/leasing-to-user.service';
   ],
   providers: [
     PrivateLeasingFormsService,
-    LeaseToUserService
+    LeaseToUserService,
+    BrandsAndModelsService
   ],
   bootstrap: [AppComponent]
 })

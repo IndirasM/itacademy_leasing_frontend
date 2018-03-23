@@ -1,7 +1,6 @@
 /* HeroDetailComponent's private CSS styles */
 label {
     display: inline-block;
-    width: 3em;
     margin: .5em ;
     color: #607D8B;
     font-weight: bold;
@@ -43,6 +42,15 @@ label {
 .ng-invalid:not(form) {
    border-left: 5px solid #a94442;
    /* red */
+}
+.ng-pristine {
+  border-left: 1px solid #ccc !important;
+}
+
+input.ng-pristine.ng-invalid {
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow:none;
 }
   
   

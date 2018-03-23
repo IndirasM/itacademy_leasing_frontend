@@ -12,6 +12,7 @@ export class LeaseToUserService {
     public dataSource = new BehaviorSubject<LeaseData>(this.src);
     public userDataSource = new BehaviorSubject<PrivateUserData>(this.userSrc);
     toSend = this.dataSource.asObservable();
+    toSendUser = this.userDataSource.asObservable();
 
     constructor(){
 

@@ -6,6 +6,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { LeaseToUserService } from '../../services/leasing-to-user.service';
 import { LeaseData } from './private-leasing-data';
+import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 
 @Component({
   selector: 'app-private-leasing-data-form',
@@ -46,12 +47,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     {value: '1980', viewValue: '1980'}
   ];
 
-  productTypes = ['Alfa Romeo',
-   'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
-    'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
-    'Subaru', 'Volkswagen'];
+  productTypes = [];
+
   
-  allProducts = [
+  allProducts = [/*
     {name: '147', type: 'Alfa Romeo'},
     {name: '155', type: 'Alfa Romeo'},
     {name: 'Giulia', type: 'Alfa Romeo'},
@@ -91,13 +90,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     {name: 'Golf', type: 'Wolkswagen'},
     {name: 'Polo', type: 'Wolkswagen'},
     {name: 'Accord', type: 'Honda'},
-    {name: 'Civic', type: 'Honda'},
+    {name: 'Civic', type: 'Honda'},*/
   ];
   productsAfterChangeEvent = [];
   productForm: FormGroup;
 
 
-  constructor(fb: FormBuilder, private leasingData: LeaseToUserService) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.productForm = fb.group({
       productType: [],
       product: [],
@@ -129,7 +128,44 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
   ngOnInit() {
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+    this.carService.getBrands().then(data => {
+   
+      var size = 0, key;
+      for (key in data) {
+          if (data.hasOwnProperty(key)){
+            size++;
+          }
+      }
+      
+      for (let i = 0; i < size; i++){
+        this.productTypes.push(data[i].brand);
+
+        this.carService.getModels(data[i].brand).then(models =>{
+
+          var size1 = 0, key1;
+          for (key1 in models) {
+              if (models.hasOwnProperty(key1)){
+                size1++;
+              }
+          }
+        
+          for (let j = 0; j < size1; j++){
+              //console.log(models[j]);
+              this.allProducts.push({name: models[j].model, type: data[i].brand});
+          }
+
+
+        });
+      } 
+      console.log(this.productTypes);
+      console.log(this.allProducts);
+   
+    });
+   
+
   }
+
+
 
     pitch(event: any) {
       console.log(event.value);
