@@ -7,19 +7,39 @@ import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms'
 import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
-  selector: 'apzp-private-leasing-data-form',
+  selector: 'app-private-leasing-data-form',
   styles: [`.form-field { padding: 10px 0px; }`],
   templateUrl: './private-leasing-data-form.component.html',
   styleUrls: ['./private-leasing-data-form.component.css']
 })
+
 export class PrivateLeasingDataFormComponent implements OnInit {
-  dialog: any;
+  checked = false;
+  indeterminate = false;
+  align = 'start';
+  disabled = false;
+  assetTypes = [
+    {value: 'Vehicle', viewValue: 'Vehicle'},
+
+  ];
+
+  years = [
+    '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989',
+    '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999',
+    '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+    '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'
+  ];
+
+  enginesPower = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
   productTypes = ['Alfa Romeo',
    'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
     'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
     'Subaru', 'Volkswagen'];
-  assetTypes = ['Vehicle'];
-  years = ['1980', '1981'];
+
   allProducts = [
     {name: '147', type: 'Alfa Romeo'},
     {name: '155', type: 'Alfa Romeo'},
@@ -68,19 +88,20 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.productForm = fb.group({
+      enginePower : new FormControl('', Validators.required),
       productType: [],
-      productModel: [],
+      product: [],
       assetType: [],
-      customerType: new FormControl('Business', Validators.required),
-      yearMake: new FormControl('gay') ,
-      enginePower: new FormControl('', Validators.required),
+      customerType: new FormControl('Private', Validators.required),
+      year: [] ,
       assetPrice: new FormControl('', Validators.required),
-      advancePaymentPercentage: new FormControl('', Validators.required),
+      advancePaymentPercentage: new FormControl(''),
       advancePaymentAmount: new FormControl('', Validators.required),
-      leasePeriod: new FormControl('', Validators.required),
-      marginM: new FormControl('', Validators.required),
-      contactFee: new FormControl('', Validators.required),
-      paymentDate: new FormControl('', Validators.required)
+      leasePeriod: new FormControl(''),
+      margin: new FormControl(3.2, [Validators.required ]),
+      paymentDate: new FormControl('15'),
+      contractFeePercentage: new FormControl(1),
+      contractFee: new FormControl(200),
 
     });
   }
@@ -99,39 +120,29 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   ngOnInit() {
 
   }
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-  };
+    pitch(event: any) {
+      console.log(event.value);
+    }
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    onSubmit() {
+        var formArray = {
+          assetType: this.productForm.value['assetType'],
+          carBrand: this.productForm.value['productType'],
+          carModel: this.productForm.value['product'],
+          years: this.productForm.value['year'],
+          enginePower: this.productForm.value['enginePower'],
+          assetPrice: this.productForm.value['assetPrice'],
+          advancePaymentPercentage: this.productForm.value['advancePaymentPercentage'],
+          advancePaymentAmount: this.productForm.value['advancePaymentAmount'],
+          leasePeriod: this.productForm.value['leasePeriod'],
+          margin: this.productForm.value['margin'],
+          contractFee: this.productForm.value['contractFee'],
+          paymentDate: this.productForm.value['paymentDate']
+        };
 
-    this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-  }
-
-  penDialog() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-        id: 1,
-        title: 'Angular For Beginners'
-    };
-
-    this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    const dialogRef = this.dialog.open(PrivateLeasingFormDialogComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(
-        data => console.log('Dialog output:', data)
-    );
-}
+        console.log(formArray);
+        console.log('ernestas');
+    }
+    
 }
