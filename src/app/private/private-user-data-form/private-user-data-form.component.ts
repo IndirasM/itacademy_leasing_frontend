@@ -14,14 +14,14 @@ export class PrivateUserDataFormComponent implements OnInit  {
 
   constructor(fb: FormBuilder){
     this.userForm = fb.group({
-      firstName: [null,[Validators.minLength(3),Validators.maxLength(15)]],
-      lastName: [null,[Validators.minLength(3),Validators.maxLength(20)]],
+      firstName: [null,[Validators.pattern('[a-zA-Z]{3,15}')]],
+      lastName: [null,[Validators.pattern('[a-zA-Z]{3,15}')]],
       personalCode:[null,[Validators.pattern('(^[34])[0-9]{10}')]],
-      phoneNumber:[null,[Validators.pattern('[0-9]+')]],
+      phoneNumber:[null,[Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
       email:[null,[Validators.email]],
       adress:[null,[]]
     })
-    this.send();
+   // this.send();
   }
 get firstName(){
   return this.userForm.get('firstName') as FormControl;
@@ -42,18 +42,35 @@ get adress(){
   return this.userForm.get('adress') as FormControl;
 }
  send(){
-  
-   let post ={
-     firstName: this.userForm.get('firstName').value,
-     lastName: this.userForm.get('lastName').value,
-     personalCode: this.userForm.get('personalCode').value,
-     phoneNumber: this.userForm.get('phoneNumber').value,
-     email: this.userForm.get('email').value,
-     address: this.userForm.get('adress').value,
-     leasId:1
-   }
-   console.log(post);
+  if(this.userForm.valid ){
+    console.log('form submitted');
+    let post ={
+         firstName: this.userForm.get('firstName').value,
+         lastName: this.userForm.get('lastName').value,
+         personalCode: this.userForm.get('personalCode').value,
+         phoneNumber: this.userForm.get('phoneNumber').value,
+         email: this.userForm.get('email').value,
+         address: this.userForm.get('adress').value,
+         leasId:1
+       }
+       console.log(post);
+  }
+  else{
+    console.log('invalid sumbit');
+    this.validateAllFormFields(this.userForm);
+  } 
  }
+ validateAllFormFields(formGroup: FormGroup) {  
+  
+  Object.keys(formGroup.controls).forEach(field => { 
+    const control = formGroup.get(field); 
+    if (control instanceof FormControl) {             
+      control.markAsTouched({ onlySelf: true });
+    } else if (control instanceof FormGroup) {       
+      this.validateAllFormFields(control);            
+    }
+  });
+}
   ngOnInit() {
    
   }

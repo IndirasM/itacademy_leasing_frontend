@@ -1,4 +1,5 @@
-<form [formGroup]="userForm" (ngSubmit)="send()">
+<div class="container">
+<form [formGroup]="userForm" (ngSubmit)="send()" novalidate>
   
   <div class="form-group">
     <label>First Name</label>
@@ -6,47 +7,49 @@
            class="form-control"
            formControlName ="firstName" required>
     <small *ngIf="firstName.invalid && firstName.touched " 
-           class="form=text text-danger">Validation msg</small>
+           class="form=text text-danger">*name must contain at least 3 characters</small>
   </div>
   <div class="form-group">
     <label>Last Name</label>
     <input type="text" 
            class="form-control"
            formControlName ="lastName" required>
-    <small *ngIf="lastName.invalid" 
-           class="form=text text-danger">Validation msg</small>
+    <small *ngIf="lastName.invalid && lastName.touched" 
+           class="form=text text-danger">*surname must contain at least 3 characters</small>
   </div>
   <div class="form-group">
     <label>Personal Code</label>
     <input type="text" 
            class="form-control"
            formControlName ="personalCode" required>
-    <small *ngIf="personalCode.invalid" 
-           class="form=text text-danger">Validation msg</small>
+    <small *ngIf="personalCode.invalid && personalCode.touched" 
+           class="form=text text-danger">*invalid Id number</small>
   </div>
   <div class="form-group">
     <label>Phone Number</label>
     <input type="text" 
            class="form-control"
            formControlName ="phoneNumber" required>
-    <small *ngIf="phoneNumber.invalid" 
-           class="form=text text-danger">Validation msg</small>
+    <small *ngIf="phoneNumber.invalid && phoneNumber.touched" 
+           class="form=text text-danger">*invalid phone number</small>
   </div>
   <div class="form-group">
     <label>Email</label>
     <input type="text" 
            class="form-control"
            formControlName ="email" required>
-    <small *ngIf="email.invalid" 
-           class="form=text text-danger">Validation msg</small>
+    <small *ngIf="email.invalid && email.touched" 
+           class="form=text text-danger">*invalid email</small>
   </div>
   <div class="form-group">
-    <label>Adress</label>
+    <label>Address</label>
     <input type="text" 
            class="form-control"
            formControlName ="adress" required>
-    <small *ngIf="adress.invalid" 
-           class="form=text text-danger">Validation msg</small>
+    <small *ngIf="adress.invalid && adress.touched" 
+           class="form=text text-danger">*invalid address</small>
   </div>
-  <button class="btn btn-primary" type="submit" (click)="userForm.valid">Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
+</div>
+<!-- /\(click)="userForm.valid -->
