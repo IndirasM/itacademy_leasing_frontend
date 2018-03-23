@@ -12,7 +12,6 @@ import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PrivateLeasingFormsService } from './services/private-leasing-forms.service';
-import { PrivateLeasingFormDialogComponent } from './private/private-leasing-data-form/private-leasing-form-dialog-component';
 import { PrivateLeasingDataFormComponent } from './private/private-leasing-data-form/private-leasing-data-form.component';
 import { ProductFilterPipe } from './private/private-leasing-data-form/private-leasing-form-filter.pipe';
 import {MatSliderModule} from '@angular/material/slider';
@@ -23,6 +22,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject'
+import { LeaseToUserService } from './services/leasing-to-user.service';
+import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,6 @@ import {MatCardModule} from '@angular/material/card';
     ContractFormComponent,
     PrivateUserDataFormComponent,
     PageNotFoundComponent,
-    PrivateLeasingFormDialogComponent,
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
     FormPreviewComponent
@@ -55,7 +56,9 @@ import {MatCardModule} from '@angular/material/card';
         MatDatepickerModule
   ],
   providers: [
-    PrivateLeasingFormsService
+    PrivateLeasingFormsService,
+    LeaseToUserService,
+    BrandsAndModelsService
   ],
   bootstrap: [AppComponent]
 })

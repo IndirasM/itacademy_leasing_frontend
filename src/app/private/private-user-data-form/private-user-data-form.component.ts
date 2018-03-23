@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {privateUserData} from './privateUserData';
+import {PrivateUserData} from './privateUserData';
+import {LeaseToUserService} from '../../services/leasing-to-user.service';
+import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
 
 
 @Component({
@@ -11,8 +13,10 @@ import {privateUserData} from './privateUserData';
 export class PrivateUserDataFormComponent implements OnInit {
 
   public userForm: FormGroup;
+  public leaseData: LeaseData;
+  public userData: PrivateUserData;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private leaseService: LeaseToUserService) {
     this.userForm = fb.group({
       firstName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],
       lastName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],
@@ -21,7 +25,10 @@ export class PrivateUserDataFormComponent implements OnInit {
       email: [null, [Validators.email]],
       adress: [null, []]
     });
-    // this.send();
+  }
+
+  ngOnInit() {
+    this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
   }
 
   get firstName() {
@@ -49,9 +56,10 @@ export class PrivateUserDataFormComponent implements OnInit {
   }
 
   send() {
+
     if (this.userForm.valid) {
       console.log('form submitted');
-      let post = {
+      this.userData = {
         firstName: this.userForm.get('firstName').value,
         lastName: this.userForm.get('lastName').value,
         personalCode: this.userForm.get('personalCode').value,
@@ -60,9 +68,9 @@ export class PrivateUserDataFormComponent implements OnInit {
         address: this.userForm.get('adress').value,
         leasId: 1
       };
-      console.log(post);
-    }
-    else {
+      console.log(this.userData);
+      this.leaseService.changeUserData(this.userData);
+    } else {
       console.log('invalid sumbit');
       this.validateAllFormFields(this.userForm);
     }
@@ -80,7 +88,6 @@ export class PrivateUserDataFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
 
-  }
 }
+
