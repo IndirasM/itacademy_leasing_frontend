@@ -144,5 +144,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         console.log(formArray);
         console.log('ernestas');
     }
-    
-}
+
+    // let calculateAdvancePaymentAmount = function(advancePaymentPercentage, assetPrice) {
+
+    //   return this.productForm.value['assetType'] * this.productForm.value['advancePaymentPercentage'] / 100;
+    // };
+  }
