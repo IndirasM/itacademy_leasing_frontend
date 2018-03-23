@@ -102,6 +102,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       paymentDate: new FormControl('15'),
       contractFeePercentage: new FormControl(1),
       contractFee: new FormControl(200),
+      carModel: new FormControl('')
 
     });
   }
@@ -113,6 +114,11 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   get contractFee() {
     return this.productForm.get('contractFeePercentage').value / 100 * this.productForm.get('assetPrice').value;
   }
+
+  get getModel() {
+    return this.productForm.get('carModel');
+  }
+
    // Rebuild the product list every time the product type changes.
   typeChanged() {
     const productType = this.productForm.get('productType').value;

@@ -30,25 +30,16 @@
             </mat-form-field>
         </div>
 
-        <div class="form-group">
-            <label>Models (total:{{(allProducts|productFilter:productForm.get('productType').value).length}})</label>
-            <select formControlName="product" class="form-control">
-        <option>Pick a model...</option>
-        <option *ngFor="let p of allProducts|productFilter:productForm.get('productType').value">{{p.name}}</option>
-      </select>
-            <span class="help-block"></span>
-        </div>
-
         <!-- <div class="form-group">
             <mat-form-field class="form-control">
-                <mat-select placeholder="Model" formControlName="product">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let p of allProducts|productFilter:productForm.get('productType').value">{{p.name}}</mat-option>
+                <mat-select placeholder="Model" formControlName="product" [(value)]="carmodel" required>
+                    <mat-option value=“product”>None</mat-option>
+                    <mat-option value=“product” *ngFor="let model of allProducts|productFilter:productForm.get('productType').value">{{model.name}}</mat-option>
                 </mat-select>
                 <span class="help-block"></span>
                 <mat-hint>(total models:{{(allProducts|productFilter:productForm.get('productType').value).length}})</mat-hint>
             </mat-form-field>
-
+            <mat-error *ngIf="!product">Must be selected</mat-error>
         </div> -->
 
         <div class="form-group">
@@ -67,6 +58,7 @@
 
         <div class="form-group">
             <label> Asset Price </label>
+            <!-- <small *ngIf="assetPrice.invalid"></small> -->
             <input type=number class="form-control" formControlName="assetPrice" required>
         </div>
 
