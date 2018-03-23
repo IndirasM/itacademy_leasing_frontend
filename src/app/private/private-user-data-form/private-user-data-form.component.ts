@@ -60,17 +60,15 @@ export class PrivateUserDataFormComponent implements OnInit {
     if (this.userForm.valid) {
       console.log('form submitted');
       this.userData = {
-        firstName: this.userForm.get('firstName').value,
-        lastName: this.userForm.get('lastName').value,
-        personalCode: this.userForm.get('personalCode').value,
-        phoneNumber: this.userForm.get('phoneNumber').value,
-        email: this.userForm.get('email').value,
-        address: this.userForm.get('adress').value,
-        leasId: 1
-      };
-      console.log(this.userData);
-      this.leaseService.changeUserData(this.userData);
-    } else {
+        firstName: this.userForm.value['firstName'],
+        lastName: this.userForm.value['lastName'],
+        personalCode: this.userForm.value['personalCode'],
+        phoneNumber: this.userForm.value['phoneNumber'],
+        email: this.userForm.value['email'],
+        address: this.userForm.value['adress'],
+        leasId: 1}
+        this.leaseService.changeUserData(this.userData);
+      } else {
       console.log('invalid sumbit');
       this.validateAllFormFields(this.userForm);
     }

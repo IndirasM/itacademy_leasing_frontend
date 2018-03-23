@@ -49,7 +49,7 @@
     <small *ngIf="adress.invalid && adress.touched"
            class="form=text text-danger">*invalid address</small>
   </div>
-  <button class="btn btn-primary" type="submit" routerLink="../preview">Submit</button>
+  <button class="btn btn-primary" (click)="send()" routerLink="../preview">Submit</button>
 </form>
 </div>
 <!-- /\(click)="userForm.valid -->
