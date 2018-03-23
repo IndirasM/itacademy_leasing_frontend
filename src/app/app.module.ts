@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ContractFormComponent } from './contract-form/contract-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContractFormComponent
   ],
   imports: [
     BrowserModule,
