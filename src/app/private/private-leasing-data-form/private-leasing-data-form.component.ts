@@ -14,41 +14,32 @@ import {MatDialogModule} from '@angular/material/dialog';
 })
 
 export class PrivateLeasingDataFormComponent implements OnInit {
-  startDate = new Date(1990, 0, 1);
-  autoTicks = false;
+  checked = false;
+  indeterminate = false;
+  align = 'start';
   disabled = false;
-  invert = false;
-  max = 100;
-  min = 0;
-  showTicks = false;
-  step = 1;
-  thumbLabel = false;
-  value = 0;
-  vertical = false;
-  get tickInterval(): number | 'auto' {
-    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
-  }
-  set tickInterval(v) {
-    this._tickInterval = Number(v);
-  }
-  private _tickInterval = 1;
-  dialog: any;
-  favoriteSeason: string;
-
   assetTypes = [
-    {value: '0', viewValue: 'Vehicle'},
+    {value: 'Vehicle', viewValue: 'Vehicle'},
 
   ];
 
   years = [
-    {value: '1980', viewValue: '1980'}
+    '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989',
+    '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999',
+    '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+    '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'
   ];
+
+  enginesPower = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   productTypes = ['Alfa Romeo',
    'Audi', 'BMW', 'Ford', 'Honda', 'Jaguar', 'Lamborghini',
     'Lexus', 'Mazda', 'Mercedes-Benz', 'Nissan', 'Peugeot',
     'Subaru', 'Volkswagen'];
-  
+
   allProducts = [
     {name: '147', type: 'Alfa Romeo'},
     {name: '155', type: 'Alfa Romeo'},
@@ -97,19 +88,20 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.productForm = fb.group({
+      enginePower : new FormControl('', Validators.required),
       productType: [],
       product: [],
       assetType: [],
       customerType: new FormControl('Private', Validators.required),
       year: [] ,
-      enginePower: new FormControl('', Validators.required),
       assetPrice: new FormControl('', Validators.required),
-      advancePaymentPercentage: new FormControl('', Validators.required),
+      advancePaymentPercentage: new FormControl(''),
       advancePaymentAmount: new FormControl('', Validators.required),
-      leasePeriod: new FormControl('', Validators.required),
-      margin: new FormControl('', [Validators.required ]),
-      contactFee: new FormControl('', Validators.required),
-      paymentDate: new FormControl('', Validators.required)
+      leasePeriod: new FormControl(''),
+      margin: new FormControl(3.2, [Validators.required ]),
+      paymentDate: new FormControl('15'),
+      contractFeePercentage: new FormControl(1),
+      contractFee: new FormControl(200),
 
     });
   }
@@ -134,7 +126,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     }
 
     onSubmit() {
-        let formArray = {
+        var formArray = {
           assetType: this.productForm.value['assetType'],
           carBrand: this.productForm.value['productType'],
           carModel: this.productForm.value['product'],
@@ -145,11 +137,12 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           advancePaymentAmount: this.productForm.value['advancePaymentAmount'],
           leasePeriod: this.productForm.value['leasePeriod'],
           margin: this.productForm.value['margin'],
-          contractFee: this.productForm.value['contactFee'],
+          contractFee: this.productForm.value['contractFee'],
           paymentDate: this.productForm.value['paymentDate']
-        }
+        };
 
         console.log(formArray);
+        console.log('ernestas');
     }
-
+    
 }

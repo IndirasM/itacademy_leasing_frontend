@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -21,6 +21,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import {MatCardModule} from '@angular/material/card';
         MatDatepickerModule,
         MatSelectModule,
         MatCardModule,
-        MatDatepickerModule
+        MatCheckboxModule
   ],
   providers: [
     PrivateLeasingFormsService
