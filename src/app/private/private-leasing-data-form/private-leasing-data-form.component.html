@@ -12,44 +12,54 @@
 
 
         <div class="form-group">
-            <mat-form-field>
-                <mat-select placeholder="Asset Type" formControlName="assetType">
+            <mat-form-field class="form-control">
+                <mat-select placeholder="Asset Type" formControlName="assetType" required>
                     <mat-option *ngFor="let assetType of assetTypes" [value]="assetType.value">
                         {{ assetType.viewValue }}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="!assetType">must be selected</mat-error>
+                
+
             </mat-form-field>
         </div>
 
         <div class="form-group">
             <mat-form-field class="form-control">
-                <mat-select placeholder="Brand" formControlName="productType">
+                <mat-select placeholder="Brand" formControlName="productType" required>
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let brand of productTypes" [value]="brand">{{brand}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="!productType">must be selected</mat-error>
             </mat-form-field>
-        </div>
-
-        <div class="form-group">
-            <label>Models (total:{{(allProducts|productFilter:productForm.get('productType').value).length}})</label>
-            <select formControlName="product" class="form-control">
-        <option>Pick a model...</option>
-        <option *ngFor="let p of allProducts|productFilter:productForm.get('productType').value">{{p.name}}</option>
-      </select>
-            <span class="help-block"></span>
         </div>
 
         <!-- <div class="form-group">
-            <mat-form-field class="form-control">
-                <mat-select placeholder="Model" formControlName="product">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let p of allProducts|productFilter:productForm.get('productType').value">{{p.name}}</mat-option>
-                </mat-select>
-                <span class="help-block"></span>
-                <mat-hint>(total models:{{(allProducts|productFilter:productForm.get('productType').value).length}})</mat-hint>
-            </mat-form-field>
-
+            <label>Models (total:{{(allProducts|productFilter:productForm.get('productType').value).length}})</label>
+            <select formControlName="product" class="form-control" required>
+        <option>Pick a model...</option>
+        <option *ngFor="let p of allProducts|productFilter:productForm.get('productType').value">{{p.name}}</option>
+      </select>
+     
+            <span class="help-block"></span>
         </div> -->
+
+        <div class="form-group">
+            <mat-form-field class="form-control">
+                <mat-select placeholder="Model" formControlName="product" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let p of allProducts
+                    |productFilter:productForm.get('productType').value
+                    " [value]="p.name">{{p.name}}</mat-option>
+                   <!-- <mat-option *ngFor="let brand of productTypes" [value]="brand">{{brand}}</mat-option> -->
+
+                </mat-select>
+                <mat-error *ngIf="!product">must be selected</mat-error>
+                 <span class="help-block"></span>
+                <!-- <mat-hint>(total models:{{(allProducts|productFilter:productForm.get('productType').value).length}})</mat-hint> -->
+             </mat-form-field>
+
+        </div> 
 
         <div class="form-group">
             <mat-form-field>
