@@ -1,111 +1,130 @@
 <div class="container">
-    <form [formGroup]="productForm" (ngSubmit)="submitForm()">
 
-        <div class="form-group">
-            <mat-radio-group formControlName="customerType">
+    <form [formGroup]="carLeasingForm" (ngSubmit)="submitForm()" role="form" novalidate #editForm="ngForm">
+
+        <div class="form-group ">
+            <mat-radio-group formControlName="customerType" required>
                 <label>Customer type</label>
                 <label></label>
-                <mat-radio-button value="Private">Private</mat-radio-button>
-                <mat-radio-button value="Corporate">Corporate</mat-radio-button>
+                <mat-radio-button value="Private ">Private</mat-radio-button>
+                <mat-radio-button value="Corporate ">Corporate</mat-radio-button>
             </mat-radio-group>
         </div>
 
-
-        <div class="form-group">
+        <div class="form-group ">
             <mat-form-field>
-                <mat-select placeholder="Asset Type" formControlName="assetType">
-                    <mat-option *ngFor="let assetType of assetTypes" [value]="assetType.value">
+                <mat-select placeholder="Asset Type " formControlName="assetType" required>
+                    <mat-option *ngFor="let assetType of assetTypes " [value]="assetType.value ">
                         {{ assetType.viewValue }}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="!assetType ">must be selected</mat-error>
+
+
             </mat-form-field>
         </div>
 
-        <div class="form-group">
-            <mat-form-field class="form-control">
-                <mat-select placeholder="Brand" formControlName="productType">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let brand of productTypes" [value]="brand">{{brand}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <!-- <div class="form-group">
-            <mat-form-field class="form-control">
-                <mat-select placeholder="Model" formControlName="product" [(value)]="carmodel" required>
-                    <mat-option value=“product”>None</mat-option>
-                    <mat-option value=“product” *ngFor="let model of allProducts|productFilter:productForm.get('productType').value">{{model.name}}</mat-option>
-                </mat-select>
-                <span class="help-block"></span>
-                <mat-hint>(total models:{{(allProducts|productFilter:productForm.get('productType').value).length}})</mat-hint>
-            </mat-form-field>
-            <mat-error *ngIf="!product">Must be selected</mat-error>
-        </div> -->
-
-        <div class="form-group">
+        <div class="form-group ">
             <mat-form-field>
-                <mat-select placeholder="Year" formControlName="year">
+                <mat-select placeholder="Brand " formControlName="brand" required>
                     <mat-option>None</mat-option>
-                    <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                    <mat-option *ngFor="let brand of brands " [value]="brand ">{{brand}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="!brand ">must be selected</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Model " formControlName="model" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let p of models |productFilter:carLeasingForm.get( 'brand').value " [value]="p.name ">{{p.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!model ">must be selected</mat-error>
+                <span class="help-block "></span>
+                <mat-hint>(total models:{{(models|productFilter:carLeasingForm.get('brand').value).length}})</mat-hint>
+            </mat-form-field>
+
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Year " formControlName="year" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let year of years " [value]="year">{{year}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!year ">must be selected</mat-error>
             </mat-form-field>
         </div>
 
         <div class="form-group">
             <label> Engine Power </label>
-            <input type=number max=20 class="form-control" formControlName="enginePower" required>
+            <input type=number formControlName="enginePower" required maxlength="3">
+            <small *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</small>
+
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <label> Asset Price </label>
-            <!-- <small *ngIf="assetPrice.invalid"></small> -->
-            <input type=number class="form-control" formControlName="assetPrice" required>
+            <input type=number formControlName="assetPrice" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <label> Advance payment percentage </label>
             <label></label>
-            <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)"></mat-slider>
+            <mat-slider formControlName="advancePaymentPercentage" min="10 " max="50 " step="0.1 " value="10 " tickInterval="0.1 " thumbLabel (input)="pitch($event) " required></mat-slider>
+            {{advancePaymentPercentage}}
         </div>
 
-        <div class="form-group">
-            <label>Advance payment amount {{advancePaymentAmount}}</label>
+        <div class="form-group ">
+            <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <label>Lease Period</label>
-            <label>
-                
-            </label>
-            <mat-slider formControlName="leasePeriod" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"></mat-slider>
+            <label></label>
+            <mat-slider formControlName="leasePeriod" min="6 " max="84 " step="6 " value="6 " tickInterval="1 " thumbLabel (input)="pitch($event) " required></mat-slider>
+            {{leasePeriod}}
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group ">
             <label>Margin (%)</label>
-            <label>
-                
-            </label>
-            <mat-slider formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)"></mat-slider>
+            <label></label>
+            <mat-slider formControlName="margin" min="3.2 " max="99 " step="0.1 " value="3.2 " tickInterval="0.1 " thumbLabel (input)="pitch($event) "> required</mat-slider>
+            {{margin.toFixed(2)}}
+
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <label> Contract fee percentage %</label>
             <label>  </label>
-            <input type=number class="form-control" formControlName="contractFeePercentage" required>
-            <label> Contract Fee</label>
-            <label> {{ contractFee }} </label>
+            <input type=number formControlName="contractFeePercentage" required>
+            <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
         </div>
 
-        <div class="form-group">
-            <mat-radio-group formControlName="paymentDate">
+        <div class="form-group ">
+            <mat-radio-group formControlName="paymentDate" required>
                 <label>Payment day</label>
                 <label></label>
-                <mat-radio-button value="15">15</mat-radio-button>
-                <mat-radio-button value="30">30</mat-radio-button>
+                <mat-radio-button value="15 ">15</mat-radio-button>
+                <mat-radio-button value="30 ">30</mat-radio-button>
             </mat-radio-group>
         </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" (click)="onSubmit()" routerLink='../form'>Submit</button>
+        <div class="form-group ">
+            <button type="submit " class="btn btn-primary" (click)="onSubmit() " routerLink='../form'>Submit</button>
         </div>
+
+        <!-- <button class="btn btn-danger " (click)="reset() " type="button ">reset</button> -->
+
+        <!-- <app-size formControlName="size"></app-size>
+
+        <div class="form-group ">
+            <label> Year </label>
+            <input class="form-control " type="text " max=20 formControlName="year" required>
+            <small *ngIf="year.pending " class="form-text text-danger ">Validation in progress</small>
+        </div>
+        <button class="btn btn-primary " type="submit ">send</button>
+        <button class="btn btn-danger " (click)="reset() " type="button ">reset</button>
+    </form> -->
