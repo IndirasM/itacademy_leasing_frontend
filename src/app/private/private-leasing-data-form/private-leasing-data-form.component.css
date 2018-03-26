@@ -1,5 +1,12 @@
 label {
     display: inline-block;
+    margin: .5em;
+    color: #607D8B;
+    font-weight: bold;
+}
+
+h3 {
+    display: inline-block;
     width: 3em;
     margin: .5em;
     color: #607D8B;
@@ -36,17 +43,6 @@ div {
 .container {
     background-color: #ccc;
     width: 50%;
-}
-
-.ng-valid[required],
-.ng-valid.required {
-    border-left: 5px solid #42A948;
-    /* green */
-}
-
-.ng-invalid:not(form) {
-    border-left: 5px solid #a94442;
-    /* red */
 }
 
 mat-slider {
@@ -91,4 +87,63 @@ mat-slider {
 
 .mat-slider-vertical {
     height: 300px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.form-group {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.body {
+    display: inline-block;
+    width: 3em;
+    margin: .5em;
+    color: #607D8B;
+    font-weight: bold;
+}
+
+.form-group {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+.ng-pristine {
+    border-left: 1px solid #ccc !important;
+}
+
+input.ng-pristine.ng-invalid {
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
 }
