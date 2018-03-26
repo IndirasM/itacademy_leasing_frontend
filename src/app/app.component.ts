@@ -5,7 +5,9 @@ import { FormPreviewComponent } from './private/form-preview/form-preview.compon
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  styles: ['input.ng-invalid {border-color: red}'],
+
 })
 export class AppComponent {
   title = 'Car leasing form';

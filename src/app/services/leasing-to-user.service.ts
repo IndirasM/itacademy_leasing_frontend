@@ -14,15 +14,14 @@ export class LeaseToUserService {
     toSend = this.dataSource.asObservable();
     toSendUser = this.userDataSource.asObservable();
 
-    constructor(){
-
+    constructor() {
     }
 
-    changeData(leaseData: LeaseData){
+    changeData(leaseData: LeaseData) {
         this.dataSource.next(leaseData);
     }
 
-    changeUserData(userData: PrivateUserData){
+    changeUserData(userData: PrivateUserData) {
         this.userDataSource.next(userData);
     }
 

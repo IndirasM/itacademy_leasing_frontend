@@ -4,8 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContractFormComponent } from './contract-form/contract-form.component';
 import { FormPreviewComponent } from './private/form-preview/form-preview.component';
-
-
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
@@ -22,10 +20,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject'
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import { LeaseToUserService } from './services/leasing-to-user.service';
 import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     PageNotFoundComponent,
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
-    FormPreviewComponent
+    FormPreviewComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -48,13 +49,15 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDialogModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-        MatRadioModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatSelectModule,
-        MatCardModule,
-        MatCheckboxModule
+    MatRadioModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+
   ],
   providers: [
     PrivateLeasingFormsService,

@@ -1,4 +1,4 @@
-export class LeaseData{
+export class LeaseData {
     assetType: string;
     carBrand: string;
     carModel: string;

@@ -24,6 +24,4 @@ export class FormPreviewComponent implements OnInit {
     console.log('form', this.leaseData);
     console.log('user', this.userData);
   }
-
-
 }

@@ -6,7 +6,7 @@ import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
 
 
 @Component({
-  selector: 'private-user-data-form',
+  selector: 'app-private-user-data-form',
   templateUrl: './private-user-data-form.component.html',
   styleUrls: ['./private-user-data-form.component.css']
 })
@@ -66,7 +66,7 @@ export class PrivateUserDataFormComponent implements OnInit {
         phoneNumber: this.userForm.value['phoneNumber'],
         email: this.userForm.value['email'],
         address: this.userForm.value['adress'],
-        leasId: 1}
+        leasId: 1};
         this.leaseService.changeUserData(this.userData);
       } else {
       console.log('invalid sumbit');

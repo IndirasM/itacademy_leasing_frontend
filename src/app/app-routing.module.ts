@@ -5,9 +5,9 @@ import {PrivateUserDataFormComponent} from './private/private-user-data-form/pri
 import { PrivateLeasingDataFormComponent } from './private/private-leasing-data-form/private-leasing-data-form.component';
 import {FormPreviewComponent} from './private/form-preview/form-preview.component';
 const routes: Routes = [
-  {path: "private", component: PrivateLeasingDataFormComponent},
-  {path: "form", component: PrivateUserDataFormComponent},
-  {path: "preview", component: FormPreviewComponent}
+  {path: 'private', component: PrivateLeasingDataFormComponent},
+  {path: 'form', component: PrivateUserDataFormComponent},
+  {path: 'preview', component: FormPreviewComponent}
 ];
 
 @NgModule({
