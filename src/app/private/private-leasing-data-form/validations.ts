@@ -1,4 +1,4 @@
-export class Custom {
+export class Validations {
 
     static unique(control) {
         const db = ['nir@nir.com'];
