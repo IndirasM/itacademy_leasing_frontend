@@ -42,3 +42,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/app/private/private_summary_show/private-leasing-data-form.component.ts
+src/app/private/private_summary_show/private-leasing-data-form.component.ts
+src/app/private/private_summary_show/private_summary_show.html

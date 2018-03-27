@@ -3,10 +3,9 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angula
 import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LeaseToUserService } from '../../services/leasing-to-user.service';
-import { LeaseData } from './private-leasing-data';
+import { LeaseData } from './corporate-leasing-data';
 import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { Validations } from './validations';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -16,14 +15,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-private-leasing-data-form',
+  selector: 'app-corporate-leasing-data-form',
   styles: ['input.ng-invalid {border-color: red}'],
-  templateUrl: './private-leasing-data-form.component.html',
-  styleUrls: ['./private-leasing-data-form.component.css'],
+  templateUrl: './corporate-leasing-data-form.component.html',
+  styleUrls: ['./corporate-leasing-data-form.component.css'],
   providers: [],
 })
 
-export class PrivateLeasingDataFormComponent implements OnInit {
+export class CorporateLeasingDataFormComponent implements OnInit {
 
   public carLeasingForm: FormGroup;
   leaseData: LeaseData;
@@ -47,22 +46,38 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.carLeasingForm = fb.group({
-      enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
+      enginePower : new FormControl(null, [Validators.required, Validators.min(44), Validators.max(334), Validators.maxLength(3)]),
       LeaseData: LeaseData,
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: [[new FormControl('Private', Validators.required)]],
+      customerType: new FormControl('Corporate', Validators.required),
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
-      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
-      advancePaymentPercentage: new FormControl(null, [Validators.required, Validators.min(10), Validators.max(50)]),
-      advancePaymentAmount: new FormControl(null),
+      assetPrice: new FormControl(null, [Validators.required, Validators.min(10000)]),
+      advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(99)]),
+      advancePaymentAmount: new FormControl(null, Validators.required),
       leasePeriod: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl('15', Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
-      contractFee: new FormControl(200, Validators.required)
+      contractFee: new FormControl(200, Validators.required),
+      carModel: new FormControl(null, Validators.required),
+      financingAmount: new FormControl(null, Validators.required),
+      totalInterest: new FormControl(null, Validators.required),
+      totalMonthlyPayment: new FormControl(null, Validators.required)
     });
+  }
+
+  get financingAmount() {
+    return this.carLeasingForm.get('financingAmount').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+  }
+
+  get totalInterest() {
+    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+  }
+
+  get totalMonthlyPayment() {
+    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
   }
 
   send() {
@@ -177,10 +192,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
         console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
-     // } else {
-        // console.log('invalid sumbit');
-        // this.validateAllFormFields(this.carLeasingForm);
-    //  }
+      // } else {
+      //   console.log('invalid sumbit');
+      //   this.validateAllFormFields(this.carLeasingForm);
+      // }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {
