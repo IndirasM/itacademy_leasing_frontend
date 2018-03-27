@@ -25,6 +25,7 @@ import { LeaseToUserService } from './services/leasing-to-user.service';
 import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component'
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
     FormPreviewComponent,
-
+    CorporateUserDataFormComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
-
   ],
   providers: [
     PrivateLeasingFormsService,

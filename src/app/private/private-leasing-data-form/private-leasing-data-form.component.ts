@@ -47,7 +47,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.carLeasingForm = fb.group({
-      enginePower : new FormControl(null, [Validators.required, Validators.min(44), Validators.max(334), Validators.maxLength(3)]),
+      enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
       LeaseData: LeaseData,
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
@@ -56,13 +56,12 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
       assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
       advancePaymentPercentage: new FormControl(null, [Validators.required, Validators.min(10), Validators.max(50)]),
-      advancePaymentAmount: new FormControl(null, Validators.required),
+      advancePaymentAmount: new FormControl(null),
       leasePeriod: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl('15', Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
-      contractFee: new FormControl(200, Validators.required),
-      carModel: new FormControl(null, Validators.required)
+      contractFee: new FormControl(200, Validators.required)
     });
   }
 
