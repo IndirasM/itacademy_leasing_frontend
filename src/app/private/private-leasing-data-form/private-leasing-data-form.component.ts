@@ -159,7 +159,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     }
 
     onSubmit() {
-      if (this.carLeasingForm.valid) {
+      // if (this.carLeasingForm.valid) {
         this.leaseData = {
           assetType: this.carLeasingForm.value['assetType'],
           carBrand: this.carLeasingForm.value['brand'],
@@ -177,10 +177,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
         console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
-      } else {
-        console.log('invalid sumbit');
-        this.validateAllFormFields(this.carLeasingForm);
-      }
+     // } else {
+        // console.log('invalid sumbit');
+        // this.validateAllFormFields(this.carLeasingForm);
+    //  }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {

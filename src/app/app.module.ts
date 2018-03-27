@@ -26,6 +26,7 @@ import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component'
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
     FormPreviewComponent,
-    CorporateUserDataFormComponent
+    CorporateUserDataFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

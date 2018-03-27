@@ -5,11 +5,14 @@ import { PrivateUserDataFormComponent } from './private/private-user-data-form/p
 import { PrivateLeasingDataFormComponent } from './private/private-leasing-data-form/private-leasing-data-form.component';
 import { FormPreviewComponent } from './private/form-preview/form-preview.component';
 import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component';
+import { HomeComponent } from './home/home.component';
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'private', component: PrivateLeasingDataFormComponent},
   {path: 'form', component: PrivateUserDataFormComponent},
   {path: 'preview', component: FormPreviewComponent},
-  {path: 'corporate', component: CorporateUserDataFormComponent}
+  {path: 'corporate', component: CorporateUserDataFormComponent},
+  {path: 'home',component: HomeComponent}
 ];
 
 @NgModule({

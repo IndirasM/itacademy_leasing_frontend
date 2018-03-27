@@ -23,7 +23,7 @@ export class PrivateUserDataFormComponent implements OnInit {
       personalCode: [null, [Validators.pattern('(^[34])[0-9]{10}')]],
       phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
       email: [null, [Validators.email]],
-      adress: [null, []]
+      address: [null, []]
     });
   }
 
@@ -51,8 +51,8 @@ export class PrivateUserDataFormComponent implements OnInit {
     return this.userForm.get('email') as FormControl;
   }
 
-  get adress() {
-    return this.userForm.get('adress') as FormControl;
+  get address() {
+    return this.userForm.get('address') as FormControl;
   }
 
   send() {
@@ -65,7 +65,7 @@ export class PrivateUserDataFormComponent implements OnInit {
         personalCode: this.userForm.value['personalCode'],
         phoneNumber: this.userForm.value['phoneNumber'],
         email: this.userForm.value['email'],
-        address: this.userForm.value['adress'],
+        address: this.userForm.value['address'],
         leasId: 1};
         this.leaseService.changeUserData(this.userData);
       } else {
