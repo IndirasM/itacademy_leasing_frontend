@@ -1,0 +1,19 @@
+<mat-horizontal-stepper [linear]="isLinear" 
+#stepper="matHorizontalStepper">
+  <mat-step [stepControl]="carLeasingForm">
+    <app-private-leasing-data-form></app-private-leasing-data-form>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext >Next</button>
+  </mat-step>
+  <mat-step [stepControl]="userDataForm">
+      <app-private-user-data-form></app-private-user-data-form>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+   
+  </mat-step>
+  <mat-step>
+      <app-form-preview></app-form-preview>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Submit</button>
+  </mat-step>
+</mat-horizontal-stepper>

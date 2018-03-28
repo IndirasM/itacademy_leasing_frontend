@@ -26,6 +26,8 @@ import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HomeComponent } from './home/home.component';
+import { StepperComponent } from './stepper/stepper.component';
+import {MatStepperModule} from '@angular/material/stepper'
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { HomeComponent } from './home/home.component';
     ProductFilterPipe,
     FormPreviewComponent,
     HomeComponent,
+    StepperComponent,
 
   ],
   imports: [
@@ -59,6 +62,7 @@ import { HomeComponent } from './home/home.component';
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatStepperModule,
 
   ],
   providers: [
