@@ -6,5 +6,5 @@ export class PrivateUserData {
   phoneNumber: string;
   email: string;
   address: string;
-  leasId: 1;
+  leaseId: string;
 }
