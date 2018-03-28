@@ -172,7 +172,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           leasePeriod: this.carLeasingForm.value['leasePeriod'],
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
-          paymentDate: this.carLeasingForm.value['paymentDate']
+          paymentDate: this.carLeasingForm.value['paymentDate'],
+          customerType: 'Private'
+
         };
 
         console.log(this.leaseData);
