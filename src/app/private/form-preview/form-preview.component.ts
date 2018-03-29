@@ -19,7 +19,8 @@ export class FormPreviewComponent implements OnInit {
 
   private leaseData: LeaseData;
   private userData: PrivateUserData;
-  public newData: promisedLease;
+  public newData: PromisedLease;
+  public errorMessages: string;
 
   ngOnInit() {
     this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
@@ -28,18 +29,36 @@ export class FormPreviewComponent implements OnInit {
 
   sendToDb(){
     this.sendService.sendLeasingForm(this.leaseData).then(data => {
-      console.log(data);
+      this.newData = new PromisedLease(data);
+      this.userData.leaseId = this.newData.id;
       this.sendService.sendPrivateUserForm(this.userData).then(data => {
         console.log(data);
       }).catch( data => {
-        console.log(data);
-        let errors = data.error.fieldErrors; 
+        //return user to incorrectly filled field (user form)
+
+        //if 500 smth went wrong, try again
+        if(data.status == 500){
+          this.errorMessages = "Something went wrong, please try again.";
+        }
+        if(data.status == 503){
+          this.errorMessages = "Service is currently unavailable, please try again later."
+        }
+        //if 400 bad input data, retrieve error and send user to the field
+        if(data.status == 400){
+          let errors = [];
+          errors = data.error.fieldErrors; 
+          for(let i = 0; i < errors.length; i++){
+              this.errorMessages += errors[i].field + "\n";
+          }
+        }
       })
+    }).catch( data => {
+      //return user to incorrectly filled field (leasing form)
     })
   }
 }
 
-export class promisedLease {
+export class PromisedLease {
   id: string;
   assetType: string;
   //leaseType: string;
@@ -55,4 +74,21 @@ export class promisedLease {
   contractFee: number;
   paymentDate: number;
   errorCodes: number;
+
+  constructor(data){
+    this.id = data.id;
+    this.assetPrice = data.assetType;
+    this.carBrand = data.carBrand;
+    this.carModel = data.carModel;
+    this.years = data.years;
+    this.enginePower = data.enginePower;
+    this.assetPrice = data.assetPrice;
+    this.advancePaymentPercentage = data.advancePaymentPercentage;
+    this.advancePaymentAmount = data.advancePaymentAmount;
+    this.leasePeriod = data.leasePeriod;
+    this.margin = data.margin;
+    this.contractFee = data.contractFee;
+    this.paymentDate = data.paymentDate;
+    this.errorCodes = data.errorCodes;
+  }
 }
