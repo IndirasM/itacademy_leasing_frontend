@@ -3,15 +3,6 @@
     <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm">
 
         <div class="form-group">
-            <mat-radio-group formControlName="customerType" required>
-                <label>Customer type</label>
-                <label></label>
-                <mat-radio-button value="Private">Private</mat-radio-button>
-                <mat-radio-button value="Corporate">Corporate</mat-radio-button>
-            </mat-radio-group>
-        </div>
-
-        <div class="form-group">
             <mat-form-field>
                 <mat-select placeholder="Asset Type" formControlName="assetType" required>
                     <mat-option *ngFor="let assetType of assetTypes" [value]="assetType.value">
@@ -57,16 +48,20 @@
             </mat-form-field>
         </div>
 
-        <div class="form-group">
-            <label> Engine Power </label>
-            <input type=number formControlName="enginePower" required maxlength="3">
-            <small *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</small>
-
+        <div class="form-group ">
+            <mat-form-field>
+                <input matInput placeholder="Engine Power" type=number formControlName="enginePower" required maxlength="3">
+                <mat-error *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</mat-error>
+            </mat-form-field>
         </div>
 
+
         <div class="form-group">
-            <label> Asset Price </label>
-            <input type="number" formControlName="assetPrice" required>
+            <mat-form-field>
+
+                <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" required maxlength="3">
+            </mat-form-field>
+
         </div>
 
         <div class="form-group ">
@@ -99,16 +94,18 @@
         <div class="form-group">
             <label> Contract fee percentage %</label>
             <label>  </label>
-            <input type="number" formControlName="contractFeePercentage" required>
+            <mat-form-field>
+                <input matInput type=number formControlName="contractFeePercentage" required maxlength="3">
+            </mat-form-field>
             <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
         </div>
 
-        <div class="form-group">
+        <div class="form-group ">
             <mat-radio-group formControlName="paymentDate" required>
                 <label>Payment day</label>
                 <label></label>
-                <mat-radio-button value="15">15</mat-radio-button>
-                <mat-radio-button value="30">30</mat-radio-button>
+                <mat-radio-button value="15 ">15</mat-radio-button>
+                <mat-radio-button value="30 ">30</mat-radio-button>
             </mat-radio-group>
         </div>
 

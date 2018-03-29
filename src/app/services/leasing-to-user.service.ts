@@ -7,16 +7,18 @@ import { CorporateUserData } from '../corporate/corporate-user-data-form/corpora
 
 @Injectable()
 export class LeaseToUserService {
-
+    homeSrc: string;
     corporateSrc: CorporateUserData;
     src: LeaseData;
     userSrc: PrivateUserData;
+    public homeSource = new BehaviorSubject<string>(this.homeSrc);
     public dataSource = new BehaviorSubject<LeaseData>(this.src);
     public userDataSource = new BehaviorSubject<PrivateUserData>(this.userSrc);
     public corporateDataSource = new BehaviorSubject<CorporateUserData>(this.corporateSrc);
     toSend = this.dataSource.asObservable();
     toSendUser = this.userDataSource.asObservable();
     toSendCorporate = this.corporateDataSource.asObservable();
+    toSendType = this.homeSource.asObservable();
 
     constructor() {
     }
@@ -31,6 +33,9 @@ export class LeaseToUserService {
 
     changeCorporateData(corporateUserData: CorporateUserData){
         this.corporateDataSource.next(corporateUserData);
+    }
+    changeUserType(customerType:string){
+        this.homeSource.next(customerType);
     }
 
 }

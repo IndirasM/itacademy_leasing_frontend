@@ -3,9 +3,10 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angula
 import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LeaseToUserService } from '../../services/leasing-to-user.service';
-import { LeaseData } from './corporate-leasing-data';
 import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { LeaseData } from '../../private/private-leasing-data-form/private-leasing-data';
+
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -55,29 +56,35 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
       assetPrice: new FormControl(null, [Validators.required, Validators.min(10000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(99)]),
-      advancePaymentAmount: new FormControl(null, Validators.required),
-      leasePeriod: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(84)]),
+      advancePaymentAmount: new FormControl(null),
+      leasePeriod: new FormControl(6, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
-      paymentDate: new FormControl('15', Validators.required),
+      paymentDate: new FormControl(null, Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
-      contractFee: new FormControl(200, Validators.required),
-      carModel: new FormControl(null, Validators.required),
-      financingAmount: new FormControl(null, Validators.required),
-      totalInterest: new FormControl(null, Validators.required),
-      totalMonthlyPayment: new FormControl(null, Validators.required)
+      contractFee: new FormControl(200),
+      financingAmount: new FormControl(null),
+      totalInterest: new FormControl(null),
+      totalMonthlyPayment: new FormControl(null)
     });
   }
 
   get financingAmount() {
-    return this.carLeasingForm.get('financingAmount').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+     return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
   }
 
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+    return this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value;
+  }
+
+  get totalpayment() {
+    return this.carLeasingForm.get('totalInterest').value
+    + this.carLeasingForm.get('financingAmount').value
+    + this.carLeasingForm.get('contractFee').value
+    + (0.7 * this.carLeasingForm.get('totalInterest').value);
   }
 
   get totalMonthlyPayment() {
-    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+    return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
   send() {
@@ -174,7 +181,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     }
 
     onSubmit() {
-      // if (this.carLeasingForm.valid) {
+       if (this.carLeasingForm.valid) {
         this.leaseData = {
           assetType: this.carLeasingForm.value['assetType'],
           carBrand: this.carLeasingForm.value['brand'],
@@ -187,15 +194,17 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           leasePeriod: this.carLeasingForm.value['leasePeriod'],
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
-          paymentDate: this.carLeasingForm.value['paymentDate']
+          paymentDate: this.carLeasingForm.value['paymentDate'],
+          customerType: 'Corporate'
+
         };
 
         console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
-      // } else {
-      //   console.log('invalid sumbit');
-      //   this.validateAllFormFields(this.carLeasingForm);
-      // }
+      } else {
+        console.log('invalid sumbit');
+        this.validateAllFormFields(this.carLeasingForm);
+      }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {

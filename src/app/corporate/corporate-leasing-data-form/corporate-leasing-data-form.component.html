@@ -48,16 +48,18 @@
             </mat-form-field>
         </div>
 
-        <div class="form-group">
-            <label> Engine Power </label>
-            <input type=number formControlName="enginePower" required maxlength="3">
-            <small *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</small>
-
+        <div class="form-group ">
+            <mat-form-field>
+                <input matInput placeholder="Engine Power" type=number formControlName="enginePower" required maxlength="3">
+                <mat-error *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</mat-error>
+            </mat-form-field>
         </div>
 
         <div class="form-group ">
-            <label> Asset Price </label>
-            <input type=number formControlName="assetPrice" required>
+            <mat-form-field>
+                <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" required maxlength="3">
+                <mat-error *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</mat-error>
+            </mat-form-field>
         </div>
 
         <div class="form-group ">
@@ -88,10 +90,9 @@
         </div>
 
         <div class="form-group ">
-            <label> Contract fee percentage %</label>
-            <label>  </label>
-            <input type=number formControlName="contractFeePercentage" required>
-            <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+            <mat-form-field>
+                <input matInput placeholder="Contract Fee Percentage" type=number formControlName="contractFeePercentage" required maxlength="3">
+            </mat-form-field>
         </div>
 
         <div class="form-group ">
@@ -104,36 +105,24 @@
         </div>
 
         <div class="form-group ">
-            <label> Financing Amount  {{ financingAmount.toFixed(2) }}</label>
+            <button [disabled]="!carLeasingForm.valid" type="submit " class="btn btn-primary" (click)="onSubmit() " routerLink='../form'>Submit</button>
         </div>
 
         <div class="form-group ">
-            <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+            <div class="form-group ">
+                <label> Financing Amount  {{ financingAmount.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+                <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+                <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+
+                <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
+            </div>
         </div>
-
-        <div class="form-group ">
-            <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
-        </div>
-
-        <div class="form-group ">
-
-            <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
-        </div>
-
-
-        <div class="form-group ">
-            <button type="submit " class="btn btn-primary" (click)="onSubmit() " routerLink='../form'>Submit</button>
-        </div>
-
-        <!-- <button class="btn btn-danger " (click)="reset() " type="button ">reset</button> -->
-
-        <!-- <app-size formControlName="size"></app-size>
-
-      <div class="form-group ">
-          <label> Year </label>
-          <input class="form-control " type="text " max=20 formControlName="year" required>
-          <small *ngIf="year.pending " class="form-text text-danger ">Validation in progress</small>
-      </div>
-      <button class="btn btn-primary " type="submit ">send</button>
-      <button class="btn btn-danger " (click)="reset() " type="button ">reset</button>
-  </form> -->

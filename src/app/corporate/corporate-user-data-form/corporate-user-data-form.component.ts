@@ -18,11 +18,11 @@ export class CorporateUserDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, private leaseService: LeaseToUserService) {
     this.corporateUserForm = fb.group({
-      companyName: [null, [Validators.pattern('[a-zA-Z]{3,20}')]],
+      companyName: [null, [Validators.pattern(/[a-zA-Z]{3,20}/)]],
       companyCode: [null, [Validators.pattern('[0-9]{9}')]],
       phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
       email: [null, [Validators.email]],
-      adress: [null, [Validators.pattern('.*[0-9].*'),
+      address: [null, [Validators.pattern('.*[0-9].*'),
                       Validators.pattern('.*[A-Za-z].*'),
                       Validators.pattern(/.+[\s].+/)]]
     });
@@ -49,7 +49,7 @@ export class CorporateUserDataFormComponent implements OnInit {
   }
 
   get adress() {
-    return this.corporateUserForm.get('adress') as FormControl;
+    return this.corporateUserForm.get('address') as FormControl;
   }
 
   send() {
@@ -61,7 +61,7 @@ export class CorporateUserDataFormComponent implements OnInit {
         companyCode: this.corporateUserForm.value['companyCode'],
         phoneNumber: this.corporateUserForm.value['phoneNumber'],
         email: this.corporateUserForm.value['email'],
-        address: this.corporateUserForm.value['adress'],
+        address: this.corporateUserForm.value['address'],
         leasId: 1};
         this.leaseService.changeCorporateData(this.corporateUserData);
       } else {
