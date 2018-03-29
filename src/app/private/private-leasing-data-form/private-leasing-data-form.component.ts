@@ -53,14 +53,14 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
       customerType: [[new FormControl('Private', Validators.required)]],
-      year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
-      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
+      year: new FormControl([], Validators.required) ,
+      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000), Validators.maxLength(10)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(50)]),
       advancePaymentAmount: new FormControl(null),
       leasePeriod: new FormControl(6, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl(null, Validators.required),
-      contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
+      contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99), Validators.maxLength(2)]),
       contractFee: new FormControl(200, Validators.required)
     });
   }
@@ -74,11 +74,15 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get enginePower() {
-    return this.carLeasingForm.get('enginePower') as FormControl;
+    return this.carLeasingForm.get('enginePower');
   }
 
   get year() {
-    return this.carLeasingForm.get('year') as FormControl;
+    return this.carLeasingForm.get('year');
+  }
+
+  get assetPrice() {
+    return this.carLeasingForm.get('assetPrice');
   }
 
   get advancePaymentAmount() {
@@ -93,8 +97,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     return 200;
 
   }
-
-  get getModel() {
+  get model() {
     return this.carLeasingForm.get('carModel');
   }
 
