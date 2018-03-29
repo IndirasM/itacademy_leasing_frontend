@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material';
 import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { LeaseToUserService } from '../../services/leasing-to-user.service';
 import { LeaseData } from './private-leasing-data';
 import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Validations } from './validations';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
