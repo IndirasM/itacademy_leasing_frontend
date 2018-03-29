@@ -55,11 +55,11 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       customerType: [[new FormControl('Private', Validators.required)]],
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
       assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
-      advancePaymentPercentage: new FormControl(null, [Validators.required, Validators.min(10), Validators.max(50)]),
+      advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(50)]),
       advancePaymentAmount: new FormControl(null),
-      leasePeriod: new FormControl(null, [Validators.required, Validators.min(6), Validators.max(84)]),
+      leasePeriod: new FormControl(6, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
-      paymentDate: new FormControl('15', Validators.required),
+      paymentDate: new FormControl(null, Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
       contractFee: new FormControl(200, Validators.required)
     });
@@ -172,7 +172,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           leasePeriod: this.carLeasingForm.value['leasePeriod'],
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
-          paymentDate: this.carLeasingForm.value['paymentDate']
+          paymentDate: this.carLeasingForm.value['paymentDate'],
+          customerType: 'Private'
+
         };
 
         console.log(this.leaseData);

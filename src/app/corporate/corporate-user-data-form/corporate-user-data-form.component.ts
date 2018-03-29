@@ -18,7 +18,7 @@ export class CorporateUserDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, private leaseService: LeaseToUserService) {
     this.corporateUserForm = fb.group({
-      companyName: [null, [Validators.pattern(/[a-zA-Z\s]{3,20}/)]],
+      companyName: [null, [Validators.pattern(/[a-zA-Z]{3,20}/)]],
       companyCode: [null, [Validators.pattern('[0-9]{9}')]],
       phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
       email: [null, [Validators.email]],
