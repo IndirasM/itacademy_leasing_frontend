@@ -10,7 +10,7 @@ import {LeaseToUserService} from '../services/leasing-to-user.service';
 export class StepperComponent implements OnInit {
   PrivateUserDataForm : PrivateUserDataFormComponent;
   constructor(private leaseService: LeaseToUserService) { }
-  customerType: string;
+  customerType: string ="private";
   ngOnInit() {
     this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
   }

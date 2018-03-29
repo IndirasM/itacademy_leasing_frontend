@@ -5,15 +5,13 @@
     <button mat-button matStepperPrevious>Back</button>
     <button mat-button matStepperNext >Next</button>
   </mat-step>
-  <mat-step [stepControl]="userDataForm">
-      <app-private-user-data-form ></app-private-user-data-form>
+  <mat-step>
+      <app-private-user-data-form *ngIf='customerType==="private"'></app-private-user-data-form>
+      <app-corporate-user-data-form *ngIf='customerType==="corporate"'>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
-   
-  </mat-step>
   <mat-step>
-      <app-form-preview></app-form-preview>
+      <!-- <app-form-preview></app-form-preview> -->
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Submit</button>
   </mat-step>
-</mat-horizontal-stepper>
