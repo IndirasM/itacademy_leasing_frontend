@@ -54,7 +54,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       assetType: new FormControl([], Validators.required),
       customerType: [[new FormControl('Private', Validators.required)]],
       year: new FormControl([], Validators.required) ,
-      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000), Validators.maxLength(10)]),
+      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(50)]),
       advancePaymentAmount: new FormControl(null),
       leasePeriod: new FormControl(6, [Validators.required, Validators.min(6), Validators.max(84)]),
@@ -87,6 +87,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   get advancePaymentAmount() {
     return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+  }
+
+  get contractFeePercentage() {
+    return this.carLeasingForm.get('contractFeePercentage').value;
   }
 
   get contractFee() {
