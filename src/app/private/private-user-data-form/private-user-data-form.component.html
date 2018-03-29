@@ -2,33 +2,33 @@
 <div class="container">
   <form class="container" [formGroup]="userForm">
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Name" formControlName="firstName" required>
-      <mat-error *ngIf="!firstName ">Name is required</mat-error>
+      <input matInput maxlength="13" placeholder="Name" formControlName="firstName" required>
+      <mat-error *ngIf="firstName.invalid">Name is required</mat-error>
     </mat-form-field>
 
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Surname" formControlName ="lastName" required>
-      <mat-error *ngIf="!lastName ">Surname is required</mat-error>
+      <input matInput maxlength="13" placeholder="Surname" formControlName ="lastName" required>
+      <mat-error *ngIf="lastName.invalid ">Surname is required</mat-error>
     </mat-form-field>
 
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Id code" formControlName="personalCode" required>
-      <mat-error *ngIf="!personalCode ">Id code is required</mat-error>
+      <input matInput maxlength="11" placeholder="Id code" formControlName="personalCode" required>
+      <mat-error *ngIf="personalCode.invalid">Id code is required</mat-error>
     </mat-form-field>
 
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Phone number" formControlName="phoneNumber" required>
-      <mat-error *ngIf="!phoneNumber">Id code is required</mat-error>
+      <input matInput maxlength="12" placeholder="Phone number" formControlName="phoneNumber" required>
+      <mat-error *ngIf="phoneNumber.invalid">Id code is required</mat-error>
     </mat-form-field>
 
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Email" formControlName="email" required>
-      <mat-error *ngIf="!email">Email is required</mat-error>
+      <input matInput maxlength="64" placeholder="Email" formControlName="email" required>
+      <mat-error *ngIf="email.invalid">Email is required</mat-error>
     </mat-form-field>
 
     <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Address" formControlName="address" required>
-      <mat-error *ngIf="!address">Address is required</mat-error>
+      <input matInput maxlength="64" placeholder="Address" formControlName="address" required>
+      <mat-error *ngIf="address.invalid">Address is required</mat-error>
     </mat-form-field>
     <button mat-raised-button (click)="send()" routerLink="../preview" [disabled]="!userForm.valid">Next</button>
   </form>

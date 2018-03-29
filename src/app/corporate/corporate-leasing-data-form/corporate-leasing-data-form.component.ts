@@ -47,7 +47,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
 
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.carLeasingForm = fb.group({
-      enginePower : new FormControl(null, [Validators.required, Validators.min(44), Validators.max(334), Validators.maxLength(3)]),
+      enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(3)]),
       LeaseData: LeaseData,
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
@@ -126,12 +126,20 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     return this.carLeasingForm.get('enginePower') as FormControl;
   }
 
+  get assetPrice() {
+    return this.carLeasingForm.get('assetPrice');
+  }
+
   get year() {
     return this.carLeasingForm.get('year') as FormControl;
   }
 
   get advancePaymentAmount() {
     return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
+  }
+
+  get contractFeePercentage() {
+    return this.carLeasingForm.get('contractFeePercentage').value;
   }
 
   get contractFee() {

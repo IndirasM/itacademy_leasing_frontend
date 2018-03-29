@@ -9,7 +9,7 @@
                         {{ assetType.viewValue }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="!assetType">Asset must be selected!</mat-error>
+                <mat-error *ngIf="!assetType">Asset must be selected</mat-error>
 
 
             </mat-form-field>
@@ -21,7 +21,7 @@
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let brand of brands" [value]="brand">{{brand}}</mat-option>
                 </mat-select>
-                <mat-error *ngIf="!brand">Brand must be selected!</mat-error>
+                <mat-error *ngIf="!brand">Brand must be selected</mat-error>
             </mat-form-field>
         </div>
 
@@ -46,8 +46,6 @@
                 </mat-select>
                 <mat-error *ngIf="year.invalid && year.touched && !(year.value!=None)" class="form-text text-danger">Year must be selected</mat-error>
               <span class="help-block"></span>
-                <mat-hint>
-                </mat-hint>
             </mat-form-field>
         </div>
 
@@ -80,7 +78,7 @@
             <label> Advance payment percentage </label>
             <label></label>
             <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required></mat-slider>
-            {{advancePaymentPercentage | number:0}} %
+            {{advancePaymentPercentage.toFixed(1)}} %
         </div>
 
         <div class="form-group">
@@ -112,7 +110,7 @@
 
         <div>
             <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
-            
+
         </div>
 
         <div class="form-group ">
