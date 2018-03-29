@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrivateUserDataFormComponent } from '../private/private-user-data-form/private-user-data-form.component';
+import {LeaseToUserService} from '../services/leasing-to-user.service';
 
 @Component({
   selector: 'app-stepper',
@@ -8,9 +9,10 @@ import { PrivateUserDataFormComponent } from '../private/private-user-data-form/
 })
 export class StepperComponent implements OnInit {
   PrivateUserDataForm : PrivateUserDataFormComponent;
-  constructor() { }
-
+  constructor(private leaseService: LeaseToUserService) { }
+  customerType: string;
   ngOnInit() {
+    this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
   }
 
 }

@@ -25,9 +25,11 @@ import { LeaseToUserService } from './services/leasing-to-user.service';
 import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component';
 import { HomeComponent } from './home/home.component';
 import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper'
+import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 
 
 @NgModule({
@@ -39,9 +41,10 @@ import {MatStepperModule} from '@angular/material/stepper'
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
     FormPreviewComponent,
+    CorporateUserDataFormComponent,
     HomeComponent,
     StepperComponent,
-
+    CorporateLeasingDataFormComponent
   ],
   imports: [
     BrowserModule,
