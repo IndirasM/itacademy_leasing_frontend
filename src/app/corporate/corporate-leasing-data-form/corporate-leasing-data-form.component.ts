@@ -68,27 +68,6 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     });
   }
 
-//   Sutarties vertė = 10 000
-// avansas = 2000
-// sutarties mokestis = 150
-// palukanu norma = 5%
-// laikotarpis = 36 men.
-
-// finansuojama suma = 10 000 - 2 000 = 8 000
-// Palukanos = 10 000 * 0.05 = 500
-// Viso periodo mokėtina suma = 500 + 8 000 +
-// 150 + 0.7 * 36 = 8675.2
-
-
-// Menesio imoka = 8675.2 / 36 = 240.97
-// finansuojama suma = sutarties verte - avansas;
-
-// Palukanos = sutarties verte * palukanu norma;
-
-// Viso periodo moketina suma = palukanos + finansuojama suma + sutarties mokestis + 0.7*sutarties laikotarpis
-
-// Menesio imoka = viso periodo moketina suma / sutarties laikotarpis
-
   get financingAmount() {
      return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
   }
@@ -98,20 +77,14 @@ export class CorporateLeasingDataFormComponent implements OnInit {
   }
 
   get totalpayment() {
-    // palukanos + finansuojama suma + sutarties mokestis + 0.7*sutarties laikotarpis
-    return (this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value)
-    + (this.carLeasingForm.get('assetPrice').value -
-    (this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100)) +
-    this.carLeasingForm.get('contractFee').value + 0.7 * this.carLeasingForm.get('leasePeriod').value;
+    return this.carLeasingForm.get('totalInterest').value
+    + this.carLeasingForm.get('financingAmount').value
+    + this.carLeasingForm.get('contractFee').value
+    + (0.7 * this.carLeasingForm.get('totalInterest').value);
   }
 
   get totalMonthlyPayment() {
-    // viso periodo moketina suma / sutarties laikotarpis
-    return (this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value)
-    + (this.carLeasingForm.get('assetPrice').value -
-    (this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100)) +
-    this.carLeasingForm.get('contractFee').value + 0.7 * this.carLeasingForm.get('leasePeriod').value
-    / this.carLeasingForm.get('leasePeriod').value;
+    return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
   send() {
@@ -229,7 +202,9 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           leasePeriod: this.carLeasingForm.value['leasePeriod'],
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
-          paymentDate: this.carLeasingForm.value['paymentDate']
+          paymentDate: this.carLeasingForm.value['paymentDate'],
+          customerType: 'Corporate'
+
         };
 
         console.log(this.leaseData);
