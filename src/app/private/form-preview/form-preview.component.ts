@@ -21,10 +21,22 @@ export class FormPreviewComponent implements OnInit {
   private userData: PrivateUserData;
   public newData: PromisedLease;
   public errorMessages: string;
+  public sendReady = false;
+  public userReady = false;
 
   ngOnInit() {
-    this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
-    this.leaseService.toSendUser.subscribe(userData => this.userData = userData);
+    this.leaseService.toSend.subscribe(leaseData => {
+    if(leaseData){
+      this.sendReady = true;
+      this.leaseData = leaseData;
+    }
+    console.log(leaseData)});
+    this.leaseService.toSendUser.subscribe(userData => {
+    if(userData){
+      this.userReady = true;
+      this.userData = userData;
+    }
+    console.log(userData)});
   }
 
   sendToDb(){

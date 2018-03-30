@@ -176,8 +176,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           customerType: 'Private'
 
         };
-
-        console.log(this.leaseData);
+        console.log("CHANGED AGAIN");
         this.leasingData.changeData(this.leaseData);
      // } else {
         // console.log('invalid sumbit');

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf = "userReady && sendReady"><div>
     <label>Customer type: {{leaseData.customerType}}</label></div>
 <div>
     <label>Asset Type: {{leaseData.assetType}}</label></div>
@@ -40,4 +40,4 @@
 </div>
 <button mat-button matStepperPrevious>Back</button>
 <button mat-button matStepperNext (click)="sendToDb()">Submit</button>
-
+</div>

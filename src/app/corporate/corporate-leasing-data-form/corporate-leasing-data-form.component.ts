@@ -199,7 +199,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
 
         };
 
-        console.log(this.leaseData);
+        console.log("CHANGED");
         this.leasingData.changeData(this.leaseData);
       } else {
         console.log('invalid sumbit');
