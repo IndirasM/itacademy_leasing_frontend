@@ -120,18 +120,22 @@
 -->
         <div class="form-group ">
             <div class="form-group" *ngIf="assetPrice.value >= 10000">
-                <label> Financing Amount  {{ financingAmount.toFixed(2) }}</label>
+                <label> Financing amount  {{ financingAmount.toFixed(2) }}</label>
             </div>
 
             <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0">
-                <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+                <label> Contract fee  {{ contractFee.toFixed(2) }}</label>
             </div>
 
-            <div class="form-group ">
+            <div class="form-group " *ngIf="assetPrice.value >= 10000">
                 <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
             </div>
 
-            <div class="form-group ">
+          <!--<div class="form-group">
+                <label> Total payment amount {{totalPayment.toFixed(2)}}</label>
+          </div>-->
+
+            <div class="form-group " *ngIf="assetPrice.value >= 10000">
                 <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
             </div>
         </div>

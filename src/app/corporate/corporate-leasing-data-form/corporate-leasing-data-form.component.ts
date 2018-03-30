@@ -65,19 +65,20 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       contractFee: new FormControl(200),
       financingAmount: new FormControl(null),
       totalInterest: new FormControl(null),
-      totalMonthlyPayment: new FormControl(null)
+      totalMonthlyPayment: new FormControl(null),
+      interestRate: new FormControl(null)
     });
   }
 
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value;
+    return this.carLeasingForm.get('assetPrice').value  * (this.carLeasingForm.get('margin').value / 100);
   }
 
   get totalPayment() {
-    return this.carLeasingForm.get('totalInterest').value
-    + this.carLeasingForm.get('financingAmount').value
-    + this.carLeasingForm.get('contractFee').value
-    + (0.7 * this.carLeasingForm.get('totalInterest').value);
+    return this.totalInterest
+    + this.financingAmount
+    + this.contractFee
+    + (0.7 * this.leasePeriod);
   }
 
   get totalMonthlyPayment() {
