@@ -51,6 +51,9 @@ export class FormPreviewComponent implements OnInit {
               this.errorMessages += errors[i].field + "\n";
           }
         }
+        if(data.status == 200){
+          this.errorMessages = "Your application has been accepted and is being processed right now. You should receive decision within 3 days.";
+        }
       })
     }).catch( data => {
       //return user to incorrectly filled field (leasing form)
