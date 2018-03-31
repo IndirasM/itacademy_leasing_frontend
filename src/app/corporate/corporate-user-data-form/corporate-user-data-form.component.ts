@@ -55,7 +55,6 @@ export class CorporateUserDataFormComponent implements OnInit {
   send() {
 
     if (this.corporateUserForm.valid) {
-      console.log('form submitted');
       this.corporateUserData = {
         companyName: this.corporateUserForm.value['companyName'],
         companyCode: this.corporateUserForm.value['companyCode'],
@@ -65,7 +64,6 @@ export class CorporateUserDataFormComponent implements OnInit {
         leasId: 1};
         this.leaseService.changeCorporateData(this.corporateUserData);
       } else {
-      console.log('invalid sumbit');
       this.validateAllFormFields(this.corporateUserForm);
     }
   }

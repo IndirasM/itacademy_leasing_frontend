@@ -7,6 +7,7 @@ import { LeaseData } from './private-leasing-data';
 import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Validations } from './validations';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -45,7 +46,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   brandsAfterChangeEvent = [];
 
 
-  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router) {
     this.carLeasingForm = fb.group({
       enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
       LeaseData: LeaseData,
@@ -66,7 +67,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   send() {
-    console.log(this.carLeasingForm);
   }
 
   reset() {
@@ -118,12 +118,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
-  submitForm(carLeasingForm: NgForm) {
-    console.log('Form Data', this.carLeasingForm.value);
-  }
-
   ngOnInit() {
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+
     this.carService.getBrands().then(data => {
 
       let size = 0, key;
@@ -155,7 +152,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     });
   }
     pitch(event: any) {
-      console.log(event.value);
     }
 
     onSubmit() {
@@ -176,10 +172,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           customerType: 'Private'
 
         };
-        console.log("CHANGED AGAIN");
         this.leasingData.changeData(this.leaseData);
      // } else {
-        // console.log('invalid sumbit');
         // this.validateAllFormFields(this.carLeasingForm);
     //  }
   }

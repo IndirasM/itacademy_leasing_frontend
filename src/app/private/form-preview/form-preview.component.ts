@@ -29,14 +29,12 @@ export class FormPreviewComponent implements OnInit {
     if(leaseData){
       this.sendReady = true;
       this.leaseData = leaseData;
-    }
-    console.log(leaseData)});
+    }});
     this.leaseService.toSendUser.subscribe(userData => {
     if(userData){
       this.userReady = true;
       this.userData = userData;
-    }
-    console.log(userData)});
+    }});
   }
 
   sendToDb(){
@@ -44,7 +42,6 @@ export class FormPreviewComponent implements OnInit {
       this.newData = new PromisedLease(data);
       this.userData.leaseId = this.newData.id;
       this.sendService.sendPrivateUserForm(this.userData).then(data => {
-        console.log(data);
       }).catch( data => {
         //return user to incorrectly filled field (user form)
 

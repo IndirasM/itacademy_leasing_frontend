@@ -36,7 +36,6 @@ export class PrivateUserDataFormComponent implements OnInit {
   send() {
 
     if (this.userForm.valid) {
-      console.log('form submitted');
       this.userData = {
         firstName: this.userForm.value['firstName'],
         lastName: this.userForm.value['lastName'],
@@ -47,7 +46,6 @@ export class PrivateUserDataFormComponent implements OnInit {
         leaseId: '5ab3a513b7b8e95a4c934282'};
         this.leaseService.changeUserData(this.userData);
       } else {
-      console.log('invalid sumbit');
       this.validateAllFormFields(this.userForm);
     }
   }

@@ -48,8 +48,4 @@ export class StepperComponent implements OnInit {
   // get corporateUserForm(){
   //   return this.corporateUserDataFormComponent ? this.corporateUserDataFormComponent.corporateUserForm : null;
   // }
-
-  somemethod(){
-    console.log(this.privateLeasingDataFormComponent);
-  }
 }
