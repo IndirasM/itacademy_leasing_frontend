@@ -62,9 +62,31 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl(null, Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
-      contractFee: new FormControl(200, Validators.required)
+      contractFee: new FormControl(200, Validators.required),
+      financingAmount: new FormControl(null),
+      totalInterest: new FormControl(null),
+      totalMonthlyPayment: new FormControl(null)
     });
   }
+
+  get financingAmount() {
+    return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
+ }
+
+ get totalInterest() {
+   return this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value;
+ }
+
+ get totalpayment() {
+   return this.carLeasingForm.get('totalInterest').value
+   + this.carLeasingForm.get('financingAmount').value
+   + this.carLeasingForm.get('contractFee').value
+   + (0.7 * this.carLeasingForm.get('totalInterest').value);
+ }
+
+ get totalMonthlyPayment() {
+   return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
+ }
 
   send() {
   }
