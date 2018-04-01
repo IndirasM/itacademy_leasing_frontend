@@ -21,10 +21,20 @@ export class FormPreviewComponent implements OnInit {
   private userData: PrivateUserData;
   public newData: PromisedLease;
   public errorMessages: string;
+  public sendReady = false;
+  public userReady = false;
 
   ngOnInit() {
-    this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
-    this.leaseService.toSendUser.subscribe(userData => this.userData = userData);
+    this.leaseService.toSend.subscribe(leaseData => {
+    if(leaseData){
+      this.sendReady = true;
+      this.leaseData = leaseData;
+    }});
+    this.leaseService.toSendUser.subscribe(userData => {
+    if(userData){
+      this.userReady = true;
+      this.userData = userData;
+    }});
   }
 
   sendToDb(){
@@ -32,7 +42,6 @@ export class FormPreviewComponent implements OnInit {
       this.newData = new PromisedLease(data);
       this.userData.leaseId = this.newData.id;
       this.sendService.sendPrivateUserForm(this.userData).then(data => {
-        console.log(data);
       }).catch( data => {
         //return user to incorrectly filled field (user form)
 
@@ -50,6 +59,9 @@ export class FormPreviewComponent implements OnInit {
           for(let i = 0; i < errors.length; i++){
               this.errorMessages += errors[i].field + "\n";
           }
+        }
+        if(data.status == 200){
+          this.errorMessages = "Your application has been accepted and is being processed right now. You should receive decision within 3 days.";
         }
       })
     }).catch( data => {

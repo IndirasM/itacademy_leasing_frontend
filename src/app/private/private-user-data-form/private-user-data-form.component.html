@@ -30,6 +30,7 @@
       <input matInput placeholder="Address" formControlName="address" required>
       <mat-error *ngIf="!address">Address is required</mat-error>
     </mat-form-field>
-    <button mat-raised-button (click)="send()" routerLink="../preview" [disabled]="!userForm.valid">Next</button>
   </form>
 </div>
+<button mat-button matStepperPrevious>Back</button>
+<button mat-button matStepperNext (click)="send()">Next</button>

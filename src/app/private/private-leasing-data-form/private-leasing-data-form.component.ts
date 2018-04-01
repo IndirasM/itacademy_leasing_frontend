@@ -7,6 +7,7 @@ import { LeaseData } from './private-leasing-data';
 import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Validations } from './validations';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -45,7 +46,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   brandsAfterChangeEvent = [];
 
 
-  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router) {
     this.carLeasingForm = fb.group({
       enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
       LeaseData: LeaseData,
@@ -61,12 +62,33 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl(null, Validators.required),
       contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99)]),
-      contractFee: new FormControl(200, Validators.required)
+      contractFee: new FormControl(200, Validators.required),
+      financingAmount: new FormControl(null),
+      totalInterest: new FormControl(null),
+      totalMonthlyPayment: new FormControl(null)
     });
   }
 
+  get financingAmount() {
+    return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
+ }
+
+ get totalInterest() {
+   return this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value;
+ }
+
+ get totalpayment() {
+   return this.carLeasingForm.get('totalInterest').value
+   + this.carLeasingForm.get('financingAmount').value
+   + this.carLeasingForm.get('contractFee').value
+   + (0.7 * this.carLeasingForm.get('totalInterest').value);
+ }
+
+ get totalMonthlyPayment() {
+   return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
+ }
+
   send() {
-    console.log(this.carLeasingForm);
   }
 
   reset() {
@@ -118,12 +140,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
-  submitForm(carLeasingForm: NgForm) {
-    console.log('Form Data', this.carLeasingForm.value);
-  }
-
   ngOnInit() {
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+
     this.carService.getBrands().then(data => {
 
       let size = 0, key;
@@ -155,7 +174,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     });
   }
     pitch(event: any) {
-      console.log(event.value);
     }
 
     onSubmit() {
@@ -176,11 +194,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           customerType: 'Private'
 
         };
-
-        console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
      // } else {
-        // console.log('invalid sumbit');
         // this.validateAllFormFields(this.carLeasingForm);
     //  }
   }

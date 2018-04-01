@@ -1,17 +1,16 @@
 <mat-horizontal-stepper [linear]="isLinear" 
 #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="carLeasingForm">
+  <mat-step [stepControl]="carLeasingForm" [completed] = 'false'>
     <app-private-leasing-data-form></app-private-leasing-data-form>
-    <button mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext  (click)='onSubmit()'>Next</button>
   </mat-step>
-  <mat-step>
+  <mat-step [stepControl]="userForm" [completed] = 'false'>
       <app-private-user-data-form *ngIf='customerType==="private"'></app-private-user-data-form>
-      <app-corporate-user-data-form *ngIf='customerType==="corporate"'>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-  <mat-step>
-      <!-- <app-form-preview></app-form-preview> -->
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Submit</button>
+      <app-corporate-user-data-form *ngIf='customerType==="corporate"'></app-corporate-user-data-form>
   </mat-step>
+  <mat-step [completed] = 'false'> 
+      <app-form-preview></app-form-preview>
+  </mat-step>
+  <mat-step [completed] = 'false'> 
+    <ng-template matStepLabel></ng-template>
+</mat-step>
+</mat-horizontal-stepper>

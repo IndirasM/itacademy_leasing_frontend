@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'form', component: PrivateUserDataFormComponent},
   {path: 'preview', component: FormPreviewComponent},
   {path: 'home',component: HomeComponent},
-  {path: 'stepper',component: StepperComponent}
+  {path: 'stepper',component: StepperComponent},
 ];
 
 @NgModule({
