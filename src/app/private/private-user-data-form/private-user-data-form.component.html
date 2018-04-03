@@ -1,36 +1,39 @@
+<div class="container" align="center">
 
-<div class="container">
-  <form class="container" [formGroup]="userForm">
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Name" formControlName="firstName" required>
-      <mat-error *ngIf="!firstName ">Name is required</mat-error>
-    </mat-form-field>
+    <form class="container" [formGroup]="userForm" class="formwidth">
+        <table class="fullwidth" cellspacing="0">
+            <tr>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Name" formControlName="firstName" required>
+                    <mat-error *ngIf="!firstName ">Name is required</mat-error>
+                </mat-form-field>
 
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Surname" formControlName ="lastName" required>
-      <mat-error *ngIf="!lastName ">Surname is required</mat-error>
-    </mat-form-field>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Surname" formControlName="lastName" required>
+                    <mat-error *ngIf="!lastName ">Surname is required</mat-error>
+                </mat-form-field>
 
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Id code" formControlName="personalCode" required>
-      <mat-error *ngIf="!personalCode ">Id code is required</mat-error>
-    </mat-form-field>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Id code" formControlName="personalCode" required>
+                    <mat-error *ngIf="!personalCode ">Id code is required</mat-error>
+                </mat-form-field>
 
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Phone number" formControlName="phoneNumber" required>
-      <mat-error *ngIf="!phoneNumber">Id code is required</mat-error>
-    </mat-form-field>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Phone number" formControlName="phoneNumber" required>
+                    <mat-error *ngIf="!phoneNumber">Id code is required</mat-error>
+                </mat-form-field>
 
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Email" formControlName="email" required>
-      <mat-error *ngIf="!email">Email is required</mat-error>
-    </mat-form-field>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                    <mat-error *ngIf="!email">Email is required</mat-error>
+                </mat-form-field>
 
-    <mat-form-field [floatLabel]="userForm.value.hideRequired">
-      <input matInput placeholder="Address" formControlName="address" required>
-      <mat-error *ngIf="!address">Address is required</mat-error>
-    </mat-form-field>
-  </form>
-</div>
-<button mat-button matStepperPrevious>Back</button>
-<button mat-button matStepperNext (click)="send()">Next</button>
+                <mat-form-field [floatLabel]="userForm.value.hideRequired">
+                    <input matInput placeholder="Address" formControlName="address" required>
+                    <mat-error *ngIf="!address">Address is required</mat-error>
+                </mat-form-field>
+                <button mat-button matStepperPrevious class="btn btn-primary">Back</button>
+                <button mat-button class="btn btn-primary" [disabled]="!userForm.valid" matStepperNext (click)="send()">Next</button>
+            </tr>
+
+        </table>

@@ -1,4 +1,4 @@
-//<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
+// <reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
 import {PrivateUserData} from '../private-user-data-form/privateUserData';
@@ -26,54 +26,55 @@ export class FormPreviewComponent implements OnInit {
 
   ngOnInit() {
     this.leaseService.toSend.subscribe(leaseData => {
-    if(leaseData){
+    if (leaseData) {
       this.sendReady = true;
       this.leaseData = leaseData;
     }});
     this.leaseService.toSendUser.subscribe(userData => {
-    if(userData){
+    if (userData) {
       this.userReady = true;
       this.userData = userData;
     }});
   }
 
-  sendToDb(){
+  sendToDb() {
     this.sendService.sendLeasingForm(this.leaseData).then(data => {
       this.newData = new PromisedLease(data);
       this.userData.leaseId = this.newData.id;
       this.sendService.sendPrivateUserForm(this.userData).then(data => {
       }).catch( data => {
-        //return user to incorrectly filled field (user form)
+        // return user to incorrectly filled field (user form)
 
-        //if 500 smth went wrong, try again
-        if(data.status == 500){
-          this.errorMessages = "Something went wrong, please try again.";
+        // if 500 smth went wrong, try again
+        if ( data.status === 500) {
+          this.errorMessages = 'Something went wrong, please try again.';
         }
-        if(data.status == 503){
-          this.errorMessages = "Service is currently unavailable, please try again later."
+        if (data.status === 503) {
+          this.errorMessages = 'Service is currently unavailable, please try again later.';
         }
-        //if 400 bad input data, retrieve error and send user to the field
-        if(data.status == 400){
+        // if 400 bad input data, retrieve error and send user to the field
+        if (data.status === 400) {
           let errors = [];
-          errors = data.error.fieldErrors; 
-          for(let i = 0; i < errors.length; i++){
-              this.errorMessages += errors[i].field + "\n";
+          errors = data.error.fieldErrors;
+          for (let i = 0; i < errors.length; i++) {
+              this.errorMessages += errors[i].field + '\n';
           }
         }
-        if(data.status == 200){
-          this.errorMessages = "Your application has been accepted and is being processed right now. You should receive decision within 3 days.";
+        if (data.status === 200) {
+          this.errorMessages =
+           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
         }
-      })
+      });
     }).catch( data => {
-      //return user to incorrectly filled field (leasing form)
-    })
+      // return user to incorrectly filled field (leasing form)
+    });
   }
 }
 
 export class PromisedLease {
   id: string;
   assetType: string;
-  //leaseType: string;
+  // leaseType: string;
   carBrand: string;
   carModel: string;
   years: string;
@@ -87,7 +88,7 @@ export class PromisedLease {
   paymentDate: number;
   errorCodes: number;
 
-  constructor(data){
+  constructor(data) {
     this.id = data.id;
     this.assetPrice = data.assetType;
     this.carBrand = data.carBrand;
