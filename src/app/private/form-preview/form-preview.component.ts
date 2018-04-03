@@ -23,6 +23,7 @@ export class FormPreviewComponent implements OnInit {
   public errorMessages: string;
   public sendReady = false;
   public userReady = false;
+  public ready;
 
   ngOnInit() {
     this.leaseService.toSend.subscribe(leaseData => {
@@ -42,15 +43,20 @@ export class FormPreviewComponent implements OnInit {
       this.newData = new PromisedLease(data);
       this.userData.leaseId = this.newData.id;
       this.sendService.sendPrivateUserForm(this.userData).then(data => {
+        this.ready = true;
+        this.errorMessages = "Your application has been accepted and is being processed right now. You should receive decision within 3 days.";
+        this.leaseService.passFinalMessage(this.errorMessages);
       }).catch( data => {
         //return user to incorrectly filled field (user form)
 
         //if 500 smth went wrong, try again
         if(data.status == 500){
           this.errorMessages = "Something went wrong, please try again.";
+          this.leaseService.passFinalMessage(this.errorMessages);
         }
         if(data.status == 503){
           this.errorMessages = "Service is currently unavailable, please try again later."
+          this.leaseService.passFinalMessage(this.errorMessages);
         }
         //if 400 bad input data, retrieve error and send user to the field
         if(data.status == 400){
@@ -58,16 +64,21 @@ export class FormPreviewComponent implements OnInit {
           errors = data.error.fieldErrors; 
           for(let i = 0; i < errors.length; i++){
               this.errorMessages += errors[i].field + "\n";
+            }
+            this.leaseService.passFinalMessage(this.errorMessages);
           }
-        }
         if(data.status == 200){
           this.errorMessages = "Your application has been accepted and is being processed right now. You should receive decision within 3 days.";
+          this.leaseService.passFinalMessage(this.errorMessages);
         }
       })
     }).catch( data => {
       //return user to incorrectly filled field (leasing form)
     })
+    // this.leaseService.passFinalMessage(this.errorMessages);
+    console.log(this.errorMessages);
   }
+  
 }
 
 export class PromisedLease {

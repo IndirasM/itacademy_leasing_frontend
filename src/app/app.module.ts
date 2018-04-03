@@ -30,6 +30,7 @@ import { FormsToBackService } from './services/forms-to-back.service';
 import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper'
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
+import { EndScreenComponent } from './end-screen/end-screen.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
     CorporateUserDataFormComponent,
     HomeComponent,
     StepperComponent,
-    CorporateLeasingDataFormComponent
+    CorporateLeasingDataFormComponent,
+    EndScreenComponent
   ],
   imports: [
     BrowserModule,
