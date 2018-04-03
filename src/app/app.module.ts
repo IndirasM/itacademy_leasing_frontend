@@ -30,6 +30,11 @@ import { FormsToBackService } from './services/forms-to-back.service';
 import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper'
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
+import { EndScreenComponent } from './end-screen/end-screen.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 
 @NgModule({
@@ -44,7 +49,8 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
     CorporateUserDataFormComponent,
     HomeComponent,
     StepperComponent,
-    CorporateLeasingDataFormComponent
+    CorporateLeasingDataFormComponent,
+    EndScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +72,8 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
     MatCheckboxModule,
     MatFormFieldModule,
     MatStepperModule,
+    MatToolbarModule,
+    MatGridListModule
 
   ],
   providers: [

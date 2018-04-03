@@ -15,7 +15,7 @@
     left: 30%;
     top: 70%;
 }
-        
+
 .button-transparent:hover {
     color: white;
     background-color: rgba(255,255,255,0.2);
@@ -31,7 +31,7 @@
     line-height: 100%;
     letter-spacing: 0;
     color: #fff;
-}  
+}
 .color-change {
     border-radius: 5px;
     font-size: 20px;
@@ -47,14 +47,80 @@
     -webkit-transition-duration: 0.5s;
     -moz-transition-duration: 0.5s; */
 }
-  
+
 .color-change:hover {
     color: #fff;
     border: 1px solid #dfd6c3bb;
     box-shadow: 2px 2px 20px #fff;
 }
-  
+
 button.color-change {
     /* -webkit-appearance: none;
     -moz-appearance: none; */
 }
+
+@keyframes slider {
+  0% {
+    left: 0;
+  }
+  12% {
+    left: 0;
+  }
+
+  17% {
+    left: -100%;
+  }
+  29% {
+    left: -100%;
+  }
+
+  34% {
+    left: -200%;
+  }
+  46% {
+    left: -200%;
+  }
+
+  51% {
+    left: -300%;
+  }
+  63% {
+    left: -300%;
+  }
+
+  68% {
+    left: -400%;
+  }
+  79% {
+    left: -400%;
+  }
+
+  84% {
+    left: -500%;
+  }
+  95% {
+    left: -500%;
+  }
+
+  100% {
+    left: -600%;
+  }
+}
+
+#slider {
+  overflow: hidden;
+}
+
+#slider figure img {
+  width: 14.28571%;
+  float: left;
+}
+
+#slider figure {
+  position: relative;
+  width: 700%;
+  margin: 0;
+  left: 0;
+  animation: 40s slider infinite;
+}
+

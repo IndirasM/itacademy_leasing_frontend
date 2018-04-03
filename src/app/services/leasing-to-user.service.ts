@@ -11,14 +11,17 @@ export class LeaseToUserService {
     corporateSrc: CorporateUserData;
     src: LeaseData;
     userSrc: PrivateUserData;
+    messageSrc: string;
     public homeSource = new BehaviorSubject<string>(this.homeSrc);
     public dataSource = new BehaviorSubject<LeaseData>(this.src);
     public userDataSource = new BehaviorSubject<PrivateUserData>(this.userSrc);
     public corporateDataSource = new BehaviorSubject<CorporateUserData>(this.corporateSrc);
+    public messageSource = new BehaviorSubject<string>(this.messageSrc);
     toSend = this.dataSource.asObservable();
     toSendUser = this.userDataSource.asObservable();
     toSendCorporate = this.corporateDataSource.asObservable();
     toSendType = this.homeSource.asObservable();
+    toSendMessage = this.messageSource.asObservable();
 
     constructor() {
     }
@@ -37,5 +40,7 @@ export class LeaseToUserService {
     changeUserType(customerType:string){
         this.homeSource.next(customerType);
     }
-
+    passFinalMessage(message: string){
+        this.messageSource.next(message);
+    }
 }

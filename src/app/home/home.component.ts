@@ -7,18 +7,18 @@ import {LeaseToUserService} from '../services/leasing-to-user.service';
 })
 export class HomeComponent implements OnInit {
 
-  customerType : string;
+  customerType: string;
 
-  onPrivate(){
+  onPrivate() {
     this.customerType = 'private';
     this.customerTypeService.changeUserType(this.customerType);
   }
-  onCorporate(){
+  onCorporate() {
     this.customerType = 'corporate';
     this.customerTypeService.changeUserType(this.customerType);
   }
 
-  constructor(private customerTypeService:LeaseToUserService) {
+  constructor(private customerTypeService: LeaseToUserService) {
 
    }
 

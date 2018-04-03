@@ -8,6 +8,7 @@ import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Validations } from './validations';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -46,7 +47,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   brandsAfterChangeEvent = [];
 
 
-  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router, private _location: Location) {
     this.carLeasingForm = fb.group({
       enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
       LeaseData: LeaseData,
@@ -67,6 +68,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       totalInterest: new FormControl(null),
       totalMonthlyPayment: new FormControl(null)
     });
+  }
+  goBack() {
+    this._location.back();
   }
 
   get financingAmount() {
