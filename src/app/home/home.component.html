@@ -1,17 +1,31 @@
 <div class="bg">
-    <div class = "banner-text" >     
-        <div>
-             <h1 class="title" align="middle">
-                Car Leasing
-             </h1>
-            <img class="something" src="../../assets/images/home.jpg" style="width: 100%; height: 700px">
-            <button mat-button id="privatebtn"
-            class="button button-transparant color-change" (click)="onPrivate()"
-            routerLink="../stepper">Private</button>
-            <button mat-button id="corporatebtn" 
-            class="button button-transparant color-change" (click)="onCorporate()"
-            routerLink="../stepper">Corporate</button>
-        </div>
-       
+  <div class="banner-text">
+    <div>
+      <h1 class="title" align="middle">
+        Car Leasing
+      </h1>
+
+      <div id="slider">
+        <figure>
+          <img src="../../assets/images/home.jpg">
+          <img src="../../assets/images/2.jpg">
+          <img src="../../assets/images/Jaros.jpg">
+          <img src="../../assets/images/3.jpg">
+          <img src="../../assets/images/4.jpg">
+          <img src="../../assets/images/5.jpg">
+          <img src="../../assets/images/home.jpg">
+        </figure>
       </div>
+
+      <button mat-button id="privatebtn"
+              class="button button-transparent color-change" (click)="onPrivate()"
+              routerLink="../stepper">Private
+      </button>
+      <button mat-button id="corporatebtn"
+              class="button button-transparent color-change" (click)="onCorporate()"
+              routerLink="../stepper">Corporate
+      </button>
+    </div>
+
+  </div>
 </div>
