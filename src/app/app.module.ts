@@ -31,6 +31,10 @@ import { StepperComponent } from './stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper'
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 import { EndScreenComponent } from './end-screen/end-screen.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 
 @NgModule({
@@ -68,6 +72,8 @@ import { EndScreenComponent } from './end-screen/end-screen.component';
     MatCheckboxModule,
     MatFormFieldModule,
     MatStepperModule,
+    MatToolbarModule,
+    MatGridListModule
 
   ],
   providers: [

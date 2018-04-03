@@ -5,7 +5,7 @@ import { PrivateLeasingDataFormComponent } from '../private/private-leasing-data
 import { FormPreviewComponent } from '../private/form-preview/form-preview.component';
 import { CorporateUserDataFormComponent } from '../corporate/corporate-user-data-form/corporate-user-data-form.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from "@angular/forms";
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -13,7 +13,7 @@ import { Validators } from "@angular/forms";
 })
 export class StepperComponent implements OnInit {
 
-  @ViewChild("stepper") privateLeasingDataFormComponent:PrivateLeasingDataFormComponent;
+  @ViewChild('stepper') privateLeasingDataFormComponent: PrivateLeasingDataFormComponent;
   // @ViewChild("PrivateUserDataFormComponent") privateUserDataFormComponent:PrivateUserDataFormComponent;
   // @ViewChild("FormPreviewComponent") formPreviewComponent:FormPreviewComponent;
   // @ViewChild("CorporateUserDataFormComponent") corporateUserDataFormComponent:CorporateUserDataFormComponent;
@@ -23,7 +23,7 @@ export class StepperComponent implements OnInit {
   customerType: string;
   ngOnInit() {
     this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
-    
+
     // this.firstFormGroup = this.fb.group({
     //   firstName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],
     //   lastName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],

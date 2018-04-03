@@ -1,10 +1,11 @@
-<div *ngIf = "userReady && sendReady"><div>
-    <label>Customer type: {{leaseData.customerType}}</label></div>
-<div>
-    <label>Asset Type: {{leaseData.assetType}}</label></div>
-<div>
-    <label>Make: {{leaseData.carBrand}}</label> </div>
-<div>
+<div *ngIf="userReady && sendReady">
+    <div>
+        <label>Customer type: {{leaseData.customerType}}</label></div>
+    <div>
+        <label>Asset Type: {{leaseData.assetType}}</label></div>
+    <div>
+        <label>Make: {{leaseData.carBrand}}</label> </div>
+    <div>
 
     <label>Model: {{leaseData.carModel}}</label>
 </div>
@@ -39,5 +40,5 @@
 <div><label>Address: {{userData.address}}</label>
 </div>
 <button mat-button matStepperPrevious>Back</button>
-<button mat-button matStepperNext (click)="sendToDb()" routerLing="../">Submit</button>
+<button mat-button matStepperNext (click)="sendToDb()">Submit</button>
 </div>
