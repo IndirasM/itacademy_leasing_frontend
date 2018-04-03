@@ -130,7 +130,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
   }
 
   get advancePaymentPercentage() {
-    return this.carLeasingForm.get('advancePaymentPercentage').value;
+    return Math.round(this.carLeasingForm.get('advancePaymentPercentage').value * 10) / 10;
   }
 
   get margin() {
