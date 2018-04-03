@@ -1,0 +1,128 @@
+<div class="container">
+
+    <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm">
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Asset Type " formControlName="assetType" required>
+                    <mat-option *ngFor="let assetType of assetTypes " [value]="assetType.value ">
+                        {{ assetType.viewValue }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="!assetType ">must be selected</mat-error>
+
+
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Brand " formControlName="brand" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let brand of brands " [value]="brand ">{{brand}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!brand ">must be selected</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Model " formControlName="model" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let p of models |productFilter:carLeasingForm.get( 'brand').value " [value]="p.name ">{{p.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!model ">must be selected</mat-error>
+                <span class="help-block "></span>
+                <mat-hint>(total models:{{(models|productFilter:carLeasingForm.get('brand').value).length}})</mat-hint>
+            </mat-form-field>
+
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <mat-select placeholder="Year " formControlName="year" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let year of years " [value]="year">{{year}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="!year ">must be selected</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <input matInput placeholder="Engine Power" type=number formControlName="enginePower" required maxlength="3">
+                <mat-error *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" required maxlength="3">
+                <mat-error *ngIf="enginePower.invalid && enginePower.touched" class="form-text text-danger">Validation message</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <label> Advance payment percentage </label>
+            <label></label>
+            <mat-slider formControlName="advancePaymentPercentage" min="10 " max="50 " step="0.1 " value="10 " tickInterval="0.1 " thumbLabel (input)="pitch($event) " required></mat-slider>
+            {{advancePaymentPercentage}}
+        </div>
+
+        <div class="form-group ">
+            <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
+        </div>
+
+        <div class="form-group ">
+            <label>Lease Period</label>
+            <label></label>
+            <mat-slider formControlName="leasePeriod" min="6 " max="84 " step="6 " value="6 " tickInterval="1 " thumbLabel (input)="pitch($event) " required></mat-slider>
+            {{leasePeriod}}
+        </div>
+
+
+        <div class="form-group ">
+            <label>Margin (%)</label>
+            <label></label>
+            <mat-slider formControlName="margin" min="3.2 " max="99 " step="0.1 " value="3.2 " tickInterval="0.1 " thumbLabel (input)="pitch($event) "> required</mat-slider>
+            {{margin.toFixed(2)}}
+
+        </div>
+
+        <div class="form-group ">
+            <mat-form-field>
+                <input matInput placeholder="Contract Fee Percentage" type=number formControlName="contractFeePercentage" required maxlength="3">
+            </mat-form-field>
+        </div>
+
+        <div class="form-group ">
+            <mat-radio-group formControlName="paymentDate" required>
+                <label>Payment day</label>
+                <label></label>
+                <mat-radio-button value="15 ">15</mat-radio-button>
+                <mat-radio-button value="30 ">30</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="form-group ">
+            <button [disabled]="!carLeasingForm.valid" type="submit " class="btn btn-primary" (click)="onSubmit() " routerLink='../form'>Submit</button>
+        </div>
+
+        <div class="form-group ">
+            <div class="form-group ">
+                <label> Financing Amount  {{ financingAmount.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+                <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+                <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
+            </div>
+
+            <div class="form-group ">
+
+                <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
+            </div>
+        </div>

@@ -1,12 +1,12 @@
+<div *ngIf = "userReady && sendReady"><div>
+    <label>Customer type: {{leaseData.customerType}}</label></div>
 <div>
-  <label>Customer type: Private</label></div>
+    <label>Asset Type: {{leaseData.assetType}}</label></div>
 <div>
-  <label>Asset Type: {{leaseData.assetType}}</label></div>
-<div>
-  <label>Make: {{leaseData.carBrand}}</label>   </div>
+    <label>Make: {{leaseData.carBrand}}</label> </div>
 <div>
 
-<label>Model: {{leaseData.carModel}}</label>
+    <label>Model: {{leaseData.carModel}}</label>
 </div>
 <div> <label>Year: {{leaseData.years}}</label>
 </div>
@@ -38,4 +38,6 @@
 </div>
 <div><label>Address: {{userData.address}}</label>
 </div>
-
+<button mat-button matStepperPrevious>Back</button>
+<button mat-button matStepperNext (click)="sendToDb()">Submit</button>
+</div>
