@@ -13,6 +13,7 @@ import { EndScreenComponent } from './end-screen/end-screen.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'private', component: PrivateLeasingDataFormComponent},
+  {path: 'corporate', component: CorporateLeasingDataFormComponent},
   {path: 'form', component: PrivateUserDataFormComponent},
   {path: 'preview', component: FormPreviewComponent},
   {path: 'home',component: HomeComponent},

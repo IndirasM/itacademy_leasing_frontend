@@ -41,13 +41,14 @@ export class CorporateLeasingDataFormComponent implements OnInit {
 
   brands = [];
   models = [];
+  show = false;
 
   brandsAfterChangeEvent = [];
 
 
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
     this.carLeasingForm = fb.group({
-      enginePower : new FormControl(null, [Validators.required, Validators.min(44), Validators.max(334), Validators.maxLength(3)]),
+      enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(3)]),
       LeaseData: LeaseData,
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
@@ -64,27 +65,24 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       contractFee: new FormControl(200),
       financingAmount: new FormControl(null),
       totalInterest: new FormControl(null),
-      totalMonthlyPayment: new FormControl(null)
+      totalMonthlyPayment: new FormControl(null),
+      interestRate: new FormControl(null)
     });
   }
 
-  get financingAmount() {
-     return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
-  }
-
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value  * this.carLeasingForm.get('advancePaymentPercentage').value;
+    return this.carLeasingForm.get('assetPrice').value  * (this.carLeasingForm.get('margin').value / 100);
   }
 
-  get totalpayment() {
-    return this.carLeasingForm.get('totalInterest').value
-    + this.carLeasingForm.get('financingAmount').value
-    + this.carLeasingForm.get('contractFee').value
-    + (0.7 * this.carLeasingForm.get('totalInterest').value);
+  get totalPayment() {
+    return this.totalInterest
+    + this.financingAmount
+    + this.contractFee
+    + (0.7 * this.leasePeriod);
   }
 
   get totalMonthlyPayment() {
-    return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
+    return this.totalPayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
   reset() {
@@ -95,6 +93,10 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     return this.carLeasingForm.get('enginePower') as FormControl;
   }
 
+  get assetPrice() {
+    return this.carLeasingForm.get('assetPrice');
+  }
+
   get year() {
     return this.carLeasingForm.get('year') as FormControl;
   }
@@ -103,16 +105,19 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value / 100;
   }
 
+  get contractFeePercentage() {
+    return this.carLeasingForm.get('contractFeePercentage').value;
+  }
+
   get contractFee() {
 
     if (this.carLeasingForm.get('assetPrice').value * 0.01 > 200) {
       return this.carLeasingForm.get('contractFeePercentage').value / 100 * this.carLeasingForm.get('assetPrice').value;
     }
     return 200;
-
   }
 
-  get getModel() {
+  get model() {
     return this.carLeasingForm.get('carModel');
   }
 
@@ -121,11 +126,15 @@ export class CorporateLeasingDataFormComponent implements OnInit {
   }
 
   get advancePaymentPercentage() {
-    return this.carLeasingForm.get('advancePaymentPercentage').value;
+    return Math.round(this.carLeasingForm.get('advancePaymentPercentage').value * 10) / 10;
   }
 
   get margin() {
     return this.carLeasingForm.get('margin').value;
+  }
+
+  get financingAmount() {
+    return this.carLeasingForm.get('assetPrice').value - this.advancePaymentAmount;
   }
 
   typeChanged() {
