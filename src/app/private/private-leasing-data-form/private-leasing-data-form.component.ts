@@ -146,7 +146,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get margin() {
-    return this.carLeasingForm.get('margin').value;
+    return Math.round(this.carLeasingForm.get('margin').value * 10) / 10;
   }
 
   typeChanged() {
