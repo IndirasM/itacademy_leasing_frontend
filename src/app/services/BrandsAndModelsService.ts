@@ -14,7 +14,7 @@ export class BrandsAndModelsService {
     }
 
     getModels(model: string) {
-        return this.http.get(this.url + '/cars/brand/' + model).toPromise();
+        return this.http.get(this.url + '/cars/' + model).toPromise();
     }
 }
 
