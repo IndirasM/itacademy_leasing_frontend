@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PrivateLeasingFormsService } from './services/private-leasing-forms.service';
 import { PrivateLeasingDataFormComponent } from './private/private-leasing-data-form/private-leasing-data-form.component';
 import { ProductFilterPipe } from './private/private-leasing-data-form/private-leasing-form-filter.pipe';
 import {MatSliderModule} from '@angular/material/slider';
@@ -25,6 +24,17 @@ import { LeaseToUserService } from './services/leasing-to-user.service';
 import { BrandsAndModelsService } from './services/BrandsAndModelsService';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component';
+import { HomeComponent } from './home/home.component';
+import { FormsToBackService } from './services/forms-to-back.service';
+import { StepperComponent } from './stepper/stepper.component';
+import {MatStepperModule} from '@angular/material/stepper'
+import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
+import { EndScreenComponent } from './end-screen/end-screen.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 
 @NgModule({
@@ -36,7 +46,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     PrivateLeasingDataFormComponent,
     ProductFilterPipe,
     FormPreviewComponent,
-
+    CorporateUserDataFormComponent,
+    HomeComponent,
+    StepperComponent,
+    CorporateLeasingDataFormComponent,
+    EndScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -57,12 +71,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatStepperModule,
+    MatToolbarModule,
+    MatGridListModule
 
   ],
   providers: [
-    PrivateLeasingFormsService,
     LeaseToUserService,
-    BrandsAndModelsService
+    BrandsAndModelsService,
+    FormsToBackService
   ],
   bootstrap: [AppComponent]
 })
