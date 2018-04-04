@@ -29,6 +29,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   public carLeasingForm: FormGroup;
   leaseData: LeaseData;
+  isValidForm: boolean;
 
   assetTypes = [
     {value: 'Vehicle', viewValue: 'Vehicle'}
@@ -45,7 +46,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   models = [];
 
   brandsAfterChangeEvent = [];
-
 
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router,
               private _location: Location) {
@@ -83,7 +83,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value  * (this.carLeasingForm.get('margin').value / 100);
+    return this.carLeasingForm.get('assetPrice').value * (this.carLeasingForm.get('margin').value / 100);
   }
 
   get totalPayment() {
@@ -158,6 +158,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.leasingData.currentValid.subscribe(isValidForm => this.isValidForm = isValidForm)
+
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
@@ -189,6 +191,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         });
       }
     });
+  }
+  newIsValidForm() {
+    this.leasingData.changeIsValidForm(this.carLeasingForm.valid);
   }
 
   pitch(event: any) {

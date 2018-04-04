@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { PrivateUserDataFormComponent } from '../private/private-user-data-form/private-user-data-form.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {PrivateUserDataFormComponent} from '../private/private-user-data-form/private-user-data-form.component';
 import {LeaseToUserService} from '../services/leasing-to-user.service';
-import { PrivateLeasingDataFormComponent } from '../private/private-leasing-data-form/private-leasing-data-form.component';
-import { FormPreviewComponent } from '../private/form-preview/form-preview.component';
-import { CorporateUserDataFormComponent } from '../corporate/corporate-user-data-form/corporate-user-data-form.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import {PrivateLeasingDataFormComponent} from '../private/private-leasing-data-form/private-leasing-data-form.component';
+import {FormPreviewComponent} from '../private/form-preview/form-preview.component';
+import {CorporateUserDataFormComponent} from '../corporate/corporate-user-data-form/corporate-user-data-form.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Validators} from '@angular/forms';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
@@ -18,10 +20,18 @@ export class StepperComponent implements OnInit {
   // @ViewChild("FormPreviewComponent") formPreviewComponent:FormPreviewComponent;
   // @ViewChild("CorporateUserDataFormComponent") corporateUserDataFormComponent:CorporateUserDataFormComponent;
 
-  firstFormGroup: FormGroup;
-  constructor(private leaseService: LeaseToUserService, private fb: FormBuilder) { }
+
+  constructor(private leaseService: LeaseToUserService, private fb: FormBuilder) {
+  }
+
   customerType: string;
+  isValidForm: boolean;
+  isValidForm2: boolean;
+
   ngOnInit() {
+    this.leaseService.currentValid.subscribe(isValidForm => this.isValidForm = isValidForm)
+    this.leaseService.currentValid2.subscribe(isValidForm => this.isValidForm2 = isValidForm)
+
     this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
 
     // this.firstFormGroup = this.fb.group({
@@ -36,6 +46,8 @@ export class StepperComponent implements OnInit {
     // })
     // this.firstFormGroup = this.privateUserForm;
   }
+
+
 
   // get carLeasingForm(){
   //   return this.privateLeasingDataFormComponent ? this.privateLeasingDataFormComponent.carLeasingForm : null;

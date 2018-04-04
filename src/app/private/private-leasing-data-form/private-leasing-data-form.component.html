@@ -1,6 +1,7 @@
 <body>
     <div align="center" class="container">
-
+      {{carLeasingForm.valid}} -
+      {{isValidForm}}
         <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" class="formwidth">
             <table class="fullwidth" cellspacing="0">
                 <tr>
@@ -146,7 +147,9 @@
                             <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
                     </div>
+
                     <div>
+                      {{newIsValidForm()}}
                         <button mat-button matStepperPrevious class="btn btn-primary" routerLink="../home">Back</button>
                         <button mat-button matStepperNext class="btn btn-primary" [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
                     </div>
