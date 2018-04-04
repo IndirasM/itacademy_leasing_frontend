@@ -85,10 +85,6 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     return this.totalPayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
-  send() {
-    console.log(this.carLeasingForm);
-  }
-
   reset() {
     this.carLeasingForm.reset();
   }
@@ -149,10 +145,6 @@ export class CorporateLeasingDataFormComponent implements OnInit {
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
-  submitForm(carLeasingForm: NgForm) {
-    console.log('Form Data', this.carLeasingForm.value);
-  }
-
   ngOnInit() {
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
     this.carService.getBrands().then(data => {
@@ -185,8 +177,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       }
     });
   }
-  pitch(event: any) {
-      console.log(event.value);
+    pitch(event: any) {
     }
 
     onSubmit() {
@@ -207,11 +198,8 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           customerType: 'Corporate'
 
         };
-
-        console.log(this.leaseData);
         this.leasingData.changeData(this.leaseData);
       } else {
-        console.log('invalid sumbit');
         this.validateAllFormFields(this.carLeasingForm);
       }
   }

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material';
-import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { LeaseToUserService } from '../../services/leasing-to-user.service';
-import { LeaseData } from './private-leasing-data';
-import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { Validations } from './validations';
+import {Component, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog} from '@angular/material';
+import {Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
+import {LeaseToUserService} from '../../services/leasing-to-user.service';
+import {LeaseData} from './private-leasing-data';
+import {BrandsAndModelsService} from '../../services/BrandsAndModelsService';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {Validations} from './validations';
+import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -45,28 +47,57 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   brandsAfterChangeEvent = [];
 
 
-  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService) {
+  constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router,
+              private _location: Location) {
     this.carLeasingForm = fb.group({
-      enginePower : new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500), Validators.maxLength(4)]),
+      enginePower: new FormControl(null, [Validators.required, Validators.min(50), Validators.max(1500),
+        Validators.maxLength(4)]),
       LeaseData: LeaseData,
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
       customerType: [[new FormControl('Private', Validators.required)]],
-      year: new FormControl([], Validators.required) ,
+      year: new FormControl([], Validators.required),
       assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
-      advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(50)]),
+      advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10),
+        Validators.max(50)]),
       advancePaymentAmount: new FormControl(null),
       leasePeriod: new FormControl(6, [Validators.required, Validators.min(6), Validators.max(84)]),
       margin: new FormControl(3.2, [Validators.required, Validators.min(3.2), Validators.max(99)]),
       paymentDate: new FormControl(null, Validators.required),
-      contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99), Validators.maxLength(2)]),
-      contractFee: new FormControl(200, Validators.required)
+      contractFeePercentage: new FormControl(1, [Validators.required, Validators.min(1), Validators.max(99),
+        Validators.maxLength(2)]),
+      contractFee: new FormControl(200, Validators.required),
+      financingAmount: new FormControl(null),
+      totalInterest: new FormControl(null),
+      totalMonthlyPayment: new FormControl(null)
     });
   }
 
+  goBack() {
+    this._location.back();
+  }
+
+  get financingAmount() {
+    return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
+  }
+
+  get totalInterest() {
+    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value;
+  }
+
+  get totalpayment() {
+    return this.carLeasingForm.get('totalInterest').value
+      + this.carLeasingForm.get('financingAmount').value
+      + this.carLeasingForm.get('contractFee').value
+      + (0.7 * this.carLeasingForm.get('totalInterest').value);
+  }
+
+  get totalMonthlyPayment() {
+    return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
+  }
+
   send() {
-    console.log(this.carLeasingForm);
   }
 
   reset() {
@@ -101,6 +132,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     return 200;
 
   }
+
   get model() {
     return this.carLeasingForm.get('carModel');
   }
@@ -125,19 +157,16 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
-  submitForm(carLeasingForm: NgForm) {
-    console.log('Form Data', this.carLeasingForm.value);
-  }
-
   ngOnInit() {
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+
     this.carService.getBrands().then(data => {
 
       let size = 0, key;
       for (key in data) {
-          if (data.hasOwnProperty(key)) {
-            size++;
-          }
+        if (data.hasOwnProperty(key)) {
+          size++;
+        }
       }
 
       for (let i = 0; i < size; i++) {
@@ -147,13 +176,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
           let size1 = 0, key1;
           for (key1 in models) {
-              if (models.hasOwnProperty(key1)) {
-                size1++;
-              }
+            if (models.hasOwnProperty(key1)) {
+              size1++;
+            }
           }
 
           for (let j = 0; j < size1; j++) {
-              this.models.push({name: models[j].model, type: data[i].brand});
+            this.models.push({name: models[j].model, type: data[i].brand});
           }
 
 
@@ -161,34 +190,31 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       }
     });
   }
-    pitch(event: any) {
-      console.log(event.value);
-    }
 
-    onSubmit() {
-      // if (this.carLeasingForm.valid) {
-        this.leaseData = {
-          assetType: this.carLeasingForm.value['assetType'],
-          carBrand: this.carLeasingForm.value['brand'],
-          carModel: this.carLeasingForm.value['model'],
-          years: this.carLeasingForm.value['year'],
-          enginePower: this.carLeasingForm.value['enginePower'],
-          assetPrice: this.carLeasingForm.value['assetPrice'],
-          advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
-          advancePaymentAmount: (this.advancePaymentAmount).toString(),
-          leasePeriod: this.carLeasingForm.value['leasePeriod'],
-          margin: this.carLeasingForm.value['margin'],
-          contractFee: (this.contractFee).toString(),
-          paymentDate: this.carLeasingForm.value['paymentDate'],
-          customerType: 'Private'
+  pitch(event: any) {
+  }
 
-        };
+  onSubmit() {
+    // if (this.carLeasingForm.valid) {
+    this.leaseData = {
+      assetType: this.carLeasingForm.value['assetType'],
+      carBrand: this.carLeasingForm.value['brand'],
+      carModel: this.carLeasingForm.value['model'],
+      years: this.carLeasingForm.value['year'],
+      enginePower: this.carLeasingForm.value['enginePower'],
+      assetPrice: this.carLeasingForm.value['assetPrice'],
+      advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
+      advancePaymentAmount: (this.advancePaymentAmount).toString(),
+      leasePeriod: this.carLeasingForm.value['leasePeriod'],
+      margin: this.carLeasingForm.value['margin'],
+      contractFee: (this.contractFee).toString(),
+      paymentDate: this.carLeasingForm.value['paymentDate'],
+      customerType: 'Private'
 
-        console.log(this.leaseData);
-        this.leasingData.changeData(this.leaseData);
-     // } else {
-        // console.log('invalid sumbit');
-        // this.validateAllFormFields(this.carLeasingForm);
+    };
+    this.leasingData.changeData(this.leaseData);
+    // } else {
+    // this.validateAllFormFields(this.carLeasingForm);
     //  }
   }
 
@@ -203,4 +229,4 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       }
     });
   }
-  }
+}

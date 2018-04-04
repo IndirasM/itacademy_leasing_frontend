@@ -3,8 +3,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {PrivateUserData} from './privateUserData';
 import {LeaseToUserService} from '../../services/leasing-to-user.service';
 import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
-import {validate} from 'codelyzer/walkerFactory/walkerFn';
-
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-private-user-data-form',
@@ -37,34 +36,9 @@ export class PrivateUserDataFormComponent implements OnInit {
     this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
   }
 
-  get firstName() {
-    return this.userForm.get('firstName') as FormControl;
-  }
-
-  get lastName() {
-    return this.userForm.get('lastName') as FormControl;
-  }
-
-  get personalCode() {
-    return this.userForm.get('personalCode') as FormControl;
-  }
-
-  get phoneNumber() {
-    return this.userForm.get('phoneNumber') as FormControl;
-  }
-
-  get email() {
-    return this.userForm.get('email') as FormControl;
-  }
-
-  get address() {
-    return this.userForm.get('address') as FormControl;
-  }
-
   send() {
 
     if (this.userForm.valid) {
-      console.log('form submitted');
       this.userData = {
         firstName: this.userForm.value['firstName'],
         lastName: this.userForm.value['lastName'],
@@ -75,7 +49,6 @@ export class PrivateUserDataFormComponent implements OnInit {
         leaseId: '5ab3a513b7b8e95a4c934282'};
         this.leaseService.changeUserData(this.userData);
       } else {
-      console.log('invalid sumbit');
       this.validateAllFormFields(this.userForm);
     }
   }

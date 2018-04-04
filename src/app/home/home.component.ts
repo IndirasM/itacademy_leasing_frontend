@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {LeaseToUserService} from '../services/leasing-to-user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,7 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  customerType: string;
+
+  onPrivate() {
+    this.customerType = 'private';
+    this.customerTypeService.changeUserType(this.customerType);
+  }
+  onCorporate() {
+    this.customerType = 'corporate';
+    this.customerTypeService.changeUserType(this.customerType);
+  }
+
+  constructor(private customerTypeService: LeaseToUserService) {
+
+   }
 
   ngOnInit() {
   }

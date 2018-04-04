@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form [formGroup]="carLeasingForm" (ngSubmit)="submitForm()" role="form" novalidate #editForm="ngForm">
+    <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm">
 
         <div class="form-group ">
             <mat-form-field>
@@ -136,3 +136,5 @@
                 <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
             </div>
         </div>
+    </form>
+</div>
