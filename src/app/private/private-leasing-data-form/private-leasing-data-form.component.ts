@@ -79,22 +79,22 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get financingAmount() {
-    return this.carLeasingForm.get('assetPrice').value - this.carLeasingForm.get('advancePaymentAmount').value;
+    return this.carLeasingForm.get('assetPrice').value - this.advancePaymentAmount;
   }
 
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value * this.carLeasingForm.get('advancePaymentPercentage').value;
+    return this.carLeasingForm.get('assetPrice').value  * (this.carLeasingForm.get('margin').value / 100);
   }
 
-  get totalpayment() {
-    return this.carLeasingForm.get('totalInterest').value
-      + this.carLeasingForm.get('financingAmount').value
-      + this.carLeasingForm.get('contractFee').value
-      + (0.7 * this.carLeasingForm.get('totalInterest').value);
+  get totalPayment() {
+    return this.totalInterest
+      + this.financingAmount
+      + this.contractFee
+      + (0.7 * this.leasePeriod);
   }
 
   get totalMonthlyPayment() {
-    return this.totalpayment / this.carLeasingForm.get('leasePeriod').value;
+    return this.totalPayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
   send() {
@@ -121,7 +121,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get contractFeePercentage() {
-    return this.carLeasingForm.get('contractFeePercentage').value;
+    return Math.round(this.carLeasingForm.get('contractFeePercentage').value * 10) / 10;
   }
 
   get contractFee() {
@@ -142,7 +142,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get advancePaymentPercentage() {
-    return this.carLeasingForm.get('advancePaymentPercentage').value;
+    return Math.round(this.carLeasingForm.get('advancePaymentPercentage').value * 10) / 10;
   }
 
   get margin() {
