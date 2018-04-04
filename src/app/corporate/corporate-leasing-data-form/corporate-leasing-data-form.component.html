@@ -44,8 +44,8 @@
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let year of years " [value]="year">{{year}}</mat-option>
                 </mat-select>
-              <mat-error *ngIf="year.invalid && year.touched && !(year.value!=None)" class="form-text text-danger">Year must be selected</mat-error>
-              <span class="help-block"></span>
+                <mat-error *ngIf="year.invalid && year.touched && !(year.value!=None)" class="form-text text-danger">Year must be selected</mat-error>
+                <span class="help-block"></span>
             </mat-form-field>
         </div>
 
@@ -55,25 +55,23 @@
                 <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value < 50" class="form-text text-danger">Engine power is too low</mat-error>
                 <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value > 1500" class="form-text text-danger">Engine power is too high</mat-error>
                 <span class="help-block"></span>
-                <mat-hint>(required engine power:
-                  min 50
-                  max 1500)</mat-hint>
+                <mat-hint>(required engine power: min 50 max 1500)</mat-hint>
             </mat-form-field>
         </div>
 
         <div class="form-group ">
             <mat-form-field>
                 <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" required maxlength="3">
-              <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 10000" class="form-text text-danger">Asset price is too low</mat-error>
-              <mat-hint>Asset price min is 10000</mat-hint>
+                <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 10000" class="form-text text-danger">Asset price is too low</mat-error>
+                <mat-hint>Asset price min is 10000</mat-hint>
             </mat-form-field>
         </div>
 
         <div class="form-group ">
             <label> Advance payment percentage </label>
             <label></label>
-          <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required></mat-slider>
-          {{advancePaymentPercentage}} %
+            <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required></mat-slider>
+            {{advancePaymentPercentage}} %
         </div>
 
         <div class="form-group ">
@@ -97,10 +95,10 @@
         </div>
 
         <div class="form-group ">
-          <label> Contract fee percentage</label>
-          <label>  </label>
-          <mat-slider formControlName="contractFeePercentage" min="1" max="99" step="0.1" value="1" tickInterval="0.1" thumbLabel (input)="pitch($event)"> required</mat-slider>
-          {{contractFeePercentage.toFixed(1)}} %
+            <label> Contract fee percentage</label>
+            <label>  </label>
+            <mat-slider formControlName="contractFeePercentage" min="1" max="99" step="0.1" value="1" tickInterval="0.1" thumbLabel (input)="pitch($event)"> required</mat-slider>
+            {{contractFeePercentage.toFixed(1)}} %
         </div>
 
         <div class="form-group ">
@@ -112,23 +110,25 @@
             </mat-radio-group>
         </div>
 
-        <div class="form-group ">
-            <button [disabled]="!carLeasingForm.valid" type="submit " class="btn btn-primary" (click)="onSubmit() " routerLink='../form'>Submit</button>
-        </div>
-        <div class="form-group ">
-            <div class="form-group" *ngIf="assetPrice.value >= 10000">
+        <div class="form-group" align="center">
+            <div class="form-group" *ngIf="assetPrice.value >= 10000" align="center">
                 <label> Financing amount  {{ financingAmount.toFixed(2) }}</label>
             </div>
-
-            <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0">
+            <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0" align="center">
                 <label> Contract fee  {{ contractFee.toFixed(2) }}</label>
             </div>
-
-            <div class="form-group " *ngIf="assetPrice.value >= 10000">
+            <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
                 <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
             </div>
+            <!--<div class="form-group">
+        <label> Total payment amount {{totalPayment.toFixed(2)}}</label>
+  </div>-->
+            <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
+                <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
+            </div>
 
-          <!--<div class="form-group">
+
+            <!--<div class="form-group">
                 <label> Total payment amount {{totalPayment.toFixed(2)}}</label>
           </div>-->
 
@@ -137,4 +137,3 @@
             </div>
         </div>
     </form>
-</div>
