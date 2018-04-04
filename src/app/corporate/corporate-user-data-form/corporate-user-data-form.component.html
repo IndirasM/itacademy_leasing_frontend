@@ -4,27 +4,27 @@
         <table class="fullwidth" cellspacing="0">
             <tr>
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Company name" formControlName="companyName" required>
+                    <input matInput maxlength="20" placeholder="Company name" formControlName="companyName" required>
                     <mat-error *ngIf="!companyName ">Valid company name is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Company code" formControlName="companyCode" required>
+                    <input matInput maxlength="9" placeholder="Company code" formControlName="companyCode" required>
                     <mat-error *ngIf="!companyCode ">Valid company code is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Phone number" formControlName="phoneNumber" required>
+                    <input matInput maxlength="12" placeholder="Phone number" formControlName="phoneNumber" required>
                     <mat-error *ngIf="!phoneNumber">Valid phone number is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Email" formControlName="email" required>
+                    <input matInput maxlength="64" x placeholder="Email" formControlName="email" required>
                     <mat-error *ngIf="!email">Valid email is required</mat-error>
                 </mat-form-field>
 
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Address" formControlName="address" required>
+                    <input matInput maxlength="64" placeholder="Address" formControlName="address" required>
                     <mat-error *ngIf="!address">Valid address is required</mat-error>
                 </mat-form-field>
 
