@@ -4,7 +4,7 @@
         <table class="fullwidth" cellspacing="0">
             <tr>
                 <mat-form-field [floatLabel]="corporateUserForm.value.hideRequired">
-                    <input matInput placeholder="Company name" formControlName="companyName" required>
+                    <input matInput matInput maxlength="13" placeholder="Company name" formControlName="companyName" required>
                     <mat-error *ngIf="!companyName ">Valid company name is required</mat-error>
                 </mat-form-field>
 
