@@ -33,6 +33,7 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -50,7 +51,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomeComponent,
     StepperComponent,
     CorporateLeasingDataFormComponent,
-    EndScreenComponent
+    EndScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,8 +74,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatStepperModule,
     MatToolbarModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     LeaseToUserService,
