@@ -14,6 +14,6 @@ export class EndScreenComponent implements OnInit {
   message: string;
 
   ngOnInit() {
-    this.leaseService.toSendMessage.subscribe(message => {});   
+    this.leaseService.toSendMessage.subscribe(message => {});
   }
 }

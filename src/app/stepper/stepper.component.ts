@@ -20,9 +20,9 @@ export class StepperComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   constructor(private leaseService: LeaseToUserService, private fb: FormBuilder) { }
-  customerType: string;
+  leaseType: string;
   ngOnInit() {
-    this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
+    this.leaseService.toSendType.subscribe(leaseType => this.leaseType = leaseType);
 
     // this.firstFormGroup = this.fb.group({
     //   firstName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],

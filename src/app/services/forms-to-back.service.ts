@@ -22,4 +22,12 @@ export class FormsToBackService {
         return this.http.post(this.formsUrl + '/corporate_customer/add', corporateUserData).toPromise();
     }
 
+    sendPartialLeaseForm(leaseData): any {
+        const formattedForm = leaseData;
+
+
+
+        return this.http.post(this.formsUrl + '/schedule-of-contributions/post', formattedForm).toPromise();
+    }
+
 }

@@ -34,13 +34,13 @@ export class LeaseToUserService {
         this.userDataSource.next(userData);
     }
 
-    changeCorporateData(corporateUserData: CorporateUserData){
+    changeCorporateData(corporateUserData: CorporateUserData) {
         this.corporateDataSource.next(corporateUserData);
     }
-    changeUserType(customerType:string){
-        this.homeSource.next(customerType);
+    changeUserType(leaseType: string) {
+        this.homeSource.next(leaseType);
     }
-    passFinalMessage(message: string){
+    passFinalMessage(message: string) {
         this.messageSource.next(message);
     }
 }

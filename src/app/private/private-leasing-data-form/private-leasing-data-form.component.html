@@ -67,8 +67,8 @@
                         <mat-form-field>
 
                             <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" [maxlength]="10" required>
-                            <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000" class="form-text text-danger">Asset price is too low</mat-error>
-                            <mat-hint>Asset price min is 5000</mat-hint>
+                            <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
+                            <mat-hint>Asset price (min is 5000 max 10 000 000)</mat-hint>
 
                         </mat-form-field>
 
@@ -152,36 +152,40 @@
             </table>
 
 
-            <button mat-button class="btn btn-primary" (click)="onClick()">Click me</button>
+            <button mat-button class="btn btn-primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
 
-            <div class="example-container mat-elevation-z8">
+            <div class="example-container mat-elevation-z8" *ngIf='showDataList'>
                 <mat-table #table [dataSource]="dataSource">
 
                     <!--- Note that these columns can be defined in any order.
                         The actual rendered columns are set as a property on the row definition" -->
 
                     <!-- Position Column -->
-                    <ng-container matColumnDef="position">
+                    <!-- <ng-container matColumnDef="position">
                         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                    </ng-container>
+                    </ng-container> -->
 
                     <!-- Name Column -->
                     <ng-container matColumnDef="notRedeemedAssetValue">
                         <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue.toFixed(2)}} </mat-cell>
                     </ng-container>
 
                     <!-- Weight Column -->
                     <ng-container matColumnDef="assetRedemptionFees">
                         <mat-header-cell *matHeaderCellDef> Asset Redemption Fees </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees.toFixed(2)}} </mat-cell>
                     </ng-container>
 
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="interestPayments">
                         <mat-header-cell *matHeaderCellDef> Interest Payments </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.interestPayments}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.interestPayments.toFixed(2)}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="totalMonthlyPaymentValue">
+                        <mat-header-cell *matHeaderCellDef> Total Monthly Payment </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.totalMonthlyPaymentValue.toFixed(2)}} </mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
