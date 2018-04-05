@@ -16,7 +16,6 @@ export class StepperComponent implements OnInit {
 
   @ViewChild('stepper') stepper;
 
-  firstFormGroup: FormGroup;
   customerType: string;
   currentStep: number;
 

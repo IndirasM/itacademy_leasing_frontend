@@ -27,7 +27,6 @@
                     <input matInput maxlength="64" placeholder="Address" formControlName="address" required>
                     <mat-error *ngIf="!address">Valid address is required</mat-error>
                 </mat-form-field>
-                {{newIsValidForm()}}
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext (click)="send()">Next</button>
 

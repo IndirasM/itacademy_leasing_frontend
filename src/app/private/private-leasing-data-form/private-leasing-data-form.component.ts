@@ -29,7 +29,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   public carLeasingForm: FormGroup;
   leaseData: LeaseData;
-  isValidForm: boolean;
 
   assetTypes = [
     {value: 'Vehicle', viewValue: 'Vehicle'}
@@ -189,33 +188,34 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       }
     });
   }
+
   pitch(event: any) {
   }
 
   onSubmit() {
     if (this.carLeasingForm.valid) {
-    this.leaseData = {
-      assetType: this.carLeasingForm.value['assetType'],
-      carBrand: this.carLeasingForm.value['brand'],
-      carModel: this.carLeasingForm.value['model'],
-      years: this.carLeasingForm.value['year'],
-      enginePower: this.carLeasingForm.value['enginePower'],
-      assetPrice: this.carLeasingForm.value['assetPrice'],
-      advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
-      advancePaymentAmount: (this.advancePaymentAmount).toString(),
-      leasePeriod: this.carLeasingForm.value['leasePeriod'],
-      margin: this.carLeasingForm.value['margin'],
-      contractFee: (this.contractFee).toString(),
-      paymentDate: this.carLeasingForm.value['paymentDate'],
-      leaseType: 'Private'
+      this.leaseData = {
+        assetType: this.carLeasingForm.value['assetType'],
+        carBrand: this.carLeasingForm.value['brand'],
+        carModel: this.carLeasingForm.value['model'],
+        years: this.carLeasingForm.value['year'],
+        enginePower: this.carLeasingForm.value['enginePower'],
+        assetPrice: this.carLeasingForm.value['assetPrice'],
+        advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
+        advancePaymentAmount: (this.advancePaymentAmount).toString(),
+        leasePeriod: this.carLeasingForm.value['leasePeriod'],
+        margin: this.carLeasingForm.value['margin'],
+        contractFee: (this.contractFee).toString(),
+        paymentDate: this.carLeasingForm.value['paymentDate'],
+        leaseType: 'Private'
 
-    };
-    console.log(this.leaseData.leaseType);
-    this.leasingData.changeData(this.leaseData);
+      };
+      console.log(this.leaseData.leaseType);
+      this.leasingData.changeData(this.leaseData);
     } else {
-      console.log("invalid");
-    this.validateAllFormFields(this.carLeasingForm);
-     }
+      console.log('invalid');
+      this.validateAllFormFields(this.carLeasingForm);
+    }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {
