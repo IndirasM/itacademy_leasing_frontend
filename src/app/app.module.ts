@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContractFormComponent } from './contract-form/contract-form.component';
 import { FormPreviewComponent } from './private/form-preview/form-preview.component';
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +40,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
-    ContractFormComponent,
     PrivateUserDataFormComponent,
     PageNotFoundComponent,
     PrivateLeasingDataFormComponent,
