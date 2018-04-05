@@ -1,16 +1,15 @@
 // <reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, OnInit} from '@angular/core';
-import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
-import {PrivateUserData} from '../private-user-data-form/privateUserData';
+import {LeaseData} from '../../private/private-leasing-data-form/private-leasing-data';
 import {FormGroup} from '@angular/forms';
 import {LeaseToUserService} from '../../services/leasing-to-user.service';
 import {FormsToBackService} from '../../services/forms-to-back.service';
 import { CorporateUserData } from '../../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: 'app-form-preview',
-  templateUrl: './form-preview.component.html',
-  styleUrls: ['./form-preview.component.css']
+  selector: 'app-corporate-form-preview',
+  templateUrl: './corporate-form-preview.component.html',
+  styleUrls: ['./corporate-form-preview.component.css']
 })
 
 export class FormPreviewComponent implements OnInit {
@@ -19,7 +18,6 @@ export class FormPreviewComponent implements OnInit {
   }
 
   private leaseData: LeaseData;
-  private userData: PrivateUserData;
   private corporateUserData: CorporateUserData;
   // public newData: PromisedLease;
   public errorMessages: string;
@@ -36,12 +34,6 @@ export class FormPreviewComponent implements OnInit {
         this.leaseData = leaseData;
       }
     });
-    this.leaseService.toSendUser.subscribe(userData => {
-      if (userData) {
-        this.userReady = true;
-        this.userData = userData;
-      }
-    });
     this.leaseService.toSendCorporate.subscribe(corporateUserData => {
       this.corporateReady = true;
       this.corporateUserData = corporateUserData;
@@ -51,9 +43,7 @@ export class FormPreviewComponent implements OnInit {
   sendToDb() {
     this.clicked = true;
     let dataArray;
-    if(this.leaseData.leaseType = "Private"){
-      dataArray = {"lease": this.leaseData, "privateCustomer": this.userData};
-    } else if (this.leaseData.leaseType = "Corporate") {
+    if (this.leaseData.leaseType = "Corporate") {
       dataArray = {"lease": this.leaseData, "corporateCustomer": this.corporateUserData};
     }
     console.log(dataArray);
@@ -98,7 +88,6 @@ export class FormPreviewComponent implements OnInit {
 //   contractFee: number;
 //   paymentDate: number;
 //   errorCodes: number;
-
 
 //   constructor(data) {
 //     this.assetType = data.assetType;

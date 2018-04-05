@@ -158,7 +158,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+    // this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
       let size = 0, key;
@@ -193,7 +193,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (this.carLeasingForm.valid) {
+    if (this.carLeasingForm.valid) {
     this.leaseData = {
       assetType: this.carLeasingForm.value['assetType'],
       carBrand: this.carLeasingForm.value['brand'],
@@ -207,13 +207,15 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       margin: this.carLeasingForm.value['margin'],
       contractFee: (this.contractFee).toString(),
       paymentDate: this.carLeasingForm.value['paymentDate'],
-      customerType: 'Private'
+      leaseType: 'Private'
 
     };
+    console.log(this.leaseData.leaseType);
     this.leasingData.changeData(this.leaseData);
-    // } else {
-    // this.validateAllFormFields(this.carLeasingForm);
-    //  }
+    } else {
+      console.log("invalid");
+    this.validateAllFormFields(this.carLeasingForm);
+     }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {

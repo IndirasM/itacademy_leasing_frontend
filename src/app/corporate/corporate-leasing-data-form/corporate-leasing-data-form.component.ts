@@ -146,7 +146,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
+    // this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
     this.carService.getBrands().then(data => {
 
       let size = 0, key;
@@ -195,11 +195,13 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
           paymentDate: this.carLeasingForm.value['paymentDate'],
-          customerType: 'Corporate'
+          leaseType: 'Corporate'
 
         };
+        console.log(this.carLeasingForm.value['leaseType']);
         this.leasingData.changeData(this.leaseData);
       } else {
+        console.log("invalid");
         this.validateAllFormFields(this.carLeasingForm);
       }
   }

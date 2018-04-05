@@ -6,7 +6,6 @@ import {FormPreviewComponent} from '../private/form-preview/form-preview.compone
 import {CorporateUserDataFormComponent} from '../corporate/corporate-user-data-form/corporate-user-data-form.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-stepper',
@@ -15,14 +14,30 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 })
 export class StepperComponent implements OnInit {
 
-  @ViewChild('stepper') privateLeasingDataFormComponent: PrivateLeasingDataFormComponent;
+  @ViewChild('stepper') stepper;
 
-  constructor(private leaseService: LeaseToUserService, private fb: FormBuilder) {
+  firstFormGroup: FormGroup;
+  customerType: string;
+  currentStep: number;
+
+  constructor(
+    private leaseService: LeaseToUserService,
+    private fb: FormBuilder
+  ) {
   }
 
-  customerType: string;
-
   ngOnInit() {
-    this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
+    this.leaseService.toSendType.subscribe(
+      customerType => (this.customerType = customerType)
+    );
+    this.leaseService.toSendSuccess.subscribe(currentStep => {
+      this.currentStep = currentStep;
+      console.log(currentStep);
+    });
+    this.currentStep = this.leaseService.getCurrentStep();
+  }
+
+  changeStep(index: number) {
+    this.stepper.selectedIndex = index;
   }
 }
