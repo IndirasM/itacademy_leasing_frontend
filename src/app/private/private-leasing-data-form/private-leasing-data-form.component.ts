@@ -158,12 +158,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leasingData.currentValid.subscribe(isValidForm => this.isValidForm = isValidForm)
-
     this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
-
       let size = 0, key;
       for (key in data) {
         if (data.hasOwnProperty(key)) {
@@ -192,10 +189,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       }
     });
   }
-  newIsValidForm() {
-    this.leasingData.changeIsValidForm(this.carLeasingForm.valid);
-  }
-
   pitch(event: any) {
   }
 

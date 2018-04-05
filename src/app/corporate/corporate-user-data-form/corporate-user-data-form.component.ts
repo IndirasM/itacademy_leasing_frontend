@@ -16,8 +16,6 @@ export class CorporateUserDataFormComponent implements OnInit {
   public leaseData: LeaseData;
   public corporateUserData: CorporateUserData;
 
-  isValidForm: boolean;
-
   constructor(fb: FormBuilder, private leaseService: LeaseToUserService) {
     this.corporateUserForm = fb.group({
       companyName: [null, [Validators.pattern
@@ -34,10 +32,8 @@ export class CorporateUserDataFormComponent implements OnInit {
 
   ngOnInit() {
     this.leaseService.toSend.subscribe(leaseData => this.leaseData = leaseData);
-    this.leaseService.currentValid2.subscribe(isValidForm => this.isValidForm = isValidForm);
   }
   newIsValidForm() {
-    this.leaseService.changeIsValidForm2(this.corporateUserForm.valid);
   }
 
   get companyName() {

@@ -6,7 +6,7 @@ import {FormPreviewComponent} from '../private/form-preview/form-preview.compone
 import {CorporateUserDataFormComponent} from '../corporate/corporate-user-data-form/corporate-user-data-form.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Validators} from '@angular/forms';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-stepper',
@@ -16,48 +16,13 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 export class StepperComponent implements OnInit {
 
   @ViewChild('stepper') privateLeasingDataFormComponent: PrivateLeasingDataFormComponent;
-  // @ViewChild("PrivateUserDataFormComponent") privateUserDataFormComponent:PrivateUserDataFormComponent;
-  // @ViewChild("FormPreviewComponent") formPreviewComponent:FormPreviewComponent;
-  // @ViewChild("CorporateUserDataFormComponent") corporateUserDataFormComponent:CorporateUserDataFormComponent;
-
 
   constructor(private leaseService: LeaseToUserService, private fb: FormBuilder) {
   }
 
   customerType: string;
-  isValidForm: boolean;
-  isValidForm2: boolean;
 
   ngOnInit() {
-    this.leaseService.currentValid.subscribe(isValidForm => this.isValidForm = isValidForm)
-    this.leaseService.currentValid2.subscribe(isValidForm => this.isValidForm2 = isValidForm)
-
     this.leaseService.toSendType.subscribe(customerType => this.customerType = customerType);
-
-    // this.firstFormGroup = this.fb.group({
-    //   firstName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],
-    //   lastName: [null, [Validators.pattern('[a-zA-Z]{3,15}')]],
-    //   personalCode: [null, [Validators.pattern('(^[34])[0-9]{10}')]],
-    //   phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
-    //   email: [null, [Validators.email]],
-    //   address: [null, [Validators.pattern('.*[0-9].*'),
-    //                    Validators.pattern('.*[A-Za-z].*'),
-    //                    Validators.pattern(/.+[\s].+/)]]
-    // })
-    // this.firstFormGroup = this.privateUserForm;
   }
-
-
-
-  // get carLeasingForm(){
-  //   return this.privateLeasingDataFormComponent ? this.privateLeasingDataFormComponent.carLeasingForm : null;
-  // }
-
-  // get privateUserForm(){
-  //   return this.privateUserDataFormComponent ? this.privateUserDataFormComponent.userForm : null;
-  // }
-
-  // get corporateUserForm(){
-  //   return this.corporateUserDataFormComponent ? this.corporateUserDataFormComponent.corporateUserForm : null;
-  // }
 }

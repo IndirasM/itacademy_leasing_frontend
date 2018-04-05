@@ -23,24 +23,9 @@ export class LeaseToUserService {
   toSendType = this.homeSource.asObservable();
   toSendMessage = this.messageSource.asObservable();
 
-
-
-  public isValidSource = new BehaviorSubject<boolean>(false);
-  currentValid = this.isValidSource.asObservable();
-
-  public isValidSource2 = new BehaviorSubject<boolean>(false);
-  currentValid2 = this.isValidSource2.asObservable();
-
-
   constructor() {
   }
 
-  changeIsValidForm(isValidForm: boolean) {
-    this.isValidSource.next(isValidForm);
-  }
-  changeIsValidForm2(isValidForm: boolean) {
-    this.isValidSource2.next(isValidForm);
-  }
   changeData(leaseData: LeaseData) {
     this.dataSource.next(leaseData);
   }

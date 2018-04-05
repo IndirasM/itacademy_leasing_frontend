@@ -1,15 +1,20 @@
-<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="carLeasingForm" [completed]='isValidForm'>
+<mat-horizontal-stepper [linear]="false" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="carLeasingForm" [completed]='false'>
+    <ng-template matStepLabel>Car details</ng-template>
     <app-private-leasing-data-form></app-private-leasing-data-form>
   </mat-step>
-  <mat-step [stepControl]="userForm" [completed]='isValidForm2'>
+  <mat-step [stepControl]="userForm" [completed]='false'>
+    <ng-template *ngIf='customerType==="private"' matStepLabel>User details</ng-template>
+    <ng-template *ngIf='customerType==="corporate"' matStepLabel>Company details</ng-template>
     <app-private-user-data-form *ngIf='customerType==="private"'></app-private-user-data-form>
     <app-corporate-user-data-form *ngIf='customerType==="corporate"'></app-corporate-user-data-form>
   </mat-step>
-  <mat-step [completed]='isValidForm2'>
+  <mat-step [completed]='false'>
+    <ng-template matStepLabel>Preview</ng-template>
     <app-form-preview></app-form-preview>
   </mat-step>
   <mat-step [completed]='false'>
+    <ng-template matStepLabel>Completed</ng-template>
     <app-end-screen></app-end-screen>
   </mat-step>
 </mat-horizontal-stepper>

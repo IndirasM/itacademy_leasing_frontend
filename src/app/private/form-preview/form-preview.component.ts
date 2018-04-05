@@ -118,4 +118,5 @@ export class PromisedLease {
     this.paymentDate = data.paymentDate;
     this.errorCodes = data.errorCodes;
   }
+
 }
