@@ -11,5 +11,5 @@ export class LeaseData {
     margin: string;
     contractFee: string;
     paymentDate: string;
-    customerType: string;
+    leaseType: string;
 }

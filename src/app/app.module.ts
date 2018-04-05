@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContractFormComponent } from './contract-form/contract-form.component';
 import { FormPreviewComponent } from './private/form-preview/form-preview.component';
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +32,7 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -40,7 +40,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
-    ContractFormComponent,
     PrivateUserDataFormComponent,
     PageNotFoundComponent,
     PrivateLeasingDataFormComponent,
@@ -50,7 +49,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomeComponent,
     StepperComponent,
     CorporateLeasingDataFormComponent,
-    EndScreenComponent
+    EndScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,8 +72,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatStepperModule,
     MatToolbarModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     LeaseToUserService,
