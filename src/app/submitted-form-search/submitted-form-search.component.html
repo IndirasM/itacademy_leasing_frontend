@@ -1,42 +1,49 @@
-<mat-accordion>
-  <mat-expansion-panel class="nig">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        FirstName Surname LeaseType and Some other info
-      </mat-panel-title>
-      <mat-panel-description>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <P>
-      Customer type</P><p>
-
-      Asset Type </p><p>
-
-      Make </p><p>
-
-
-      Model </p><p>
-
-      Year </p><p>
-
-      Engine power (kW) </p><p>
-
-      Asset price </p><p>
-
-      Advance payment percentage </p><p>
-
-      Advance payment amount </p><p>
-
-      Lease period </p><p>
-
-      Margin </p><p>
-
-      Contract fee </p><p>
-
-      Payment date </p>
-    <mat-action-row>
-      <button md-colors="green">Approve</button>
-      <button md-colors="red">Disapprove</button>
-    </mat-action-row>
-  </mat-expansion-panel> 
-</mat-accordion>
+<div id="c1" align="center" class="container">
+  <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" class="formwidth">
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+<div align="center" class="divWidth">
+  <table class="fullWidth" cellspacing="0">
+    <tr>
+  <div>
+    <label>Customer type:  {{1+1}}</label></div>
+  <div>
+    <label>Asset Type:  {{1+1}}</label></div>
+  <div>
+    <label>Make:  {{1+1}}</label> </div>
+  <div>
+    <label>Model:  {{1+1}}</label>
+  </div>
+  <div> <label>Year:  {{1+1}}</label>
+  </div>
+  <div><label>Engine power (kW):  {{1+1}}</label>
+  </div>
+  <div><label>Asset price:  {{1+1}}</label>
+  </div>
+  <div> <label>Advance payment percentage:  {{1+1}}</label>
+  </div>
+  <div> <label>Advance payment amount:  {{1+1}}</label>
+  </div>
+  <div><label>Lease period:  {{1+1}}</label>
+  </div>
+  <div><label>Margin:  {{1+1}}</label>
+  </div>
+  <div><label>Contract fee:  {{1+1}}</label>
+  </div>
+  <div><label>Payment date:  {{1+1}}</label>
+  </div>
+  <div><label>First Name:  {{1+1}}</label>
+  </div>
+  <div><label>Last Name:  {{1+1}}</label>
+  </div>
+  <div><label>Personal code:  {{1+1}}</label>
+  </div>
+  <div><label>Phone number:  {{1+1}}</label>
+  </div>
+  <div><label>Email:  {{1+1}}</label>
+  </div>
+  <div><label>Address:  {{1+1}}</label>
+  </div>
+    </tr>
+  </table>
+  </div>
