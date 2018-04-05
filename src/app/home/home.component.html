@@ -1,40 +1,19 @@
 <html>
+
 <head>
 </head>
+
 <body>
-<!-- <div allign="center">
-    <h1 class="title" align="middle">
-    </h1>
-    <div class="formwidth">
-        <table class="fullwidth" cellspacing="0">
-            <mat-grid-list cols="2" rowHeight="1:1">
-                <mat-grid-tile>
-                    <button align="middle" mat-button id="privatebtn" class="button button-transparant color-change" (click)="onPrivate()" routerLink="../stepper">Private</button>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <button align="middle" mat-button id="corporatebtn" class="button button-transparant color-change" (click)="onCorporate()" routerLink="../stepper">Corporate</button>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </table>
+    <div class="wrapper">
+        <nav>
+            <div class="logo">CAR LEASING</div>
+            <ul>
+                <li><a (click)="onCorporate()" routerLink="../stepper">Corporate</a></li>
+                <li><a (click)="onPrivate()" routerLink="../stepper">Private</a></li>
+            </ul>
+        </nav>
     </div>
-</div> -->
-<div class="wrapper">
-  <nav>
-    <div class="logo">CAR LEASING</div>
-    <ul>
-      <!-- <li>
-          <a> <button align="middle" mat-button id="privatebtn" class="button button-transparant color-change" (click)="onPrivate()" routerLink="../stepper">Private</button>
-          </a>
-      </li>
-      <li>
-          <a> <button align="middle" mat-button id="corporatebtn" class="button button-transparant color-change" (click)="onCorporate()" routerLink="../stepper">Corporate</button>
-          </a>
-      </li> -->
-      <li><a (click)="onCorporate()" routerLink="../stepper">Corporate</a></li>
-      <li><a (click)="onPrivate()" routerLink="../stepper">Private</a></li>
-      <!-- <li><a class="active" href="#">log in</a></li> -->
-    </ul>
-  </nav>
-</div>
+    <img src="../../assets/images/home.jpg" style="width: 100%; height: 803px" align="center">
 </body>
+
 </html>

@@ -10,12 +10,14 @@
     width: 100%;
 }
 
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+}
 
-/* form {
-    background-color: lightblue;
-} */
-
-
-/* body {
-    background-color: grey;
-} */
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}

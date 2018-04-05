@@ -1,5 +1,4 @@
 <div>
-  {{message}}
+  Your application has been accepted and is being processed right now. You should receive decision within 3 days.
 </div>
-<button mat-button matStepperPrevious>Back</button>
-<button mat-button matStepperNext routerLink="../home">Finish</button>
+<button mat-button matStepperNext (click)="completed()" routerLink="../home">Finish</button>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContractFormComponent } from './contract-form/contract-form.component';
 import { FormPreviewComponent } from './private/form-preview/form-preview.component';
 import { PrivateUserDataFormComponent} from './private/private-user-data-form/private-user-data-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,19 +27,18 @@ import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-
 import { HomeComponent } from './home/home.component';
 import { FormsToBackService } from './services/forms-to-back.service';
 import { StepperComponent } from './stepper/stepper.component';
-import {MatStepperModule} from '@angular/material/stepper'
+import {MatStepperModule} from '@angular/material/stepper';
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
-
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContractFormComponent,
     PrivateUserDataFormComponent,
     PageNotFoundComponent,
     PrivateLeasingDataFormComponent,
@@ -50,7 +48,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomeComponent,
     StepperComponent,
     CorporateLeasingDataFormComponent,
-    EndScreenComponent
+    EndScreenComponent,
+    LeasingOfficerComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,8 +72,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatStepperModule,
     MatToolbarModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     LeaseToUserService,

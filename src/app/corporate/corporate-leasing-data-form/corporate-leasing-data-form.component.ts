@@ -53,7 +53,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: new FormControl('Corporate', Validators.required),
+      leaseType: new FormControl('Corporate', Validators.required),
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
       assetPrice: new FormControl(null, [Validators.required, Validators.min(10000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(99)]),
@@ -146,7 +146,6 @@ export class CorporateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
     this.carService.getBrands().then(data => {
 
       let size = 0, key;
@@ -195,11 +194,13 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           margin: this.carLeasingForm.value['margin'],
           contractFee: (this.contractFee).toString(),
           paymentDate: this.carLeasingForm.value['paymentDate'],
-          customerType: 'Corporate'
+          leaseType: 'Corporate'
 
         };
+        console.log(this.carLeasingForm.value['leaseType']);
         this.leasingData.changeData(this.leaseData);
       } else {
+        console.log('invalid');
         this.validateAllFormFields(this.carLeasingForm);
       }
   }
