@@ -10,6 +10,7 @@ import { StepperComponent } from "./stepper/stepper.component";
 import { CorporateLeasingDataFormComponent } from "./corporate/corporate-leasing-data-form/corporate-leasing-data-form.component";
 import { EndScreenComponent } from "./end-screen/end-screen.component";
 import { LeasingOfficerComponent } from "./leasing-officer/leasing-officer.component";
+import { SubmittedFormSearchComponent } from "./submitted-form-search/submitted-form-search.component";
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "stepper", component: StepperComponent },
   { path: "finish", component: EndScreenComponent },
-  { path: "officer", component: LeasingOfficerComponent }
+  { path: "officer", component: LeasingOfficerComponent },
+  { path: "search", component: SubmittedFormSearchComponent }
 ];
 
 @NgModule({
