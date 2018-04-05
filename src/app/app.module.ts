@@ -34,6 +34,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     StepperComponent,
     CorporateLeasingDataFormComponent,
     EndScreenComponent,
+    LeasingOfficerComponent,
   ],
   imports: [
     BrowserModule,

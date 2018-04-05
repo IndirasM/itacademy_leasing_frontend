@@ -81,13 +81,14 @@
                     </div>
 
                     <div class="form-group" align="center">
-                        <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
+                        <label> Advance payment amount {{ advancePaymentAmount.toFixed(2) }}</label>
                     </div>
 
                     <div class="form-group" align="center">
                         <label>Lease Period</label>
                         <label></label>
-                        <mat-slider formControlName="leasePeriod" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)" required></mat-slider>
+                        <mat-slider formControlName="leasePeriod" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"
+                            required></mat-slider>
                         {{leasePeriod}}
                     </div>
 
@@ -99,7 +100,7 @@
                     </div>
 
                     <div align="center">
-                        <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
+                        <label> Contract Fee {{ contractFee.toFixed(2) }}</label>
 
                     </div>
 
@@ -114,16 +115,16 @@
 
                     <div class="form-group" align="center">
                         <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center">
-                            <label> Financing amount  {{ financingAmount.toFixed(2) }}</label>
+                            <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
                         </div>
                         <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0" align="center">
-                            <label> Contract fee  {{ contractFee.toFixed(2) }}</label>
+                            <label> Contract fee {{ contractFee.toFixed(2) }}</label>
                         </div>
                         <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                            <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
+                            <label> Total interest {{ totalInterest.toFixed(2) }}</label>
                         </div>
                         <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                            <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
+                            <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
                     </div>
                     <div>

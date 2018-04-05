@@ -1,16 +1,33 @@
 export class LeaseData {
-    public assetType: string;
-    public carBrand: string;
-    public carModel: string;
-    public years: string;
-    public enginePower: string;
-    public assetPrice: string;
-    public advancePaymentPercentage: string;
-    public advancePaymentAmount: string;
-    public leasePeriod: string;
-    public margin: string;
-    public contractFee: string;
-    public paymentDate: string;
-    public leaseType: string;
+  assetType: string;
+  carBrand: string;
+  carModel: string;
+  years: string;
+  enginePower: string;
+  assetPrice: string;
+  advancePaymentPercentage: string;
+  advancePaymentAmount: string;
+  leasePeriod: string;
+  margin: string;
+  contractFee: string;
+  paymentDate: string;
+  leaseType: string;
 }
 
+export class BackLeaseData {
+    assetType: string;
+    carBrand: string;
+    carModel: string;
+    years: string;
+    enginePower: string;
+    assetPrice: string;
+    advancePaymentPercentage: string;
+    advancePaymentAmount: string;
+    leasePeriod: string;
+    margin: string;
+    contractFee: string;
+    paymentDate: string;
+    leaseType: string;
+    applicationDate: string;
+    status: string;
+  }
