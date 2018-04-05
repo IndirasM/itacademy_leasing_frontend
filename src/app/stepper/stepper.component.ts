@@ -13,17 +13,16 @@ import {Validators} from '@angular/forms';
   styleUrls: ['./stepper.component.css']
 })
 export class StepperComponent implements OnInit {
-
   @ViewChild('stepper') stepper;
 
+  firstFormGroup: FormGroup;
   customerType: string;
   currentStep: number;
 
   constructor(
     private leaseService: LeaseToUserService,
     private fb: FormBuilder
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.leaseService.toSendType.subscribe(

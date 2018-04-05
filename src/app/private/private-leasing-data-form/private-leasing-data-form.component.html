@@ -12,7 +12,6 @@
                             </mat-select>
                             <mat-error *ngIf="!assetType">Asset must be selected</mat-error>
 
-
                         </mat-form-field>
                     </div>
 
@@ -66,21 +65,20 @@
                         <mat-form-field>
 
                             <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" [maxlength]="10" required>
-                            <mat-error *ngIf="customerType === 'private' && assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000" class="form-text text-danger">Asset price is too low</mat-error>
-                            <!--<mat-error *ngIf="customerType === 'corporate' && assetPrice.invalid && assetPrice.touched && assetPrice.value < 10000" class="form-text text-danger">Asset price is too low</mat-error>-->
-                            <mat-hint>Asset price min is 5000</mat-hint>
-                            <!--<mat-hint *ngIf="customerType === 'corporate'">Asset price min is 10000</mat-hint>-->
+                            <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
+                            <mat-hint>Asset price (min is 5000 max 10 000 000)</mat-hint>
+
 
                         </mat-form-field>
 
                     </div>
 
-                  <div class="form-group" align="center">
-                    <label>Advance payment percentage</label>
-                    <mat-form-field>
-                      <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
-                    </mat-form-field>%
-                  </div>
+                    <div class="form-group" align="center">
+                        <label>Advance payment percentage</label>
+                        <mat-form-field>
+                            <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                        </mat-form-field>%
+                    </div>
 
                     <div class="form-group" align="center">
                         <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
@@ -93,12 +91,12 @@
                         {{leasePeriod}}
                     </div>
 
-                  <div class="form-group" align="center">
-                    <label>Margin</label>
-                    <mat-form-field>
-                      <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
-                    </mat-form-field>%
-                  </div>
+                    <div class="form-group" align="center">
+                        <label>Margin</label>
+                        <mat-form-field>
+                            <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                        </mat-form-field>%
+                    </div>
 
                     <div align="center">
                         <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
@@ -134,3 +132,32 @@
                     </div>
                 </tr>
             </table>
+
+            <button mat-button class="btn btn-primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
+
+            <div class="example-container mat-elevation-z8" *ngIf='showDataList'>
+                <mat-table #table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="notRedeemedAssetValue">
+                        <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue.toFixed(2)}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="assetRedemptionFees">
+                        <mat-header-cell *matHeaderCellDef> Asset Redemption Fees </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees.toFixed(2)}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="interestPayments">
+                        <mat-header-cell *matHeaderCellDef> Interest Payments </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.interestPayments.toFixed(2)}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="totalMonthlyPaymentValue">
+                        <mat-header-cell *matHeaderCellDef> Total Monthly Payment </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.totalMonthlyPaymentValue.toFixed(2)}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
