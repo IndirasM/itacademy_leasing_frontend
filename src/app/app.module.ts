@@ -33,6 +33,7 @@ import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-form-search.component';
 
 
 
@@ -50,7 +51,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     HomeComponent,
     StepperComponent,
     CorporateLeasingDataFormComponent,
-    EndScreenComponent
+    EndScreenComponent,
+    SubmittedFormSearchComponent
   ],
   imports: [
     BrowserModule,
