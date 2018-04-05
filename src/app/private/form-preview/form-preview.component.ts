@@ -64,8 +64,7 @@ export class FormPreviewComponent implements OnInit {
         this.leaseService.changeStep(3);
       })
       .catch(data => {
-        // return user to incorrectly filled field (user form)
-        // if 500 smth went wrong, try again
+        this.clicked = false;
         if (data.status == 500) {
           this.errorMessages = "Something went wrong, please try again.";
         }
@@ -78,6 +77,7 @@ export class FormPreviewComponent implements OnInit {
           errors = data.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
             this.errorMessages += errors[i].field + "\n";
+            this.errorMessages = this.errorMessages.replace("undefined","");
           }
         }
       });
