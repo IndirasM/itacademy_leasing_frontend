@@ -46,7 +46,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   brandsAfterChangeEvent = [];
 
-
   constructor(fb: FormBuilder, private leasingData: LeaseToUserService, private carService: BrandsAndModelsService, private router: Router,
               private _location: Location) {
     this.carLeasingForm = fb.group({
@@ -83,7 +82,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get totalInterest() {
-    return this.carLeasingForm.get('assetPrice').value  * (this.carLeasingForm.get('margin').value / 100);
+    return this.carLeasingForm.get('assetPrice').value * (this.carLeasingForm.get('margin').value / 100);
   }
 
   get totalPayment() {
@@ -161,7 +160,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     // this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
-
       let size = 0, key;
       for (key in data) {
         if (data.hasOwnProperty(key)) {
@@ -196,28 +194,28 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   onSubmit() {
     if (this.carLeasingForm.valid) {
-    this.leaseData = {
-      assetType: this.carLeasingForm.value['assetType'],
-      carBrand: this.carLeasingForm.value['brand'],
-      carModel: this.carLeasingForm.value['model'],
-      years: this.carLeasingForm.value['year'],
-      enginePower: this.carLeasingForm.value['enginePower'],
-      assetPrice: this.carLeasingForm.value['assetPrice'],
-      advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
-      advancePaymentAmount: (this.advancePaymentAmount).toString(),
-      leasePeriod: this.carLeasingForm.value['leasePeriod'],
-      margin: this.carLeasingForm.value['margin'],
-      contractFee: (this.contractFee).toString(),
-      paymentDate: this.carLeasingForm.value['paymentDate'],
-      leaseType: 'Private'
+      this.leaseData = {
+        assetType: this.carLeasingForm.value['assetType'],
+        carBrand: this.carLeasingForm.value['brand'],
+        carModel: this.carLeasingForm.value['model'],
+        years: this.carLeasingForm.value['year'],
+        enginePower: this.carLeasingForm.value['enginePower'],
+        assetPrice: this.carLeasingForm.value['assetPrice'],
+        advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
+        advancePaymentAmount: (this.advancePaymentAmount).toString(),
+        leasePeriod: this.carLeasingForm.value['leasePeriod'],
+        margin: this.carLeasingForm.value['margin'],
+        contractFee: (this.contractFee).toString(),
+        paymentDate: this.carLeasingForm.value['paymentDate'],
+        leaseType: 'Private'
 
-    };
-    console.log(this.leaseData.leaseType);
-    this.leasingData.changeData(this.leaseData);
+      };
+      console.log(this.leaseData.leaseType);
+      this.leasingData.changeData(this.leaseData);
     } else {
-      console.log("invalid");
-    this.validateAllFormFields(this.carLeasingForm);
-     }
+      console.log('invalid');
+      this.validateAllFormFields(this.carLeasingForm);
+    }
   }
 
   validateAllFormFields(carLeasingForm: FormGroup) {
