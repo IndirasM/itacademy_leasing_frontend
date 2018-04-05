@@ -1,14 +1,15 @@
 .formwidth {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px;
-    border: 1px solid lightgrey;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  border: 1px solid lightgrey;
 }
 
 .fullwidth {
-    width: 100%;
+  width: 100%;
 }
+
 
 
 /* form {
@@ -31,3 +32,5 @@
     overflow: auto;
     max-height: 500px;
 }
+
+

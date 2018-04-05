@@ -1,4 +1,4 @@
-<div *ngIf="userReady && sendReady">
+<div *ngIf="corporateReady && sendReady">
     <div>
         <label>Customer type: {{leaseData.leaseType}}</label></div>
     <div>
@@ -27,17 +27,15 @@
 </div>
 <div><label>Payment date: {{leaseData.paymentDate}}</label>
 </div>
-<div><label>First Name: {{userData.firstName}}</label>
+<div><label>Company Name: {{corporateUserData.companyName}}</label>
 </div>
-<div><label>Last Name: {{userData.lastName}}</label>
+<div><label>Company Code: {{corporateUserData.companyCode}}</label>
 </div>
-<div><label>Personal code: {{userData.personalCode}}</label>
+<div><label>Phone number: {{corporateUserData.phoneNumber}}</label>
 </div>
-<div><label>Phone number: {{userData.phoneNumber}}</label>
+<div><label>Email: {{corporateUserData.email}}</label>
 </div>
-<div><label>Email: {{userData.email}}</label>
-</div>
-<div><label>Address: {{userData.address}}</label>
+<div><label>Address: {{corporateUserData.address}}</label>
 </div>
 <button mat-button matStepperPrevious>Back</button>
 <button mat-button (click)="sendToDb()">Submit</button>
