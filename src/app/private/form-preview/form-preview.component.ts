@@ -99,6 +99,7 @@ export class FormPreviewComponent implements OnInit {
 //   paymentDate: number;
 //   errorCodes: number;
 
+
 //   constructor(data) {
 //     this.assetType = data.assetType;
 //     this.leaseType = data.leaseType;

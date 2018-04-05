@@ -1,6 +1,5 @@
 <body>
-    <div align="center" class="container">
-
+    <div id="c1" align="center" class="container">
         <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" class="formwidth">
             <table class="fullwidth" cellspacing="0">
                 <tr>
@@ -76,12 +75,12 @@
 
                     </div>
 
-                    <div class="form-group" align="center">
-                        <label> Advance payment percentage </label>
-                        <label></label>
-                        <mat-slider formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required></mat-slider>
-                        {{advancePaymentPercentage.toFixed(1)}} %
-                    </div>
+                  <div class="form-group" align="center">
+                    <label>Advance payment percentage</label>
+                    <mat-form-field>
+                      <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                    </mat-form-field>%
+                  </div>
 
                     <div class="form-group" align="center">
                         <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
@@ -94,21 +93,12 @@
                         {{leasePeriod}}
                     </div>
 
-
-                    <div class="form-group" align="center">
-                        <label>Margin</label>
-                        <label></label>
-                        <mat-slider formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)"> required</mat-slider>
-                        {{margin.toFixed(1)}} %
-
-                    </div>
-
-                    <div class="form-group" align="center">
-                        <label> Contract fee percentage</label>
-                        <label>  </label>
-                        <mat-slider formControlName="contractFeePercentage" min="1" max="99" step="0.1" value="1" tickInterval="0.1" thumbLabel (input)="pitch($event)"> required</mat-slider>
-                        {{contractFeePercentage.toFixed(1)}} %
-                    </div>
+                  <div class="form-group" align="center">
+                    <label>Margin</label>
+                    <mat-form-field>
+                      <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                    </mat-form-field>%
+                  </div>
 
                     <div align="center">
                         <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
@@ -124,11 +114,6 @@
                         </mat-radio-group>
                     </div>
 
-
-                    <!-- <div class="form-group">
-            <button type="submit" class="btn btn-primary" [disabled]="!carLeasingForm.valid" (click)="onSubmit()" routerLink='../form'>Submit</button>
-        </div> -->
-
                     <div class="form-group" align="center">
                         <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center">
                             <label> Financing amount  {{ financingAmount.toFixed(2) }}</label>
@@ -139,9 +124,6 @@
                         <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
                             <label> Total interest  {{ totalInterest.toFixed(2) }}</label>
                         </div>
-                        <!--<div class="form-group">
-                <label> Total payment amount {{totalPayment.toFixed(2)}}</label>
-          </div>-->
                         <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
                             <label> Total monthly payment  {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
