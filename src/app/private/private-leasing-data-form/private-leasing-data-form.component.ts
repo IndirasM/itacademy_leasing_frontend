@@ -9,6 +9,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {Validations} from './validations';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {Element} from './../../models/element.interface';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -16,6 +17,15 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
+const ELEMENT_DATA: Element[] = [                           // service galima getint
+  {position: 1, notRedeemedAssetValue: 14241, assetRedemptionFees: 1.0079, interestPayments: 654465},
+  {position: 2, notRedeemedAssetValue: 14241, assetRedemptionFees: 1.0079, interestPayments: 654465},
+  {position: 3, notRedeemedAssetValue: 14241, assetRedemptionFees: 1.0079, interestPayments: 654465},
+  {position: 4, notRedeemedAssetValue: 14241, assetRedemptionFees: 1.0079, interestPayments: 654465},
+
+];
+
 
 @Component({
   selector: 'app-private-leasing-data-form',
@@ -25,8 +35,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   providers: [],
 })
 
+
+
 export class PrivateLeasingDataFormComponent implements OnInit {
 
+  displayedColumns = ['position', 'notRedeemedAssetValue', 'assetRedemptionFees', 'interestPayments'];
+  dataSource = ELEMENT_DATA;
   public carLeasingForm: FormGroup;
   leaseData: LeaseData;
 
@@ -228,5 +242,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     });
+  }
+
+  onClick(): void {
+    console.log('button clicked');
   }
 }

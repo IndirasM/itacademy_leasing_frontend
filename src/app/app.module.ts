@@ -28,11 +28,12 @@ import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-
 import { HomeComponent } from './home/home.component';
 import { FormsToBackService } from './services/forms-to-back.service';
 import { StepperComponent } from './stepper/stepper.component';
-import {MatStepperModule} from '@angular/material/stepper'
+import {MatStepperModule} from '@angular/material/stepper';
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -73,7 +74,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatStepperModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule
 
   ],
   providers: [

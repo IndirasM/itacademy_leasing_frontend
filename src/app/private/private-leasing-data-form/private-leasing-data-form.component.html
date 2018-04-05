@@ -67,7 +67,7 @@
                         <mat-form-field>
 
                             <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" [maxlength]="10" required>
-                            <mat-error *ngIf="customerType === 'private' && assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000" class="form-text text-danger">Asset price is too low</mat-error>
+                            <mat-error *ngIf="assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000" class="form-text text-danger">Asset price is too low</mat-error>
                             <mat-hint>Asset price min is 5000</mat-hint>
 
                         </mat-form-field>
@@ -150,3 +150,41 @@
                     </div>
                 </tr>
             </table>
+
+
+            <button mat-button class="btn btn-primary" (click)="onClick()">Click me</button>
+
+            <div class="example-container mat-elevation-z8">
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="notRedeemedAssetValue">
+                        <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="assetRedemptionFees">
+                        <mat-header-cell *matHeaderCellDef> Asset Redemption Fees </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees}} </mat-cell>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="interestPayments">
+                        <mat-header-cell *matHeaderCellDef> Interest Payments </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.interestPayments}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>

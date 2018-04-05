@@ -4,21 +4,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FormsToBackService {
 
-    formsUrl = "https://car-leasing-service.herokuapp.com";
+    formsUrl = 'https://car-leasing-service.herokuapp.com';
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient) {
 
     }
 
-    sendLeasingForm(leaseData){
+    sendLeasingForm(leaseData) {
         return this.http.post(this.formsUrl + '/leasing/add', leaseData).toPromise();
     }
 
-    sendPrivateUserForm(userData){
+    sendPrivateUserForm(userData) {
         return this.http.post(this.formsUrl + '/private_customer/add', userData).toPromise();
     }
 
-    sendCorporateUserForm(corporateUserData){
+    sendCorporateUserForm(corporateUserData) {
         return this.http.post(this.formsUrl + '/corporate_customer/add', corporateUserData).toPromise();
     }
 
