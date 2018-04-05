@@ -21,7 +21,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
 @Component({
   selector: 'app-private-leasing-data-form',
   styles: ['input.ng-invalid {border-color: red}'],
@@ -67,7 +66,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      leaseType: [[new FormControl('Private', Validators.required)]],
+      customerType: [[new FormControl('Private', Validators.required)]],
       year: new FormControl([], Validators.required),
       assetPrice: new FormControl(null, [Validators.required, Validators.min(5000), Validators.max(10000000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10),
@@ -171,7 +170,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
       let size = 0, key;
@@ -196,8 +194,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
           for (let j = 0; j < size1; j++) {
             this.models.push({ name: models[j].model, type: data[i].brand });
           }
-
-
         });
       }
     });
@@ -263,7 +259,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
       this.dataSource = data.paymentData;
 
-      // this.showDataList = !this.showDataList;
     }).catch(data => {
       console.log('ERROR');
     });
@@ -272,13 +267,11 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   get isDataListValid() {
 
-    // console.log(this.carLeasingForm.value['paymentDate']);
     if (this.carLeasingForm.value['assetPrice'] >= 5000 && this.carLeasingForm.value['assetPrice'] <= 10000000 &&
       this.carLeasingForm.value['paymentDate'] != null ) {
 
       return true;
     }
-
     return false;
   }
 }

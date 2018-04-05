@@ -12,33 +12,19 @@ export class FormsToBackService {
 
     }
 
-  
-    sendPrivateUserForm(userData) {
-        return this.http.post(this.formsUrl + '/private-customer/add', userData).toPromise();
-    }
-
-    sendCorporateUserForm(corporateUserData) {
-        return this.http.post(this.formsUrl + '/corporate-customer/add', corporateUserData).toPromise();
-    }
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json'
+        })
+    };
 
     sendPartialLeaseForm(leaseData): any {
         const formattedForm = leaseData;
-
-
-
         return this.http.post(this.formsUrl + '/schedule-of-contributions/post', formattedForm).toPromise();
     }
 
-}
-
-    sendLeasingForm(leaseData){
+    sendLeasingForm(leaseData) {
         return this.http.post(this.formsUrl + '/complete-lease/add', leaseData, this.httpOptions).toPromise();
     }
-
-    httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-    })
-};
 }
 
