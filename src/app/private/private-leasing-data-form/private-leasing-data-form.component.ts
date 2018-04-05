@@ -67,7 +67,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      leaseType: [[new FormControl('Private', Validators.required)]],
+      customerType: [[new FormControl('Private', Validators.required)]],
       year: new FormControl([], Validators.required),
       assetPrice: new FormControl(null, [Validators.required, Validators.min(5000), Validators.max(10000000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10),

@@ -11,7 +11,7 @@ export class LeaseToUserService {
   corporateSrc: CorporateUserData;
   src: LeaseData;
   userSrc: PrivateUserData;
-  currentStep: number = 0;
+  currentStep = 0;
   public homeSource = new BehaviorSubject<string>(this.homeSrc);
   public dataSource = new BehaviorSubject<LeaseData>(this.src);
   public userDataSource = new BehaviorSubject<PrivateUserData>(this.userSrc);

@@ -37,14 +37,15 @@ export class FormPreviewComponent implements OnInit {
     this.leaseService.toSendCorporate.subscribe(corporateUserData => {
       this.corporateReady = true;
       this.corporateUserData = corporateUserData;
-    })
+    });
+
   }
 
   sendToDb() {
     this.clicked = true;
     let dataArray;
-    if (this.leaseData.leaseType = "Corporate") {
-      dataArray = {"lease": this.leaseData, "corporateCustomer": this.corporateUserData};
+    if (this.leaseData.leaseType = 'Corporate') {
+      dataArray = {'lease': this.leaseData, 'corporateCustomer': this.corporateUserData};
     }
     console.log(dataArray);
 
@@ -55,10 +56,10 @@ export class FormPreviewComponent implements OnInit {
       }).catch(data => {
         // return user to incorrectly filled field (user form)
         // if 500 smth went wrong, try again
-        if (data.status == 500) {
+        if (data.status === 500) {
           this.errorMessages = 'Something went wrong, please try again.';
         }
-        if (data.status == 503) {
+        if (data.status === 503) {
           this.errorMessages = 'Service is currently unavailable, please try again later.';
         }
         // if 400 bad input data, retrieve error and send user to the field

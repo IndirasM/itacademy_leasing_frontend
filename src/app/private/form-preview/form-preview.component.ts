@@ -21,10 +21,7 @@ export class FormPreviewComponent implements OnInit {
 
   public leaseData: LeaseData;
   public userData: PrivateUserData;
-  public newData: PromisedLease;
-
   private corporateUserData: CorporateUserData;
-  // public newData: PromisedLease;
 
   public errorMessages: string;
   public sendReady = false;
@@ -49,11 +46,11 @@ export class FormPreviewComponent implements OnInit {
     this.leaseService.toSendCorporate.subscribe(corporateUserData => {
       this.corporateReady = true;
       this.corporateUserData = corporateUserData;
-    })
+    });
   }
 
   sendToDb() {
-//kazkas naujo ? JULIUS rase
+// kazkas naujo ? JULIUS rase
 //     this.sendService.sendLeasingForm(this.leaseData).then(data => {
 //       this.newData = new PromisedLease(data);
 //       this.userData.leaseId = this.newData.id;
@@ -65,10 +62,10 @@ export class FormPreviewComponent implements OnInit {
 //       }).catch(error => {
     this.clicked = true;
     let dataArray;
-    if(this.leaseData.leaseType = "Private"){
-      dataArray = {"lease": this.leaseData, "privateCustomer": this.userData};
-    } else if (this.leaseData.leaseType = "Corporate") {
-      dataArray = {"lease": this.leaseData, "corporateCustomer": this.corporateUserData};
+    if (this.leaseData.leaseType = 'Private') {
+      dataArray = {'lease': this.leaseData, 'privateCustomer': this.userData};
+    } else if (this.leaseData.leaseType = 'Corporate') {
+      dataArray = {'lease': this.leaseData, 'corporateCustomer': this.corporateUserData};
     }
     console.log(dataArray);
 
@@ -96,46 +93,8 @@ export class FormPreviewComponent implements OnInit {
         if (error.status === 200) {
           this.errorMessages =
             'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-          this.leaseService.passFinalMessage(this.errorMessages);
+          // this.leaseService.passFinalMessage(this.errorMessages);
         }
       });
-    }).catch(error => {
-      // return user to incorrectly filled field (leasing form)
-    });
   }
 }
-
-// export class PromisedLease {
-//   assetType: string;
-//   leaseType: string;
-//   carBrand: string;
-//   carModel: string;
-//   years: string;
-//   enginePower: number;
-//   assetPrice: number;
-//   advancePaymentPercentage: number;
-//   advancePaymentAmount: number;
-//   leasePeriod: number;
-//   margin: number;
-//   contractFee: number;
-//   paymentDate: number;
-//   errorCodes: number;
-
-
-//   constructor(data) {
-//     this.assetType = data.assetType;
-//     this.leaseType = data.leaseType;
-//     this.carBrand = data.carBrand;
-//     this.carModel = data.carModel;
-//     this.years = data.years;
-//     this.enginePower = data.enginePower;
-//     this.assetPrice = data.assetPrice;
-//     this.advancePaymentPercentage = data.advancePaymentPercentage;
-//     this.advancePaymentAmount = data.advancePaymentAmount;
-//     this.leasePeriod = data.leasePeriod;
-//     this.margin = data.margin;
-//     this.contractFee = data.contractFee;
-//     this.paymentDate = data.paymentDate;
-//     this.errorCodes = data.errorCodes;
-//   }
-// }
