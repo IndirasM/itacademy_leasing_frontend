@@ -69,7 +69,7 @@
                             <input matInput placeholder="Asset Price" type=number formControlName="assetPrice" [maxlength]="10" required>
                             <mat-error *ngIf="customerType === 'private' && assetPrice.invalid && assetPrice.touched && assetPrice.value < 5000" class="form-text text-danger">Asset price is too low</mat-error>
                             <!--<mat-error *ngIf="customerType === 'corporate' && assetPrice.invalid && assetPrice.touched && assetPrice.value < 10000" class="form-text text-danger">Asset price is too low</mat-error>-->
-                            <mat-hint>Asset price min is 5000</mat-hint>
+                            <mat-hint>Asset price min is {{assetPrice.value}}</mat-hint>
                             <!--<mat-hint *ngIf="customerType === 'corporate'">Asset price min is 10000</mat-hint>-->
 
                         </mat-form-field>

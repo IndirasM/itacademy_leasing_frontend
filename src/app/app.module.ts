@@ -34,6 +34,8 @@ import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-form-search.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 
 
@@ -75,7 +77,8 @@ import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-
     MatFormFieldModule,
     MatStepperModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule
 
   ],
   providers: [
