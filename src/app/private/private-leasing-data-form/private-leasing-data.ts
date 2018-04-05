@@ -30,4 +30,5 @@ export class BackLeaseData {
     leaseType: string;
     applicationDate: string;
     status: string;
+    id: string;
   }

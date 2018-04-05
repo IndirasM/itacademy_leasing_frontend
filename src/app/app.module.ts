@@ -37,6 +37,8 @@ import { SubmittedFormSearchComponent } from "./submitted-form-search/submitted-
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LeasingOfficerComponent } from "./leasing-officer/leasing-officer.component";
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { LeasingOfficerComponent } from "./leasing-officer/leasing-officer.compo
     MatGridListModule,
     MatTableModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService],
   bootstrap: [AppComponent]

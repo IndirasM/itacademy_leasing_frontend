@@ -21,13 +21,19 @@ export class FormsToBackService {
     })
   };
 
-  retrieveUsers(){
-    return this.http.get(this.formsUrl + '/lease/detailed-leases').toPromise();
+  retrieveUsers() {
+    return this.http.get(this.formsUrl + "/lease/detailed-leases").toPromise();
   }
 
-    sendPartialLeaseForm(leaseData): any {
-        const formattedForm = leaseData;
-        return this.http.post(this.formsUrl + '/schedule-of-contributions/post', formattedForm).toPromise();
-    }
+  sendPartialLeaseForm(leaseData): any {
+    const formattedForm = leaseData;
+    return this.http
+      .post(this.formsUrl + "/schedule-of-contributions/post", formattedForm)
+      .toPromise();
+  }
 
+  updateApprovedLease(leaseToUpdate){
+    let id = leaseToUpdate.id;
+    return this.http.put(this.formsUrl + "/lease/" + id + "/status/approved", leaseToUpdate, this.httpOptions).toPromise();
+  }
 }

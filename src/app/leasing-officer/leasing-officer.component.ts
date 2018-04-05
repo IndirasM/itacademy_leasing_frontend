@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormsToBackService } from "../services/forms-to-back.service";
-import { BackLeaseData } from "../private/private-leasing-data-form/private-leasing-data";
+import { BackLeaseData, LeaseData } from "../private/private-leasing-data-form/private-leasing-data";
 import { PrivateUserData } from "../private/private-user-data-form/privateUserData";
-import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData"; 
+import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData";
 
 @Component({
   selector: "app-leasing-officer",
@@ -15,13 +15,18 @@ export class LeasingOfficerComponent implements OnInit {
   public corporateCustomers = [];
   public size = 0;
   public item;
+  panelOpenState = false;
+  public privateUser: PrivateUserData;
+  public lease = new BackLeaseData();
 
-  constructor(private retrievalService: FormsToBackService) {}
+  constructor(
+    private retrievalService: FormsToBackService,
+    private updateService: FormsToBackService
+  ) {}
 
   ngOnInit() {
     this.retrievalService.retrieveUsers().then(data => {
-        this.size = 0,
-        this.item;
+      (this.size = 0), this.item;
       for (this.item in data) {
         if (data.hasOwnProperty(this.item)) {
           this.size++;
@@ -30,23 +35,50 @@ export class LeasingOfficerComponent implements OnInit {
       for (let i = 0; i < this.size; i++) {
         this.users.push(data[i]);
       }
+      console.log(this.users);
       this.createCustomers();
     });
   }
 
   createCustomers() {
-    for (let i = 0; i < this.users.length; i++){
-      if(this.users[i].lease.leaseType == "Private"){
-        this.privateCustomers.push(new PrivateCustomer(this.users[i].lease, this.users[i].customer));
-      } else if (this.users[i].lease.leaseType == "Corporate"){
-        this.corporateCustomers.push(new CorporateCustomer(this.users[i].lease, this.users[i].customer));
+    for (let i = 0; i < this.users.length; i++) {
+      if (this.users[i].lease.leaseType == "Private") {
+        this.privateCustomers.push(
+          new PrivateCustomer(this.users[i].lease, this.users[i].customer)
+        );
+      } else if (this.users[i].lease.leaseType == "Corporate") {
+        this.corporateCustomers.push(
+          new CorporateCustomer(this.users[i].lease, this.users[i].customer)
+        );
       }
     }
   }
 
+  approveLease(privateCustomer) {
+    privateCustomer.status = "Approved";
+
+    this.lease.advancePaymentAmount = privateCustomer.advancePaymentAmount;
+    this.lease.advancePaymentPercentage = privateCustomer.advancePaymentPercentage;
+    this.lease.assetPrice = privateCustomer.assetPrice;
+    this.lease.assetType = privateCustomer.assetType;
+    this.lease.carBrand = privateCustomer.carBrand;
+    this.lease.carModel = privateCustomer.carModel;
+    this.lease.contractFee = privateCustomer.contractFee;
+    this.lease.enginePower = privateCustomer.enginePower;
+    this.lease.leasePeriod = privateCustomer.leasePeriod;
+    this.lease.leaseType = privateCustomer.leaseType;
+    this.lease.margin = privateCustomer.margin;
+    this.lease.paymentDate = privateCustomer.paymentDate;
+    this.lease.years = privateCustomer.years;
+    this.lease.applicationDate = privateCustomer.applicationDate;
+    this.lease.status = "Approved";
+    this.lease.id = privateCustomer.id;
+
+    this.updateService.updateApprovedLease(this.lease);
+  }
+
+  declineLease() {}
 }
-
-
 
 export class PrivateCustomer {
   address: string;
@@ -71,8 +103,9 @@ export class PrivateCustomer {
   paymentDate: string;
   status: string;
   years: string;
+  id: string;
 
-  constructor(leaseData: BackLeaseData, userData: PrivateUserData){
+  constructor(leaseData: BackLeaseData, userData: PrivateUserData) {
     this.address = userData.address;
     this.email = userData.email;
     this.firstName = userData.firstName;
@@ -94,6 +127,7 @@ export class PrivateCustomer {
     this.paymentDate = leaseData.paymentDate;
     this.status = leaseData.status;
     this.years = leaseData.years;
+    this.id = leaseData.id;
   }
 }
 export class CorporateCustomer {
@@ -118,8 +152,10 @@ export class CorporateCustomer {
   paymentDate: string;
   status: string;
   years: string;
+  id: string;
+  
 
-  constructor(leaseData: BackLeaseData, userData: CorporateUserData){
+  constructor(leaseData: BackLeaseData, userData: CorporateUserData) {
     this.address = userData.address;
     this.email = userData.email;
     this.companyName = userData.companyName;
@@ -140,5 +176,6 @@ export class CorporateCustomer {
     this.paymentDate = leaseData.paymentDate;
     this.status = leaseData.status;
     this.years = leaseData.years;
+    this.id = leaseData.id;
   }
 }
