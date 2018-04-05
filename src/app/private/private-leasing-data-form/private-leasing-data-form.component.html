@@ -127,12 +127,11 @@
                         </div>
                     </div>
                     <div>
-                        <button mat-button matStepperPrevious class="btn btn-primary" routerLink="../home">Back</button>
-                        <button mat-button matStepperNext class="btn btn-primary" [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
+                        <button mat-button matStepperPrevious class="btn buttonBlack" routerLink="../home">Back</button>
+                        <button mat-button matStepperNext class="btn buttonBlack" [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
                     </div>
                 </tr>
             </table>
-
             <button mat-button class="btn btn-primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
 
             <div class="example-container mat-elevation-z8" *ngIf='showDataList'>

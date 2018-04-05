@@ -89,5 +89,6 @@ export class FormPreviewComponent implements OnInit {
             'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
         }
       });
+    this.errorMessages = '';
   }
 }

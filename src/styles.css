@@ -47,3 +47,6 @@ body {
 .mat-horizontal-stepper-header{
   pointer-events: none !important;
 }
+
+
+.buttonBlack {background-color: #555555;} /* Black */
