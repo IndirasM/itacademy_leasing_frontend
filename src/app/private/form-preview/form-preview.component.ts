@@ -1,4 +1,3 @@
-// <reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from "@angular/core";
 import { LeaseData } from "../private-leasing-data-form/private-leasing-data";
 import { PrivateUserData } from "../private-user-data-form/privateUserData";
@@ -49,16 +48,6 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
-// kazkas naujo ? JULIUS rase
-//     this.sendService.sendLeasingForm(this.leaseData).then(data => {
-//       this.newData = new PromisedLease(data);
-//       this.userData.leaseId = this.newData.id;
-//       this.sendService.sendPrivateUserForm(this.userData).then(() => {
-//         this.ready = true;
-//         this.errorMessages =
-//           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-//         this.leaseService.passFinalMessage(this.errorMessages);
-//       }).catch(error => {
     this.clicked = true;
     let dataArray;
     if ((this.leaseData.leaseType = "Private")) {
@@ -69,8 +58,6 @@ export class FormPreviewComponent implements OnInit {
         corporateCustomer: this.corporateUserData
       };
     }
-    console.log(dataArray);
-
     this.sendService
       .sendLeasingForm(JSON.stringify(dataArray))
       .then(data => {

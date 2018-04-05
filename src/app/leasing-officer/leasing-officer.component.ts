@@ -31,8 +31,6 @@ export class LeasingOfficerComponent implements OnInit {
         this.users.push(data[i]);
       }
       this.createCustomers();
-      console.log(this.corporateCustomers);
-      console.log(this.privateCustomers);
     });
   }
 
@@ -57,7 +55,7 @@ export class PrivateCustomer {
   lastName: string;
   personalCode: string;
   phoneNumber: string;
-  //=======================
+  /*=======================*/
   advancePaymentAmount: string;
   advancePaymentPercentage: string;
   applicationDate: string;
@@ -104,7 +102,7 @@ export class CorporateCustomer {
   companyName: string;
   email: string;
   phoneNumber: string;
-  //=======================
+  /*=======================*/
   advancePaymentAmount: string;
   advancePaymentPercentage: string;
   applicationDate: string;
