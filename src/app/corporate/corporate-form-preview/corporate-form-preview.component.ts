@@ -1,16 +1,15 @@
 // <reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, OnInit} from '@angular/core';
-import {LeaseData} from '../private-leasing-data-form/private-leasing-data';
-import {PrivateUserData} from '../private-user-data-form/privateUserData';
+import {LeaseData} from '../../private/private-leasing-data-form/private-leasing-data';
 import {FormGroup} from '@angular/forms';
 import {LeaseToUserService} from '../../services/leasing-to-user.service';
 import {FormsToBackService} from '../../services/forms-to-back.service';
 import { CorporateUserData } from '../../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: 'app-form-preview',
-  templateUrl: './form-preview.component.html',
-  styleUrls: ['./form-preview.component.css']
+  selector: 'app-corporate-form-preview',
+  templateUrl: './corporate-form-preview.component.html',
+  styleUrls: ['./corporate-form-preview.component.css']
 })
 
 export class FormPreviewComponent implements OnInit {
@@ -18,14 +17,9 @@ export class FormPreviewComponent implements OnInit {
               private sendService: FormsToBackService) {
   }
 
-
-  public leaseData: LeaseData;
-  public userData: PrivateUserData;
-  public newData: PromisedLease;
-
+  private leaseData: LeaseData;
   private corporateUserData: CorporateUserData;
   // public newData: PromisedLease;
-
   public errorMessages: string;
   public sendReady = false;
   public userReady = false;
@@ -40,12 +34,6 @@ export class FormPreviewComponent implements OnInit {
         this.leaseData = leaseData;
       }
     });
-    this.leaseService.toSendUser.subscribe(userData => {
-      if (userData) {
-        this.userReady = true;
-        this.userData = userData;
-      }
-    });
     this.leaseService.toSendCorporate.subscribe(corporateUserData => {
       this.corporateReady = true;
       this.corporateUserData = corporateUserData;
@@ -53,21 +41,9 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
-//kazkas naujo ? JULIUS rase
-//     this.sendService.sendLeasingForm(this.leaseData).then(data => {
-//       this.newData = new PromisedLease(data);
-//       this.userData.leaseId = this.newData.id;
-//       this.sendService.sendPrivateUserForm(this.userData).then(() => {
-//         this.ready = true;
-//         this.errorMessages =
-//           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-//         this.leaseService.passFinalMessage(this.errorMessages);
-//       }).catch(error => {
     this.clicked = true;
     let dataArray;
-    if(this.leaseData.leaseType = "Private"){
-      dataArray = {"lease": this.leaseData, "privateCustomer": this.userData};
-    } else if (this.leaseData.leaseType = "Corporate") {
+    if (this.leaseData.leaseType = "Corporate") {
       dataArray = {"lease": this.leaseData, "corporateCustomer": this.corporateUserData};
     }
     console.log(dataArray);
@@ -76,31 +52,23 @@ export class FormPreviewComponent implements OnInit {
         // this.errorMessages =
         //   'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
           this.leaseService.changeStep(3);
-      }).catch(error => {
+      }).catch(data => {
         // return user to incorrectly filled field (user form)
         // if 500 smth went wrong, try again
-        if (error.status === 500) {
+        if (data.status == 500) {
           this.errorMessages = 'Something went wrong, please try again.';
         }
-        if (error.status === 503) {
+        if (data.status == 503) {
           this.errorMessages = 'Service is currently unavailable, please try again later.';
         }
         // if 400 bad input data, retrieve error and send user to the field
-        if (error.status === 400) {
+        if (data.status === 400) {
           let errors = [];
-          errors = error.error.fieldErrors;
+          errors = data.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
             this.errorMessages += errors[i].field + '\n';
           }
         }
-        if (error.status === 200) {
-          this.errorMessages =
-            'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-          this.leaseService.passFinalMessage(this.errorMessages);
-        }
-      });
-    }).catch(error => {
-      // return user to incorrectly filled field (leasing form)
     });
   }
 }
@@ -120,7 +88,6 @@ export class FormPreviewComponent implements OnInit {
 //   contractFee: number;
 //   paymentDate: number;
 //   errorCodes: number;
-
 
 //   constructor(data) {
 //     this.assetType = data.assetType;
