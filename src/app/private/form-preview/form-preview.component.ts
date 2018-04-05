@@ -18,10 +18,14 @@ export class FormPreviewComponent implements OnInit {
               private sendService: FormsToBackService) {
   }
 
-  private leaseData: LeaseData;
-  private userData: PrivateUserData;
+
+  public leaseData: LeaseData;
+  public userData: PrivateUserData;
+  public newData: PromisedLease;
+
   private corporateUserData: CorporateUserData;
   // public newData: PromisedLease;
+
   public errorMessages: string;
   public sendReady = false;
   public userReady = false;
@@ -49,6 +53,16 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
+//kazkas naujo ? JULIUS rase
+//     this.sendService.sendLeasingForm(this.leaseData).then(data => {
+//       this.newData = new PromisedLease(data);
+//       this.userData.leaseId = this.newData.id;
+//       this.sendService.sendPrivateUserForm(this.userData).then(() => {
+//         this.ready = true;
+//         this.errorMessages =
+//           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
+//         this.leaseService.passFinalMessage(this.errorMessages);
+//       }).catch(error => {
     this.clicked = true;
     let dataArray;
     if(this.leaseData.leaseType = "Private"){
@@ -62,23 +76,31 @@ export class FormPreviewComponent implements OnInit {
         // this.errorMessages =
         //   'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
           this.leaseService.changeStep(3);
-      }).catch(data => {
+      }).catch(error => {
         // return user to incorrectly filled field (user form)
         // if 500 smth went wrong, try again
-        if (data.status == 500) {
+        if (error.status === 500) {
           this.errorMessages = 'Something went wrong, please try again.';
         }
-        if (data.status == 503) {
+        if (error.status === 503) {
           this.errorMessages = 'Service is currently unavailable, please try again later.';
         }
         // if 400 bad input data, retrieve error and send user to the field
-        if (data.status === 400) {
+        if (error.status === 400) {
           let errors = [];
-          errors = data.error.fieldErrors;
+          errors = error.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
             this.errorMessages += errors[i].field + '\n';
           }
         }
+        if (error.status === 200) {
+          this.errorMessages =
+            'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
+          this.leaseService.passFinalMessage(this.errorMessages);
+        }
+      });
+    }).catch(error => {
+      // return user to incorrectly filled field (leasing form)
     });
   }
 }

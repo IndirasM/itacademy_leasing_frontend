@@ -53,7 +53,7 @@ export class CorporateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: new FormControl('Corporate', Validators.required),
+      leaseType: new FormControl('Corporate', Validators.required),
       year: new FormControl([], [Validators.required, Validators.min(1980)]) ,
       assetPrice: new FormControl(null, [Validators.required, Validators.min(10000)]),
       advancePaymentPercentage: new FormControl(10, [Validators.required, Validators.min(10), Validators.max(99)]),
