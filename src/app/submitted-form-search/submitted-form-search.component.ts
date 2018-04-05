@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubmittedFormSearchComponent implements OnInit {
 
+  panelOpenState = false;
+
   constructor() { }
 
   ngOnInit() {
