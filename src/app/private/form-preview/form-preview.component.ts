@@ -25,7 +25,6 @@ export class FormPreviewComponent implements OnInit {
   public sendReady = false;
   public userReady = false;
   public corporateReady = false;
-  public ready;
   public clicked = false;
 
   ngOnInit() {
@@ -63,18 +62,18 @@ export class FormPreviewComponent implements OnInit {
       .then(data => {
         this.leaseService.changeStep(3);
       })
-      .catch(data => {
+      .catch(error => {
         this.clicked = false;
-        if (data.status == 500) {
+        if (error.status == 500) {
           this.errorMessages = "Something went wrong, please try again.";
         }
-        if (data.status == 503) {
+        if (error.status == 503) {
           this.errorMessages =
             "Service is currently unavailable, please try again later.";
         }
-        if (data.status === 400) {
+        if (error.status === 400) {
           let errors = [];
-          errors = data.error.fieldErrors;
+          errors = error.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
             this.errorMessages += errors[i].field + "\n";
             this.errorMessages = this.errorMessages.replace("undefined","");

@@ -46,7 +46,7 @@ export class PrivateUserDataFormComponent implements OnInit {
         null,
         [Validators.pattern("(86|\\+3706|3706)\\d{3}\\d{4}")]
       ],
-      email: [null, [Validators.email, Validators.maxLength(64)]],
+      email: [null, [Validators.pattern(/.+@.+[\.].+/), Validators.maxLength(64)]],
       address: [
         null,
         [
