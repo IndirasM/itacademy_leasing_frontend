@@ -18,7 +18,6 @@ export class FormPreviewComponent implements OnInit {
               private sendService: FormsToBackService) {
   }
 
-
   public leaseData: LeaseData;
   public userData: PrivateUserData;
   private corporateUserData: CorporateUserData;
@@ -70,19 +69,14 @@ export class FormPreviewComponent implements OnInit {
     console.log(dataArray);
 
     this.sendService.sendLeasingForm(JSON.stringify(dataArray)).then(data => {
-        // this.errorMessages =
-        //   'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
           this.leaseService.changeStep(3);
       }).catch(error => {
-        // return user to incorrectly filled field (user form)
-        // if 500 smth went wrong, try again
         if (error.status === 500) {
           this.errorMessages = 'Something went wrong, please try again.';
         }
         if (error.status === 503) {
           this.errorMessages = 'Service is currently unavailable, please try again later.';
         }
-        // if 400 bad input data, retrieve error and send user to the field
         if (error.status === 400) {
           let errors = [];
           errors = error.error.fieldErrors;
@@ -93,7 +87,6 @@ export class FormPreviewComponent implements OnInit {
         if (error.status === 200) {
           this.errorMessages =
             'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-          // this.leaseService.passFinalMessage(this.errorMessages);
         }
       });
   }

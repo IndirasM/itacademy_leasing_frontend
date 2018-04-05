@@ -12,7 +12,6 @@
                             </mat-select>
                             <mat-error *ngIf="!assetType">Asset must be selected</mat-error>
 
-
                         </mat-form-field>
                     </div>
 
@@ -74,12 +73,12 @@
 
                     </div>
 
-                  <div class="form-group" align="center">
-                    <label>Advance payment percentage</label>
-                    <mat-form-field>
-                      <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
-                    </mat-form-field>%
-                  </div>
+                    <div class="form-group" align="center">
+                        <label>Advance payment percentage</label>
+                        <mat-form-field>
+                            <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                        </mat-form-field>%
+                    </div>
 
                     <div class="form-group" align="center">
                         <label> Advance payment amount  {{ advancePaymentAmount.toFixed(2) }}</label>
@@ -92,12 +91,12 @@
                         {{leasePeriod}}
                     </div>
 
-                  <div class="form-group" align="center">
-                    <label>Margin</label>
-                    <mat-form-field>
-                      <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
-                    </mat-form-field>%
-                  </div>
+                    <div class="form-group" align="center">
+                        <label>Margin</label>
+                        <mat-form-field>
+                            <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                        </mat-form-field>%
+                    </div>
 
                     <div align="center">
                         <label> Contract Fee  {{ contractFee.toFixed(2) }}</label>
@@ -139,28 +138,16 @@
             <div class="example-container mat-elevation-z8" *ngIf='showDataList'>
                 <mat-table #table [dataSource]="dataSource">
 
-                    <!--- Note that these columns can be defined in any order.
-                        The actual rendered columns are set as a property on the row definition" -->
-
-                    <!-- Position Column -->
-                    <!-- <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                    </ng-container> -->
-
-                    <!-- Name Column -->
                     <ng-container matColumnDef="notRedeemedAssetValue">
                         <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue.toFixed(2)}} </mat-cell>
                     </ng-container>
 
-                    <!-- Weight Column -->
                     <ng-container matColumnDef="assetRedemptionFees">
                         <mat-header-cell *matHeaderCellDef> Asset Redemption Fees </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees.toFixed(2)}} </mat-cell>
                     </ng-container>
 
-                    <!-- Symbol Column -->
                     <ng-container matColumnDef="interestPayments">
                         <mat-header-cell *matHeaderCellDef> Interest Payments </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.interestPayments.toFixed(2)}} </mat-cell>
@@ -174,4 +161,3 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 </mat-table>
             </div>
-
