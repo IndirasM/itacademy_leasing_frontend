@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { CorporateUserData } from './corporateUserData';
-import { LeaseToUserService } from '../../services/leasing-to-user.service';
-import { LeaseData } from '../../private/private-leasing-data-form/private-leasing-data';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, Validators, FormGroup, FormBuilder} from '@angular/forms';
+import {CorporateUserData} from './corporateUserData';
+import {LeaseToUserService} from '../../services/leasing-to-user.service';
+import {LeaseData} from '../../private/private-leasing-data-form/private-leasing-data';
 
 
 @Component({
@@ -24,9 +24,9 @@ export class CorporateUserDataFormComponent implements OnInit {
       phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
       email: [null, [Validators.email]],
       address: [null, [Validators.pattern('.*[0-9].*'),
-                      Validators.pattern
-                      ('.*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð].*'),
-                      Validators.pattern(/.+[\s].+/)]]
+        Validators.pattern
+        ('.*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð].*'),
+        Validators.pattern(/.+[\s].+/)]]
     });
   }
 
@@ -63,9 +63,10 @@ export class CorporateUserDataFormComponent implements OnInit {
         phoneNumber: this.corporateUserForm.value['phoneNumber'],
         email: this.corporateUserForm.value['email'],
         address: this.corporateUserForm.value['address'],
-        leasId: 1};
-        this.leaseService.changeCorporateData(this.corporateUserData);
-      } else {
+        leasId: 1
+      };
+      this.leaseService.changeCorporateData(this.corporateUserData);
+    } else {
       this.validateAllFormFields(this.corporateUserForm);
     }
   }
