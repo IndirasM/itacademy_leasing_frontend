@@ -33,6 +33,7 @@ import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
 
 
 
@@ -50,6 +51,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     StepperComponent,
     CorporateLeasingDataFormComponent,
     EndScreenComponent,
+    LeasingOfficerComponent,
   ],
   imports: [
     BrowserModule,
