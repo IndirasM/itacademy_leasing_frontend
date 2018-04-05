@@ -20,7 +20,6 @@
                     <input matInput maxlength="12" placeholder="Phone number" formControlName="phoneNumber" required>
                     <mat-error *ngIf="!phoneNumber">Valid phone number is required</mat-error>
                 </mat-form-field>
-
                 <mat-form-field [floatLabel]="userForm.value.hideRequired">
                     <input matInput maxlength="64" placeholder="Email" formControlName="email" required>
                     <mat-error *ngIf="!email">Valid email is required</mat-error>

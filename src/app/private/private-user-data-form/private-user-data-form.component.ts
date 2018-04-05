@@ -66,7 +66,6 @@ export class PrivateUserDataFormComponent implements OnInit {
       leaseData => (this.leaseData = leaseData)
     );
   }
-
   send() {
     if (this.userForm.valid) {
       this.userData = {

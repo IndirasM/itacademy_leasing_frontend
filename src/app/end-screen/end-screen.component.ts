@@ -13,10 +13,10 @@ export class EndScreenComponent implements OnInit {
   messageReady: boolean;
   message: string;
 
-  ngOnInit() {  
-  }
 
-  completed(){
+  ngOnInit() {
+  }
+  completed() {
     this.leaseService.changeStep(0);
   }
 }

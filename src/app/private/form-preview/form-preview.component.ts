@@ -18,10 +18,10 @@ export class FormPreviewComponent implements OnInit {
     private sendService: FormsToBackService
   ) {}
 
-  private leaseData: LeaseData;
-  private userData: PrivateUserData;
+  public leaseData: LeaseData;
+  public userData: PrivateUserData;
   private corporateUserData: CorporateUserData;
-  // public newData: PromisedLease;
+
   public errorMessages: string;
   public sendReady = false;
   public userReady = false;
@@ -49,6 +49,16 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
+// kazkas naujo ? JULIUS rase
+//     this.sendService.sendLeasingForm(this.leaseData).then(data => {
+//       this.newData = new PromisedLease(data);
+//       this.userData.leaseId = this.newData.id;
+//       this.sendService.sendPrivateUserForm(this.userData).then(() => {
+//         this.ready = true;
+//         this.errorMessages =
+//           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
+//         this.leaseService.passFinalMessage(this.errorMessages);
+//       }).catch(error => {
     this.clicked = true;
     let dataArray;
     if ((this.leaseData.leaseType = "Private")) {
@@ -64,8 +74,6 @@ export class FormPreviewComponent implements OnInit {
     this.sendService
       .sendLeasingForm(JSON.stringify(dataArray))
       .then(data => {
-        // this.errorMessages =
-        //   'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
         this.leaseService.changeStep(3);
       })
       .catch(data => {
@@ -78,7 +86,6 @@ export class FormPreviewComponent implements OnInit {
           this.errorMessages =
             "Service is currently unavailable, please try again later.";
         }
-        // if 400 bad input data, retrieve error and send user to the field
         if (data.status === 400) {
           let errors = [];
           errors = data.error.fieldErrors;
@@ -89,37 +96,3 @@ export class FormPreviewComponent implements OnInit {
       });
   }
 }
-
-// export class PromisedLease {
-//   assetType: string;
-//   leaseType: string;
-//   carBrand: string;
-//   carModel: string;
-//   years: string;
-//   enginePower: number;
-//   assetPrice: number;
-//   advancePaymentPercentage: number;
-//   advancePaymentAmount: number;
-//   leasePeriod: number;
-//   margin: number;
-//   contractFee: number;
-//   paymentDate: number;
-//   errorCodes: number;
-
-//   constructor(data) {
-//     this.assetType = data.assetType;
-//     this.leaseType = data.leaseType;
-//     this.carBrand = data.carBrand;
-//     this.carModel = data.carModel;
-//     this.years = data.years;
-//     this.enginePower = data.enginePower;
-//     this.assetPrice = data.assetPrice;
-//     this.advancePaymentPercentage = data.advancePaymentPercentage;
-//     this.advancePaymentAmount = data.advancePaymentAmount;
-//     this.leasePeriod = data.leasePeriod;
-//     this.margin = data.margin;
-//     this.contractFee = data.contractFee;
-//     this.paymentDate = data.paymentDate;
-//     this.errorCodes = data.errorCodes;
-//   }
-// }

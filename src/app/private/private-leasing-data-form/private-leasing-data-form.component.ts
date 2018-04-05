@@ -1,26 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogConfig,
-  MatDialog
-} from "@angular/material";
-import {
-  Validators,
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  FormGroupDirective,
-  NgForm
-} from "@angular/forms";
-import { MatDialogModule } from "@angular/material/dialog";
-import { LeaseToUserService } from "../../services/leasing-to-user.service";
-import { LeaseData } from "./private-leasing-data";
-import { BrandsAndModelsService } from "../../services/BrandsAndModelsService";
-import { ErrorStateMatcher } from "@angular/material/core";
-import { Validations } from "./validations";
-import { Router } from "@angular/router";
-import { Location } from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogConfig, MatDialog } from '@angular/material';
+import { Validators, FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LeaseToUserService } from '../../services/leasing-to-user.service';
+import { LeaseData } from './private-leasing-data';
+import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Validations } from './validations';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Element } from './../../models/element.interface';
+import { ScheduleOfContributionData } from './../../models/schedule-of-contribution-data';
+import { ScheduleOfContributionDataPromise } from './../../models/schedule-of-contribution-data';
+import { FormsToBackService } from '../../services/forms-to-back.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -43,11 +35,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ["./private-leasing-data-form.component.css"],
   providers: []
 })
+
+
 export class PrivateLeasingDataFormComponent implements OnInit {
+
+  showDataList = false;
+  displayedColumns = ['notRedeemedAssetValue', 'assetRedemptionFees', 'interestPayments', 'totalMonthlyPaymentValue'];
+  dataSource: any;
   public carLeasingForm: FormGroup;
   leaseData: LeaseData;
+  partialLeaseDataForSchedulePromise: ScheduleOfContributionDataPromise;
+  partialLeaseDataForSchedule: ScheduleOfContributionData;
 
-  assetTypes = [{ value: "Vehicle", viewValue: "Vehicle" }];
+  assetTypes = [
+    { value: 'Vehicle', viewValue: 'Vehicle' }
+  ];
 
   years = [
     "1980",
@@ -101,7 +103,8 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     private leasingData: LeaseToUserService,
     private carService: BrandsAndModelsService,
     private router: Router,
-    private _location: Location
+    private _location: Location,
+    private sendService: FormsToBackService
   ) {
     this.carLeasingForm = fb.group({
       enginePower: new FormControl(null, [
@@ -198,6 +201,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     return this.carLeasingForm.get("assetPrice");
   }
 
+  get paymentDate() {
+    return this.carLeasingForm.get('paymentDate');
+  }
+
   get advancePaymentAmount() {
     return (
       this.carLeasingForm.get("assetPrice").value *
@@ -253,7 +260,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.leasingData.toSend.subscribe(leaseData => this.leaseData = leaseData);
 
     this.carService.getBrands().then(data => {
       let size = 0,
@@ -308,7 +314,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       console.log(this.leaseData.leaseType);
       this.leasingData.changeData(this.leaseData);
     } else {
-      console.log("invalid");
       this.validateAllFormFields(this.carLeasingForm);
     }
   }
@@ -322,5 +327,40 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         this.validateAllFormFields(control);
       }
     });
+  }
+
+  toggleDataList(): void {
+    this.partialLeaseDataForSchedule = {
+      assetPrice: this.carLeasingForm.value['assetPrice'],
+      advancePaymentPercentage: this.carLeasingForm.value['advancePaymentPercentage'],
+      advancePaymentAmount: (this.advancePaymentAmount).toString(),
+      leasePeriod: this.carLeasingForm.value['leasePeriod'],
+      margin: this.carLeasingForm.value['margin'],
+      contractFee: (this.contractFee).toString(),
+      paymentDate: this.carLeasingForm.value['paymentDate'],
+      leaseType: 'Private'
+    };
+    console.log(this.partialLeaseDataForSchedule);
+    this.showDataList = !this.showDataList;
+    this.sendService.sendPartialLeaseForm(this.partialLeaseDataForSchedule).then(data => {
+      this.partialLeaseDataForSchedulePromise = new ScheduleOfContributionDataPromise(data);
+
+
+      this.dataSource = data.paymentData;
+
+    }).catch(data => {
+      console.log('ERROR');
+    });
+
+  }
+
+  get isDataListValid() {
+
+    if (this.carLeasingForm.value['assetPrice'] >= 5000 && this.carLeasingForm.value['assetPrice'] <= 10000000 &&
+      this.carLeasingForm.value['paymentDate'] != null ) {
+
+      return true;
+    }
+    return false;
   }
 }
