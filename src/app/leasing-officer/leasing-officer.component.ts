@@ -17,7 +17,8 @@ export class LeasingOfficerComponent implements OnInit {
   public item;
   panelOpenState = false;
   public privateUser: PrivateUserData;
-  public lease = new BackLeaseData();
+  public lease;
+  public statusChanged = false;
 
   constructor(
     private retrievalService: FormsToBackService,
@@ -54,30 +55,22 @@ export class LeasingOfficerComponent implements OnInit {
     }
   }
 
+  checkStatus(privateCustomer){
+    if(privateCustomer.status != "Waiting") return true;
+    else return false;
+  }
+
   approveLease(privateCustomer) {
-    privateCustomer.status = "Approved";
-
-    this.lease.advancePaymentAmount = privateCustomer.advancePaymentAmount;
-    this.lease.advancePaymentPercentage = privateCustomer.advancePaymentPercentage;
-    this.lease.assetPrice = privateCustomer.assetPrice;
-    this.lease.assetType = privateCustomer.assetType;
-    this.lease.carBrand = privateCustomer.carBrand;
-    this.lease.carModel = privateCustomer.carModel;
-    this.lease.contractFee = privateCustomer.contractFee;
-    this.lease.enginePower = privateCustomer.enginePower;
-    this.lease.leasePeriod = privateCustomer.leasePeriod;
-    this.lease.leaseType = privateCustomer.leaseType;
-    this.lease.margin = privateCustomer.margin;
-    this.lease.paymentDate = privateCustomer.paymentDate;
-    this.lease.years = privateCustomer.years;
-    this.lease.applicationDate = privateCustomer.applicationDate;
-    this.lease.status = "Approved";
-    this.lease.id = privateCustomer.id;
-
+    privateCustomer.status = "Accepted";
+    this.lease = new BackLeaseData(privateCustomer);
     this.updateService.updateApprovedLease(this.lease);
   }
 
-  declineLease() {}
+  declineLease(privateCustomer) {
+    privateCustomer.status = "Rejected";
+    this.lease = new BackLeaseData(privateCustomer);
+    this.updateService.updateDeclinedLease(this.lease);
+  }
 }
 
 export class PrivateCustomer {

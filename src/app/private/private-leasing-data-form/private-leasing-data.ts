@@ -31,4 +31,23 @@ export class BackLeaseData {
     applicationDate: string;
     status: string;
     id: string;
+
+    constructor(lease){
+      this.assetType = lease.assetType;
+      this.carBrand = lease.carBrand;
+      this.carModel = lease.carModel;
+      this.years = lease.years;
+      this.enginePower = lease.enginePower;
+      this.assetPrice = lease.assetPrice;
+      this.advancePaymentPercentage = lease.advancePaymentPercentage;
+      this.advancePaymentAmount = lease.advancePaymentAmount;
+      this.leasePeriod = lease.leasePeriod;
+      this.margin = lease.margin;
+      this.contractFee = lease.contractFee;
+      this.paymentDate = lease.paymentDate;
+      this.leaseType = lease.leaseType;
+      this.applicationDate = lease.applicationDate;
+      this.status = lease.status;
+      this.id = lease.id;
+    }
   }

@@ -29,8 +29,8 @@
         <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
         <p>Payment Day: {{privateCustomer.paymentDate}}</p>
         <mat-action-row>
-          <button mat-raised-button color="primary" (click)="approveLease(privateCustomer)" >Approve</button>
-          <button mat-raised-button color="warn" (click)="declineLease(privateCustomer)" >Disapprove</button>
+          <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)" >Accept</button>
+          <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)" >Decline</button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>

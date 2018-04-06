@@ -34,6 +34,11 @@ export class FormsToBackService {
 
   updateApprovedLease(leaseToUpdate){
     let id = leaseToUpdate.id;
-    return this.http.put(this.formsUrl + "/lease/" + id + "/status/approved", leaseToUpdate, this.httpOptions).toPromise();
+    return this.http.put(this.formsUrl + "/lease/" + id + "/status/accepted", leaseToUpdate, this.httpOptions).toPromise();
+  }
+
+  updateDeclinedLease(leaseToUpdate){
+    let id = leaseToUpdate.id;
+    return this.http.put(this.formsUrl + "/lease/" + id + "/status/rejected", leaseToUpdate, this.httpOptions).toPromise();
   }
 }
