@@ -11,17 +11,20 @@ export class LeaseToUserService {
   corporateSrc: CorporateUserData;
   src: LeaseData;
   userSrc: PrivateUserData;
+  leaseIdSrc:string;
   currentStep = 0;
   public homeSource = new BehaviorSubject<string>(this.homeSrc);
   public dataSource = new BehaviorSubject<LeaseData>(this.src);
   public userDataSource = new BehaviorSubject<PrivateUserData>(this.userSrc);
   public corporateDataSource = new BehaviorSubject<CorporateUserData>(this.corporateSrc);
   public successSource = new BehaviorSubject<number>(this.currentStep);
+  public leaseIdSource = new BehaviorSubject<string>(this.leaseIdSrc);
   toSend = this.dataSource.asObservable();
   toSendUser = this.userDataSource.asObservable();
   toSendCorporate = this.corporateDataSource.asObservable();
   toSendType = this.homeSource.asObservable();
   toSendSuccess = this.successSource.asObservable();
+  toSendLeaseId = this.leaseIdSource.asObservable();
 
   constructor() {
   }
@@ -54,4 +57,8 @@ export class LeaseToUserService {
     this.setCurrentStep(index);
     this.successSource.next(index);
   }
+  changeLeaseId(LeaseId: string){
+    this.leaseIdSource.next(LeaseId);
+  }
+
 }

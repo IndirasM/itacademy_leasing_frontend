@@ -12,9 +12,14 @@ export class EndScreenComponent implements OnInit {
 
   messageReady: boolean;
   message: string;
-
+  leaseId : string;
+  idReady: boolean = false;
 
   ngOnInit() {
+    this.leaseService.toSendLeaseId.subscribe(leaseId => {if(leaseId) {
+      this.idReady=true;
+    this.leaseId = leaseId}
+  });
   }
   completed() {
     this.leaseService.changeStep(0);
