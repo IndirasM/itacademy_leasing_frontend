@@ -27,7 +27,7 @@ import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-
 import { HomeComponent } from './home/home.component';
 import { FormsToBackService } from './services/forms-to-back.service';
 import { StepperComponent } from './stepper/stepper.component';
-import {MatStepperModule} from '@angular/material/stepper'
+import {MatStepperModule} from '@angular/material/stepper';
 import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 import { EndScreenComponent } from './end-screen/end-screen.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -35,8 +35,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-form-search.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
-
 
 
 @NgModule({
@@ -52,7 +50,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     StepperComponent,
     CorporateLeasingDataFormComponent,
     EndScreenComponent,
-    SubmittedFormSearchComponent
+    SubmittedFormSearchComponent,
   ],
   imports: [
     BrowserModule,
