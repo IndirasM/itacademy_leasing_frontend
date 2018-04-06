@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormsToBackService } from "../services/forms-to-back.service";
-import { BackLeaseData, LeaseData } from "../private/private-leasing-data-form/private-leasing-data";
+import {
+  BackLeaseData,
+  LeaseData
+} from "../private/private-leasing-data-form/private-leasing-data";
 import { PrivateUserData } from "../private/private-user-data-form/privateUserData";
 import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData";
 
@@ -36,7 +39,6 @@ export class LeasingOfficerComponent implements OnInit {
       for (let i = 0; i < this.size; i++) {
         this.users.push(data[i]);
       }
-      console.log(this.users);
       this.createCustomers();
     });
   }
@@ -55,20 +57,20 @@ export class LeasingOfficerComponent implements OnInit {
     }
   }
 
-  checkStatus(privateCustomer){
-    if(privateCustomer.status != "Waiting") return true;
+  checkStatus(privateCustomer) {
+    if (privateCustomer.status != "Waiting") return true;
     else return false;
   }
 
-  approveLease(privateCustomer) {
-    privateCustomer.status = "Accepted";
-    this.lease = new BackLeaseData(privateCustomer);
+  approveLease(customer) {
+    customer.status = "Accepted";
+    this.lease = new BackLeaseData(customer);
     this.updateService.updateApprovedLease(this.lease);
   }
 
-  declineLease(privateCustomer) {
-    privateCustomer.status = "Rejected";
-    this.lease = new BackLeaseData(privateCustomer);
+  declineLease(customer) {
+    customer.status = "Rejected";
+    this.lease = new BackLeaseData(customer);
     this.updateService.updateDeclinedLease(this.lease);
   }
 }
@@ -146,7 +148,6 @@ export class CorporateCustomer {
   status: string;
   years: string;
   id: string;
-  
 
   constructor(leaseData: BackLeaseData, userData: CorporateUserData) {
     this.address = userData.address;
