@@ -82,6 +82,7 @@ export class FormPreviewComponent implements OnInit {
           }
         }
       });
+    this.errorMessages = '';
   }
 }
 // export class LeaseId (data: LeaseData){

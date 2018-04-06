@@ -26,20 +26,6 @@ import { ScheduleOfContributionData } from "./../../models/schedule-of-contribut
 import { ScheduleOfContributionDataPromise } from "./../../models/schedule-of-contribution-data";
 import { FormsToBackService } from "../../services/forms-to-back.service";
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(
-//     control: FormControl | null,
-//     form: FormGroupDirective | NgForm | null
-//   ): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(
-//       control &&
-//       control.invalid &&
-//       (control.dirty || control.touched || isSubmitted)
-//     );
-//   }
-// }
-
 @Component({
   selector: "app-private-leasing-data-form",
   styles: ["input.ng-invalid {border-color: red}"],
@@ -60,6 +46,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   leaseData: LeaseData;
   partialLeaseDataForSchedulePromise: ScheduleOfContributionDataPromise;
   partialLeaseDataForSchedule: ScheduleOfContributionData;
+  private userType: string;
 
   assetTypes = [{ value: "Vehicle", viewValue: "Vehicle" }];
 
@@ -152,6 +139,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         });
       }
     });
+    this.leasingData.toSendType.subscribe(userType => this.userType = userType);
   }
 
   calculateYear() {
@@ -286,7 +274,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         margin: this.carLeasingForm.value["margin"],
         contractFee: this.contractFee.toString(),
         paymentDate: this.carLeasingForm.value["paymentDate"],
-        leaseType: "Private"
+        leaseType: this.userType
       };
       this.leasingData.changeData(this.leaseData);
     } else {
@@ -316,7 +304,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       margin: this.carLeasingForm.value["margin"],
       contractFee: this.contractFee.toString(),
       paymentDate: this.carLeasingForm.value["paymentDate"],
-      leaseType: "Private"
+      leaseType: this.userType
     };
     this.showDataList = !this.showDataList;
     this.sendService
