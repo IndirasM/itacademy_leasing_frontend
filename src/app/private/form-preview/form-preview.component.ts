@@ -52,9 +52,12 @@ export class FormPreviewComponent implements OnInit {
     console.log(this.leaseData.leaseType);
     this.clicked = true;
     let dataArray;
-    if ((this.leaseData.leaseType = 'Private')) {
-      dataArray = { lease: this.leaseData, privateCustomer: this.userData };
-    } else if ((this.leaseData.leaseType = 'Corporate')) {
+    if ((this.leaseData.leaseType === 'Private')) {
+      dataArray = {
+        lease: this.leaseData,
+        privateCustomer: this.userData
+      };
+    } else if ((this.leaseData.leaseType === 'Corporate')) {
       dataArray = {
         lease: this.leaseData,
         corporateCustomer: this.corporateUserData

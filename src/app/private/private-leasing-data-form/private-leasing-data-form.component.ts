@@ -76,11 +76,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       assetType: new FormControl([], Validators.required),
       customerType: [[new FormControl(null, Validators.required)]],
       year: new FormControl([], Validators.required),
-      assetPrice: new FormControl(null, [
-        Validators.required,
-        Validators.min(5000)
-      ]),
+      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
+      // assetPrice: this.assetPriceValidator(
+      //   //ifas
+      //   2
+      // ),
       advancePaymentPercentage: new FormControl(10, [
+        // CustomnValidator.QQQ(xxx, www,eee);
         Validators.required,
         Validators.min(10),
         Validators.max(50)
@@ -108,6 +110,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       totalInterest: new FormControl(null),
       totalMonthlyPayment: new FormControl(null)
     });
+  }
+
+  assetPriceValidator(min: number): FormControl {
+    return new FormControl(null, [
+      Validators.required,
+      Validators.min(min)
+    ]);
   }
 
   ngOnInit() {

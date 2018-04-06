@@ -30,7 +30,7 @@ export class LeasingOfficerComponent implements OnInit {
 
   ngOnInit() {
     this.retrievalService.retrieveUsers().then(data => {
-      (this.size = 0), this.item;
+      (this.size = 0);
       for (this.item in data) {
         if (data.hasOwnProperty(this.item)) {
           this.size++;
