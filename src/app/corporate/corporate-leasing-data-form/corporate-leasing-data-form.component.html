@@ -131,7 +131,7 @@
                 <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
             </div>
 
-            <button mat-button matStepperPrevious class="btn btn-primary" routerLink="../home">Back</button>
-            <button mat-button matStepperNext class="btn btn-primary" [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
+            <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
         </div>
     </form>

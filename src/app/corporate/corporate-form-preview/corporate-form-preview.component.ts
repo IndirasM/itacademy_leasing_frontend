@@ -45,8 +45,6 @@ export class CorporateFormPreviewComponent implements OnInit {
     if (this.leaseData.leaseType = 'Corporate') {
       dataArray = {'lease': this.leaseData, 'corporateCustomer': this.corporateUserData};
     }
-    console.log(dataArray);
-
     this.sendService.sendLeasingForm(JSON.stringify(dataArray)).then(data => {
               this.leaseService.changeStep(3);
       }).catch(data => {

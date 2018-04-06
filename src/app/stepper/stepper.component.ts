@@ -30,7 +30,6 @@ export class StepperComponent implements OnInit {
     );
     this.leaseService.toSendSuccess.subscribe(currentStep => {
       this.currentStep = currentStep;
-      console.log(currentStep);
     });
     this.currentStep = this.leaseService.getCurrentStep();
   }

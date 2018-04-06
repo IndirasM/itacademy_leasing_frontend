@@ -1,4 +1,3 @@
-// <reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnInit } from "@angular/core";
 import { LeaseData } from "../private-leasing-data-form/private-leasing-data";
 import { PrivateUserData } from "../private-user-data-form/privateUserData";
@@ -26,7 +25,6 @@ export class FormPreviewComponent implements OnInit {
   public sendReady = false;
   public userReady = false;
   public corporateReady = false;
-  public ready;
   public clicked = false;
 
   ngOnInit() {
@@ -49,16 +47,6 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
-// kazkas naujo ? JULIUS rase
-//     this.sendService.sendLeasingForm(this.leaseData).then(data => {
-//       this.newData = new PromisedLease(data);
-//       this.userData.leaseId = this.newData.id;
-//       this.sendService.sendPrivateUserForm(this.userData).then(() => {
-//         this.ready = true;
-//         this.errorMessages =
-//           'Your application has been accepted and is being processed right now. You should receive decision within 3 days.';
-//         this.leaseService.passFinalMessage(this.errorMessages);
-//       }).catch(error => {
     this.clicked = true;
     let dataArray;
     if ((this.leaseData.leaseType = "Private")) {
@@ -69,28 +57,26 @@ export class FormPreviewComponent implements OnInit {
         corporateCustomer: this.corporateUserData
       };
     }
-    console.log(dataArray);
-
     this.sendService
       .sendLeasingForm(JSON.stringify(dataArray))
       .then(data => {
         this.leaseService.changeStep(3);
       })
-      .catch(data => {
-        // return user to incorrectly filled field (user form)
-        // if 500 smth went wrong, try again
-        if (data.status == 500) {
+      .catch(error => {
+        this.clicked = false;
+        if (error.status == 500) {
           this.errorMessages = "Something went wrong, please try again.";
         }
-        if (data.status == 503) {
+        if (error.status == 503) {
           this.errorMessages =
             "Service is currently unavailable, please try again later.";
         }
-        if (data.status === 400) {
+        if (error.status === 400) {
           let errors = [];
-          errors = data.error.fieldErrors;
+          errors = error.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
             this.errorMessages += errors[i].field + "\n";
+            this.errorMessages = this.errorMessages.replace("undefined","");
           }
         }
       });
