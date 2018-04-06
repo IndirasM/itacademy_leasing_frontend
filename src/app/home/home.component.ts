@@ -12,12 +12,12 @@ export class HomeComponent implements OnInit {
   customerType: string;
 
   onPrivate() {
-    this.customerType = 'private';
+    this.customerType = 'Private';
     this.customerTypeService.changeUserType(this.customerType);
   }
 
   onCorporate() {
-    this.customerType = 'corporate';
+    this.customerType = 'Corporate';
     this.customerTypeService.changeUserType(this.customerType);
   }
 

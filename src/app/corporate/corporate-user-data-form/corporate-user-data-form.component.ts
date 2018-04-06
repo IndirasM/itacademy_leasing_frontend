@@ -22,7 +22,7 @@ export class CorporateUserDataFormComponent implements OnInit {
       ('[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð]{3,20}')]],
       companyCode: [null, [Validators.pattern('[0-9]{9}')]],
       phoneNumber: [null, [Validators.pattern('(86|\\+3706|3706)\\d{3}\\d{4}')]],
-      email: [null, [Validators.email]],
+      email: [null, [Validators.pattern(/.+@.+[\.].+/)]],
       address: [null, [Validators.pattern('.*[0-9].*'),
         Validators.pattern
         ('.*[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð].*'),

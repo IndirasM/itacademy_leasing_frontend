@@ -35,7 +35,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-form-search.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     CorporateLeasingDataFormComponent,
     EndScreenComponent,
     SubmittedFormSearchComponent,
+    LeasingOfficerComponent
   ],
   imports: [
     BrowserModule,
@@ -74,14 +78,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatStepperModule,
     MatToolbarModule,
     MatGridListModule,
+    MatTableModule,
     MatExpansionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatButtonModule
   ],
-  providers: [
-    LeaseToUserService,
-    BrandsAndModelsService,
-    FormsToBackService
-  ],
+  providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
