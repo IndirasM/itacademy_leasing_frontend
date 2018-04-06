@@ -197,10 +197,8 @@ export class CorporateLeasingDataFormComponent implements OnInit {
           leaseType: 'Corporate'
 
         };
-        console.log(this.carLeasingForm.value['leaseType']);
         this.leasingData.changeData(this.leaseData);
       } else {
-        console.log('invalid');
         this.validateAllFormFields(this.carLeasingForm);
       }
   }
