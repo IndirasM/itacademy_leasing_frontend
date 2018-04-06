@@ -46,6 +46,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   leaseData: LeaseData;
   partialLeaseDataForSchedulePromise: ScheduleOfContributionDataPromise;
   partialLeaseDataForSchedule: ScheduleOfContributionData;
+  private userType: string;
 
   assetTypes = [{ value: "Vehicle", viewValue: "Vehicle" }];
 
@@ -138,6 +139,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         });
       }
     });
+    this.leasingData.toSendType.subscribe(userType => this.userType = userType);
   }
 
   calculateYear() {
@@ -272,7 +274,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         margin: this.carLeasingForm.value["margin"],
         contractFee: this.contractFee.toString(),
         paymentDate: this.carLeasingForm.value["paymentDate"],
-        leaseType: "Private"
+        leaseType: this.userType
       };
       this.leasingData.changeData(this.leaseData);
     } else {
@@ -302,7 +304,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       margin: this.carLeasingForm.value["margin"],
       contractFee: this.contractFee.toString(),
       paymentDate: this.carLeasingForm.value["paymentDate"],
-      leaseType: "Private"
+      leaseType: this.userType
     };
     this.showDataList = !this.showDataList;
     this.sendService

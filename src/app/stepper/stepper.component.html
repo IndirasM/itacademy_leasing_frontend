@@ -1,11 +1,11 @@
 <mat-horizontal-stepper #stepper="matHorizontalStepper" [selectedIndex]="currentStep">
     <mat-step [completed]='false'>
-        <app-private-leasing-data-form *ngIf='customerType==="private"'></app-private-leasing-data-form>
-        <app-corporate-leasing-data-form *ngIf='customerType==="corporate"'></app-corporate-leasing-data-form>
+        <app-private-leasing-data-form *ngIf='customerType==="Private"'></app-private-leasing-data-form>
+        <app-corporate-leasing-data-form *ngIf='customerType==="Corporate"'></app-corporate-leasing-data-form>
     </mat-step>
     <mat-step [completed]='false'>
-        <app-private-user-data-form *ngIf='customerType==="private"'></app-private-user-data-form>
-        <app-corporate-user-data-form *ngIf='customerType==="corporate"'></app-corporate-user-data-form>
+        <app-private-user-data-form *ngIf='customerType==="Private"'></app-private-user-data-form>
+        <app-corporate-user-data-form *ngIf='customerType==="Corporate"'></app-corporate-user-data-form>
     </mat-step>
     <mat-step [completed]='false'>
         <app-form-preview></app-form-preview>
