@@ -1,49 +1,53 @@
-<div id="c1" align="center" class="container">
-  <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" class="formwidth">
-    <table class="fullwidth" cellspacing="0">
-      <tr>
 <div align="center" class="divWidth">
-  <table class="fullWidth" cellspacing="0">
+  <mat-form-field>
+    <input placeholder="ID code" formControlName="IDCode" required>
+    <mat-error *ngIf="!IDCode">Valid ID code is required</mat-error>
+  </mat-form-field>
+</div>
+
+<div align="center" class="divWidth" *ngIf="!(!IDCode)">
+  <table class="fullWidth" cellspacing="0" >
     <tr>
-  <div>
-    <label>Customer type:  {{1+1}}</label></div>
-  <div>
-    <label>Asset Type:  {{1+1}}</label></div>
-  <div>
-    <label>Make:  {{1+1}}</label> </div>
-  <div>
-    <label>Model:  {{1+1}}</label>
-  </div>
-  <div> <label>Year:  {{1+1}}</label>
-  </div>
-  <div><label>Engine power (kW):  {{1+1}}</label>
-  </div>
-  <div><label>Asset price:  {{1+1}}</label>
-  </div>
-  <div> <label>Advance payment percentage:  {{1+1}}</label>
-  </div>
-  <div> <label>Advance payment amount:  {{1+1}}</label>
-  </div>
-  <div><label>Lease period:  {{1+1}}</label>
-  </div>
-  <div><label>Margin:  {{1+1}}</label>
-  </div>
-  <div><label>Contract fee:  {{1+1}}</label>
-  </div>
-  <div><label>Payment date:  {{1+1}}</label>
-  </div>
-  <div><label>First Name:  {{1+1}}</label>
-  </div>
-  <div><label>Last Name:  {{1+1}}</label>
-  </div>
-  <div><label>Personal code:  {{1+1}}</label>
-  </div>
-  <div><label>Phone number:  {{1+1}}</label>
-  </div>
-  <div><label>Email:  {{1+1}}</label>
-  </div>
-  <div><label>Address:  {{1+1}}</label>
-  </div>
+      <div>
+        <label>Customer type: {{leaseData.leaseType}}</label></div>
+      <div>
+        <label>Asset Type: {{leaseData.assetType}}</label></div>
+      <div>
+        <label>Make: {{leaseData.carBrand}}</label></div>
+      <div>
+
+        <label>Model: {{leaseData.carModel}}</label>
+      </div>
+      <div><label>Year: {{leaseData.years}}</label>
+      </div>
+      <div><label>Engine power (kW): {{leaseData.enginePower}}</label>
+      </div>
+      <div><label>Asset price: {{leaseData.assetPrice}}</label>
+      </div>
+      <div><label>Advance payment percentage: {{leaseData.advancePaymentPercentage}}</label>
+      </div>
+      <div><label>Advance payment amount: {{leaseData.advancePaymentAmount}}</label>
+      </div>
+      <div><label>Lease period: {{leaseData.leasePeriod}}</label>
+      </div>
+      <div><label>Margin: {{leaseData.margin}}</label>
+      </div>
+      <div><label>Contract fee: {{leaseData.contractFee}}</label>
+      </div>
+      <div><label>Payment date: {{leaseData.paymentDate}}</label>
+      </div>
+      <div><label>First Name: {{userData.firstName}}</label>
+      </div>
+      <div><label>Last Name: {{userData.lastName}}</label>
+      </div>
+      <div><label>Personal code: {{userData.personalCode}}</label>
+      </div>
+      <div><label>Phone number: {{userData.phoneNumber}}</label>
+      </div>
+      <div><label>Email: {{userData.email}}</label>
+      </div>
+      <div><label>Address: {{userData.address}}</label>
+      </div>
     </tr>
   </table>
-  </div>
+</div>
