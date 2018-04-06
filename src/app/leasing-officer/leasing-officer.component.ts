@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormsToBackService } from "../services/forms-to-back.service";
+import { Component, OnInit } from '@angular/core';
+import { FormsToBackService } from '../services/forms-to-back.service';
 import {
   BackLeaseData,
   LeaseData
-} from "../private/private-leasing-data-form/private-leasing-data";
-import { PrivateUserData } from "../private/private-user-data-form/privateUserData";
-import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData";
+} from '../private/private-leasing-data-form/private-leasing-data';
+import { PrivateUserData } from '../private/private-user-data-form/privateUserData';
+import { CorporateUserData } from '../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: "app-leasing-officer",
-  templateUrl: "./leasing-officer.component.html",
-  styleUrls: ["./leasing-officer.component.css"]
+  selector: 'app-leasing-officer',
+  templateUrl: './leasing-officer.component.html',
+  styleUrls: ['./leasing-officer.component.css']
 })
 export class LeasingOfficerComponent implements OnInit {
   public users = [];
@@ -45,11 +45,11 @@ export class LeasingOfficerComponent implements OnInit {
 
   createCustomers() {
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].lease.leaseType == "Private") {
+      if (this.users[i].lease.leaseType === 'Private') {
         this.privateCustomers.push(
           new PrivateCustomer(this.users[i].lease, this.users[i].customer)
         );
-      } else if (this.users[i].lease.leaseType == "Corporate") {
+      } else if (this.users[i].lease.leaseType === 'Corporate') {
         this.corporateCustomers.push(
           new CorporateCustomer(this.users[i].lease, this.users[i].customer)
         );
@@ -58,18 +58,17 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   checkStatus(privateCustomer) {
-    if (privateCustomer.status != "Waiting") return true;
-    else return false;
+    if (privateCustomer.status !== 'Waiting') { return true; } else { return false; }
   }
 
   approveLease(customer) {
-    customer.status = "Accepted";
+    customer.status = 'Accepted';
     this.lease = new BackLeaseData(customer);
     this.updateService.updateApprovedLease(this.lease);
   }
 
   declineLease(customer) {
-    customer.status = "Rejected";
+    customer.status = 'Rejected';
     this.lease = new BackLeaseData(customer);
     this.updateService.updateDeclinedLease(this.lease);
   }

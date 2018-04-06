@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogConfig,
   MatDialog
-} from "@angular/material";
+} from '@angular/material';
 import {
   Validators,
   FormGroup,
@@ -12,34 +12,34 @@ import {
   FormControl,
   FormGroupDirective,
   NgForm
-} from "@angular/forms";
-import { MatDialogModule } from "@angular/material/dialog";
-import { LeaseToUserService } from "../../services/leasing-to-user.service";
-import { LeaseData } from "./private-leasing-data";
-import { BrandsAndModelsService } from "../../services/BrandsAndModelsService";
-import { ErrorStateMatcher } from "@angular/material/core";
-import { Validations } from "./validations";
-import { Router } from "@angular/router";
-import { Location } from "@angular/common";
-import { Element } from "./../../models/element.interface";
-import { ScheduleOfContributionData } from "./../../models/schedule-of-contribution-data";
-import { ScheduleOfContributionDataPromise } from "./../../models/schedule-of-contribution-data";
-import { FormsToBackService } from "../../services/forms-to-back.service";
+} from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LeaseToUserService } from '../../services/leasing-to-user.service';
+import { LeaseData } from './private-leasing-data';
+import { BrandsAndModelsService } from '../../services/BrandsAndModelsService';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Validations } from './validations';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Element } from './../../models/element.interface';
+import { ScheduleOfContributionData } from './../../models/schedule-of-contribution-data';
+import { ScheduleOfContributionDataPromise } from './../../models/schedule-of-contribution-data';
+import { FormsToBackService } from '../../services/forms-to-back.service';
 
 @Component({
-  selector: "app-private-leasing-data-form",
-  styles: ["input.ng-invalid {border-color: red}"],
-  templateUrl: "./private-leasing-data-form.component.html",
-  styleUrls: ["./private-leasing-data-form.component.css"],
+  selector: 'app-private-leasing-data-form',
+  styles: ['input.ng-invalid {border-color: red}'],
+  templateUrl: './private-leasing-data-form.component.html',
+  styleUrls: ['./private-leasing-data-form.component.css'],
   providers: []
 })
 export class PrivateLeasingDataFormComponent implements OnInit {
   showDataList = false;
   displayedColumns = [
-    "notRedeemedAssetValue",
-    "assetRedemptionFees",
-    "interestPayments",
-    "totalMonthlyPaymentValue"
+    'notRedeemedAssetValue',
+    'assetRedemptionFees',
+    'interestPayments',
+    'totalMonthlyPaymentValue'
   ];
   dataSource: any;
   public carLeasingForm: FormGroup;
@@ -48,7 +48,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   partialLeaseDataForSchedule: ScheduleOfContributionData;
   private userType: string;
 
-  assetTypes = [{ value: "Vehicle", viewValue: "Vehicle" }];
+  assetTypes = [{ value: 'Vehicle', viewValue: 'Vehicle' }];
 
   years = [];
   brands = [];
@@ -74,7 +74,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: [[new FormControl("Private", Validators.required)]],
+      customerType: [[new FormControl(null, Validators.required)]],
       year: new FormControl([], Validators.required),
       assetPrice: new FormControl(null, [
         Validators.required,
@@ -143,7 +143,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   calculateYear() {
-    let date = new Date();
+    const date = new Date();
     let num = date.getFullYear();
 
     for (num; num >= 1980; num--) {
@@ -157,14 +157,14 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   get financingAmount() {
     return (
-      this.carLeasingForm.get("assetPrice").value - this.advancePaymentAmount
+      this.carLeasingForm.get('assetPrice').value - this.advancePaymentAmount
     );
   }
 
   get totalInterest() {
     return (
-      this.carLeasingForm.get("assetPrice").value *
-      (this.carLeasingForm.get("margin").value / 100)
+      this.carLeasingForm.get('assetPrice').value *
+      (this.carLeasingForm.get('margin').value / 100)
     );
   }
 
@@ -178,7 +178,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get totalMonthlyPayment() {
-    return this.totalPayment / this.carLeasingForm.get("leasePeriod").value;
+    return this.totalPayment / this.carLeasingForm.get('leasePeriod').value;
   }
 
   reset() {
@@ -186,72 +186,72 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   get enginePower() {
-    return this.carLeasingForm.get("enginePower");
+    return this.carLeasingForm.get('enginePower');
   }
 
   get year() {
-    return this.carLeasingForm.get("year");
+    return this.carLeasingForm.get('year');
   }
 
   get assetPrice() {
-    return this.carLeasingForm.get("assetPrice");
+    return this.carLeasingForm.get('assetPrice');
   }
 
   get paymentDate() {
-    return this.carLeasingForm.get("paymentDate");
+    return this.carLeasingForm.get('paymentDate');
   }
 
   get advancePaymentAmount() {
     return (
-      this.carLeasingForm.get("assetPrice").value *
-      this.carLeasingForm.get("advancePaymentPercentage").value /
+      this.carLeasingForm.get('assetPrice').value *
+      this.carLeasingForm.get('advancePaymentPercentage').value /
       100
     );
   }
 
   get contractFeePercentage() {
     return (
-      Math.round(this.carLeasingForm.get("contractFeePercentage").value * 10) /
+      Math.round(this.carLeasingForm.get('contractFeePercentage').value * 10) /
       10
     );
   }
 
   get contractFee() {
-    if (this.carLeasingForm.get("assetPrice").value * 0.01 > 200) {
+    if (this.carLeasingForm.get('assetPrice').value * 0.01 > 200) {
       return (
-        this.carLeasingForm.get("contractFeePercentage").value /
+        this.carLeasingForm.get('contractFeePercentage').value /
         100 *
-        this.carLeasingForm.get("assetPrice").value
+        this.carLeasingForm.get('assetPrice').value
       );
     }
     return 200;
   }
 
   get model() {
-    return this.carLeasingForm.get("carModel");
+    return this.carLeasingForm.get('carModel');
   }
 
   get leasePeriod() {
-    return this.carLeasingForm.get("leasePeriod").value;
+    return this.carLeasingForm.get('leasePeriod').value;
   }
 
   get advancePaymentPercentage() {
     return (
       Math.round(
-        this.carLeasingForm.get("advancePaymentPercentage").value * 10
+        this.carLeasingForm.get('advancePaymentPercentage').value * 10
       ) / 10
     );
   }
 
   get margin() {
-    return Math.round(this.carLeasingForm.get("margin").value * 10) / 10;
+    return Math.round(this.carLeasingForm.get('margin').value * 10) / 10;
   }
 
   typeChanged() {
-    const brand = this.carLeasingForm.get("brand").value;
+    const brand = this.carLeasingForm.get('brand').value;
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === brand);
 
-    const assetType = this.carLeasingForm.get("assetType").value;
+    const assetType = this.carLeasingForm.get('assetType').value;
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
@@ -260,20 +260,20 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   onSubmit() {
     if (this.carLeasingForm.valid) {
       this.leaseData = {
-        assetType: this.carLeasingForm.value["assetType"],
-        carBrand: this.carLeasingForm.value["brand"],
-        carModel: this.carLeasingForm.value["model"],
-        years: this.carLeasingForm.value["year"],
-        enginePower: this.carLeasingForm.value["enginePower"],
-        assetPrice: this.carLeasingForm.value["assetPrice"],
+        assetType: this.carLeasingForm.value['assetType'],
+        carBrand: this.carLeasingForm.value['brand'],
+        carModel: this.carLeasingForm.value['model'],
+        years: this.carLeasingForm.value['year'],
+        enginePower: this.carLeasingForm.value['enginePower'],
+        assetPrice: this.carLeasingForm.value['assetPrice'],
         advancePaymentPercentage: this.carLeasingForm.value[
-          "advancePaymentPercentage"
+          'advancePaymentPercentage'
         ],
         advancePaymentAmount: this.advancePaymentAmount.toString(),
-        leasePeriod: this.carLeasingForm.value["leasePeriod"],
-        margin: this.carLeasingForm.value["margin"],
+        leasePeriod: this.carLeasingForm.value['leasePeriod'],
+        margin: this.carLeasingForm.value['margin'],
         contractFee: this.contractFee.toString(),
-        paymentDate: this.carLeasingForm.value["paymentDate"],
+        paymentDate: this.carLeasingForm.value['paymentDate'],
         leaseType: this.userType
       };
       this.leasingData.changeData(this.leaseData);
@@ -295,15 +295,15 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   toggleDataList(): void {
     this.partialLeaseDataForSchedule = {
-      assetPrice: this.carLeasingForm.value["assetPrice"],
+      assetPrice: this.carLeasingForm.value['assetPrice'],
       advancePaymentPercentage: this.carLeasingForm.value[
-        "advancePaymentPercentage"
+        'advancePaymentPercentage'
       ],
       advancePaymentAmount: this.advancePaymentAmount.toString(),
-      leasePeriod: this.carLeasingForm.value["leasePeriod"],
-      margin: this.carLeasingForm.value["margin"],
+      leasePeriod: this.carLeasingForm.value['leasePeriod'],
+      margin: this.carLeasingForm.value['margin'],
       contractFee: this.contractFee.toString(),
-      paymentDate: this.carLeasingForm.value["paymentDate"],
+      paymentDate: this.carLeasingForm.value['paymentDate'],
       leaseType: this.userType
     };
     this.showDataList = !this.showDataList;
@@ -321,9 +321,9 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   get isDataListValid() {
     if (
-      this.carLeasingForm.value["assetPrice"] >= 5000 &&
-      this.carLeasingForm.value["assetPrice"] <= 10000000 &&
-      this.carLeasingForm.value["paymentDate"] != null
+      this.carLeasingForm.value['assetPrice'] >= 5000 &&
+      this.carLeasingForm.value['assetPrice'] <= 10000000 &&
+      this.carLeasingForm.value['paymentDate'] != null
     ) {
       return true;
     }
