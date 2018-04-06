@@ -26,20 +26,6 @@ import { ScheduleOfContributionData } from "./../../models/schedule-of-contribut
 import { ScheduleOfContributionDataPromise } from "./../../models/schedule-of-contribution-data";
 import { FormsToBackService } from "../../services/forms-to-back.service";
 
-// export class MyErrorStateMatcher implements ErrorStateMatcher {
-//   isErrorState(
-//     control: FormControl | null,
-//     form: FormGroupDirective | NgForm | null
-//   ): boolean {
-//     const isSubmitted = form && form.submitted;
-//     return !!(
-//       control &&
-//       control.invalid &&
-//       (control.dirty || control.touched || isSubmitted)
-//     );
-//   }
-// }
-
 @Component({
   selector: "app-private-leasing-data-form",
   styles: ["input.ng-invalid {border-color: red}"],
