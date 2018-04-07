@@ -1,5 +1,5 @@
 <mat-horizontal-stepper #stepper="matHorizontalStepper" [selectedIndex]="currentStep">
-    <mat-step [completed]='false'>
+    <mat-step [completed]='false' id="firstStep">
       <ng-template matStepLabel>Car leasing form</ng-template>
         <app-private-leasing-data-form *ngIf='customerType==="Private"'></app-private-leasing-data-form>
         <app-corporate-leasing-data-form *ngIf='customerType==="Corporate"'></app-corporate-leasing-data-form>
