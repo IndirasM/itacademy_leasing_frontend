@@ -63,15 +63,25 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   approveLease(customer) {
-    customer.status = "Accepted";
-    this.lease = new BackLeaseData(customer);
-    this.updateService.updateApprovedLease(this.lease);
+    //customer.status = "Accepted";
+    this.lease = new BackLeaseData(customer, "Accepted");
+    this.updateService
+      .updateApprovedLease(this.lease)
+      .then(data => {
+        customer.status = "Accepted";
+      })
+      .catch(error => {});
   }
 
   declineLease(customer) {
-    customer.status = "Rejected";
-    this.lease = new BackLeaseData(customer);
-    this.updateService.updateDeclinedLease(this.lease);
+    //customer.status = "Rejected";
+    this.lease = new BackLeaseData(customer, "Rejected");
+    this.updateService
+      .updateDeclinedLease(this.lease)
+      .then(data => {
+        customer.status = "Rejected";
+      })
+      .catch(error => {});
   }
 }
 
