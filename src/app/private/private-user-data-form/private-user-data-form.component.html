@@ -29,7 +29,7 @@
                 </mat-form-field>
                 <div>
                 <button mat-raised-button color="primary" matStepperPrevious >Back</button>
-                <button mat-raised-button color="primary" [disabled]="!userForm.valid" matStepperNext (click)="send()">Next</button>
+                <button mat-raised-button color="primary" [disabled]="!userForm.valid" matStepperNext (click)="send()" id="nextButtonUserForm">Next</button>
                 </div>
             </tr>
         </table>
