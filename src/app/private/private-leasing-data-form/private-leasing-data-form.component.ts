@@ -46,7 +46,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   leaseData: LeaseData;
   partialLeaseDataForSchedulePromise: ScheduleOfContributionDataPromise;
   partialLeaseDataForSchedule: ScheduleOfContributionData;
-  private userType: string;
+  userType: string;
 
   assetTypes = [{ value: 'Vehicle', viewValue: 'Vehicle' }];
 
@@ -61,8 +61,12 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     private carService: BrandsAndModelsService,
     private router: Router,
     private _location: Location,
-    private sendService: FormsToBackService
+    private sendService: FormsToBackService,
+    private leaseService: LeaseToUserService,
+
   ) {
+    this.leasingData.toSendType.subscribe(userType => this.userType = userType);
+
     this.carLeasingForm = fb.group({
       enginePower: new FormControl(null, [
         Validators.required,
@@ -74,13 +78,11 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: [[new FormControl(null, Validators.required)]],
+      customerType: new FormControl(null, Validators.required),
       year: new FormControl([], Validators.required),
-      assetPrice: new FormControl(null, [Validators.required, Validators.min(5000)]),
-      // assetPrice: this.assetPriceValidator(
-      //   //ifas
-      //   2
-      // ),
+      assetPrice: this.assetPriceValidator(
+        (this.userType === 'Private') ? 5000 : 10000
+      ),
       advancePaymentPercentage: new FormControl(10, [
         // CustomnValidator.QQQ(xxx, www,eee);
         Validators.required,
@@ -111,6 +113,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       totalMonthlyPayment: new FormControl(null)
     });
   }
+  public sendReady = false;
+
+
+
+  get customerType() {
+    return this.carLeasingForm.get('customerType');
+  }
 
   assetPriceValidator(min: number): FormControl {
     return new FormControl(null, [
@@ -120,7 +129,10 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.calculateYear();
+
+
     this.carService.getBrands().then(data => {
       let size = 0,
         key;
