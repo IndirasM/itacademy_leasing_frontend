@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { LeaseData } from "../private-leasing-data-form/private-leasing-data";
-import { PrivateUserData } from "../private-user-data-form/privateUserData";
-import { FormGroup } from "@angular/forms";
-import { LeaseToUserService } from "../../services/leasing-to-user.service";
-import { FormsToBackService } from "../../services/forms-to-back.service";
-import { CorporateUserData } from "../../corporate/corporate-user-data-form/corporateUserData";
+import { Component, OnInit } from '@angular/core';
+import { LeaseData } from '../private-leasing-data-form/private-leasing-data';
+import { PrivateUserData } from '../private-user-data-form/privateUserData';
+import { FormGroup } from '@angular/forms';
+import { LeaseToUserService } from '../../services/leasing-to-user.service';
+import { FormsToBackService } from '../../services/forms-to-back.service';
+import { CorporateUserData } from '../../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: "app-form-preview",
-  templateUrl: "./form-preview.component.html",
-  styleUrls: ["./form-preview.component.css"]
+  selector: 'app-form-preview',
+  templateUrl: './form-preview.component.html',
+  styleUrls: ['./form-preview.component.css']
 })
 export class FormPreviewComponent implements OnInit {
   constructor(
@@ -19,7 +19,7 @@ export class FormPreviewComponent implements OnInit {
 
   public leaseData: LeaseData;
   public userData: PrivateUserData;
-  private corporateUserData: CorporateUserData;
+  public corporateUserData: CorporateUserData;
 
   public errorMessages: string;
   public sendReady = false;
@@ -41,17 +41,23 @@ export class FormPreviewComponent implements OnInit {
       }
     });
     this.leaseService.toSendCorporate.subscribe(corporateUserData => {
+      if (corporateUserData) {
       this.corporateReady = true;
       this.corporateUserData = corporateUserData;
+    }
     });
   }
 
   sendToDb() {
+    console.log(this.leaseData.leaseType);
     this.clicked = true;
     let dataArray;
-    if ((this.leaseData.leaseType = "Private")) {
-      dataArray = { lease: this.leaseData, privateCustomer: this.userData };
-    } else if ((this.leaseData.leaseType = "Corporate")) {
+    if ((this.leaseData.leaseType === 'Private')) {
+      dataArray = {
+        lease: this.leaseData,
+        privateCustomer: this.userData
+      };
+    } else if ((this.leaseData.leaseType === 'Corporate')) {
       dataArray = {
         lease: this.leaseData,
         corporateCustomer: this.corporateUserData
@@ -64,19 +70,19 @@ export class FormPreviewComponent implements OnInit {
       })
       .catch(error => {
         this.clicked = false;
-        if (error.status == 500) {
-          this.errorMessages = "Something went wrong, please try again.";
+        if (error.status === 500) {
+          this.errorMessages = 'Something went wrong, please try again.';
         }
-        if (error.status == 503) {
+        if (error.status === 503) {
           this.errorMessages =
-            "Service is currently unavailable, please try again later.";
+            'Service is currently unavailable, please try again later.';
         }
         if (error.status === 400) {
           let errors = [];
           errors = error.error.fieldErrors;
           for (let i = 0; i < errors.length; i++) {
-            this.errorMessages += errors[i].field + "\n";
-            this.errorMessages = this.errorMessages.replace("undefined","");
+            this.errorMessages += errors[i].field + '\n';
+            this.errorMessages = this.errorMessages.replace('undefined', '');
           }
         }
       });
