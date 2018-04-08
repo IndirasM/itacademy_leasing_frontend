@@ -86,5 +86,6 @@ export class FormPreviewComponent implements OnInit {
           }
         }
       });
+    this.errorMessages = '';
   }
 }

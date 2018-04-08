@@ -67,12 +67,15 @@
     </div>
     <button mat-raised-button color="primary" matStepperPrevious>Back</button>
     <button mat-raised-button color="primary" (click)="sendToDb()">Submit</button>
-</div>
-
 
 <div *ngIf="errorMessages">
-    {{ errorMessages }}
-</div>
+  <form class="formwidthred">
+    <table class="fullwidth" cellspacing="0">
+      {{ errorMessages }}
+    </table>
+  </form>
+
 <div *ngIf="clicked === true">
     <mat-spinner></mat-spinner>
 </div>
+
