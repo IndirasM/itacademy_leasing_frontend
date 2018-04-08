@@ -84,7 +84,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
         (this.userType === 'Private') ? 5000 : 10000
       ),
       advancePaymentPercentage: new FormControl(10, [
-        // CustomnValidator.QQQ(xxx, www,eee);
         Validators.required,
         Validators.min(10),
         Validators.max(50)
@@ -131,7 +130,6 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   ngOnInit() {
 
     this.calculateYear();
-
 
     this.carService.getBrands().then(data => {
       let size = 0,

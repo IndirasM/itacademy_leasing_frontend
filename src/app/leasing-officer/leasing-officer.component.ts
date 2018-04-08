@@ -18,12 +18,20 @@ export class LeasingOfficerComponent implements OnInit {
   public users = [];
   public privateCustomers = [];
   public corporateCustomers = [];
+  public privateAccepted = [];
+  public privateDeclined = [];
+  public privateWaiting = [];
+  public corporateAccepted = [];
+  public corporateDeclined = [];
+  public corporateWaiting = [];
   public size = 0;
   public item;
   panelOpenState = false;
   public privateUser: PrivateUserData;
   public lease;
   public statusChanged = false;
+  public selectedIndex = 0;
+  public selectedTabIndex = 0;
 
   constructor(
     private retrievalService: FormsToBackService,
@@ -61,6 +69,24 @@ export class LeasingOfficerComponent implements OnInit {
           new CorporateCustomer(this.users[i].lease, this.users[i].customer)
         );
       }
+    }
+    this.createListsByStatus(this.privateCustomers, this.corporateCustomers);
+  }
+
+  createListsByStatus(privateCustomers, corporateCustomers){
+    for (let i = 0; i < privateCustomers.length; i++){
+      if(privateCustomers[i].status == "Waiting"){
+        this.privateWaiting.push(privateCustomers[i]);
+      } else if(privateCustomers[i].status == "accepted"){
+        this.privateAccepted.push(privateCustomers[i]);
+      } else this.privateDeclined.push(privateCustomers[i]);
+    }
+    for (let i = 0; i < corporateCustomers.length; i++){
+      if(corporateCustomers[i].status == "Waiting"){
+        this.corporateWaiting.push(corporateCustomers[i]);
+      } else if(corporateCustomers[i].status == "accepted"){
+        this.corporateAccepted.push(corporateCustomers[i]);
+      } else this.corporateDeclined.push(corporateCustomers[i]);
     }
   }
 
