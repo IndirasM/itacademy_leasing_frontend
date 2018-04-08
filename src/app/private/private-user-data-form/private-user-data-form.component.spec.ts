@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrivateUserDataFormComponent } from "./private-user-data-form.component";
+import { PrivateUserDataFormComponent } from './private-user-data-form.component';
 
-describe("PrivateUserDataFormComponent", () => {
+describe('PrivateUserDataFormComponent', () => {
   let component: PrivateUserDataFormComponent;
   let fixture: ComponentFixture<PrivateUserDataFormComponent>;
 
@@ -20,7 +20,7 @@ describe("PrivateUserDataFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
