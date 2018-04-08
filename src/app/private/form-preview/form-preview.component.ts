@@ -49,7 +49,6 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
-    console.log(this.leaseData.leaseType);
     this.clicked = true;
     let dataArray;
     if ((this.leaseData.leaseType === 'Private')) {

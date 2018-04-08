@@ -1,10 +1,8 @@
 <!-- <h4 align="center">Private users waiting for review</h4> -->
 <mat-tab-group>
   <mat-tab label="Private Clients">
-
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let privateCustomer of privateCustomers" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false">
+      <mat-expansion-panel *ngFor="let privateCustomer of privateCustomers" >
         <mat-expansion-panel-header>
           <mat-panel-title>
             Current status: {{privateCustomer.status}}
@@ -42,8 +40,7 @@
   <!-- <h4 align="center">Corporate users waiting for review</h4> -->
   <mat-tab label="Corporate clients">
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let corporateCustomer of corporateCustomers" (opened)="panelOpenState = true"
-      (closed)="panelOpenState = false">
+      <mat-expansion-panel *ngFor="let corporateCustomer of corporateCustomers">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Current status: {{corporateCustomer.status}}

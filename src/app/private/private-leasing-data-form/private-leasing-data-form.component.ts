@@ -78,12 +78,13 @@ export class PrivateLeasingDataFormComponent implements OnInit {
       brand: new FormControl([], Validators.required),
       model: new FormControl([], Validators.required),
       assetType: new FormControl([], Validators.required),
-      customerType: new FormControl(null, Validators.required),
+      customerType: new FormControl(null),
       year: new FormControl([], Validators.required),
       assetPrice: this.assetPriceValidator(
         (this.userType === 'Private') ? 5000 : 10000
       ),
       advancePaymentPercentage: new FormControl(10, [
+        // CustomnValidator.QQQ(xxx, www,eee);
         Validators.required,
         Validators.min(10),
         Validators.max(50)
