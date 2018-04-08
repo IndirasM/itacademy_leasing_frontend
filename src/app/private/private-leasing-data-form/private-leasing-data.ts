@@ -32,7 +32,7 @@ export class BackLeaseData {
     status: string;
     id: string;
 
-    constructor(lease) {
+    constructor(lease, status){
       this.assetType = lease.assetType;
       this.carBrand = lease.carBrand;
       this.carModel = lease.carModel;
@@ -47,7 +47,7 @@ export class BackLeaseData {
       this.paymentDate = lease.paymentDate;
       this.leaseType = lease.leaseType;
       this.applicationDate = lease.applicationDate;
-      this.status = lease.status;
+      this.status = status;
       this.id = lease.id;
     }
   }
