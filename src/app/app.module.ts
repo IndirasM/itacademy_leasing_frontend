@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { FormPreviewComponent } from "./private/form-preview/form-preview.component";
 import { PrivateUserDataFormComponent } from "./private/private-user-data-form/private-user-data-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatDialogModule } from "@angular/material";
+import { MatDialogModule, MatTabsModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { PrivateLeasingDataFormComponent } from "./private/private-leasing-data-form/private-leasing-data-form.component";
@@ -28,7 +28,6 @@ import { HomeComponent } from "./home/home.component";
 import { FormsToBackService } from "./services/forms-to-back.service";
 import { StepperComponent } from "./stepper/stepper.component";
 import { MatStepperModule } from "@angular/material/stepper";
-import { CorporateLeasingDataFormComponent } from "./corporate/corporate-leasing-data-form/corporate-leasing-data-form.component";
 import { EndScreenComponent } from "./end-screen/end-screen.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -37,8 +36,11 @@ import { SubmittedFormSearchComponent } from "./submitted-form-search/submitted-
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LeasingOfficerComponent } from "./leasing-officer/leasing-officer.component";
-import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
+import { MatListModule } from "@angular/material/list";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { ErrorSnackBarComponent } from './leasing-officer/errorComponent';
+
 
 @NgModule({
   declarations: [
@@ -51,10 +53,10 @@ import {MatButtonModule} from '@angular/material/button';
     CorporateUserDataFormComponent,
     HomeComponent,
     StepperComponent,
-    CorporateLeasingDataFormComponent,
     EndScreenComponent,
     LeasingOfficerComponent,
-    SubmittedFormSearchComponent
+    SubmittedFormSearchComponent,
+    ErrorSnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -82,9 +84,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    MatTabsModule
   ],
   providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorSnackBarComponent]
+
 })
 export class AppModule {}

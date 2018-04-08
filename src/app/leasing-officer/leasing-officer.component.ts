@@ -1,16 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { FormsToBackService } from "../services/forms-to-back.service";
+import { Component, OnInit } from '@angular/core';
+import { FormsToBackService } from '../services/forms-to-back.service';
 import {
   BackLeaseData,
   LeaseData
-} from "../private/private-leasing-data-form/private-leasing-data";
-import { PrivateUserData } from "../private/private-user-data-form/privateUserData";
-import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData";
+} from '../private/private-leasing-data-form/private-leasing-data';
+import { PrivateUserData } from '../private/private-user-data-form/privateUserData';
+import { CorporateUserData } from '../corporate/corporate-user-data-form/corporateUserData';
+import { MatSnackBar } from '@angular/material';
+import { ErrorSnackBarComponent } from './errorComponent';
 
 @Component({
-  selector: "app-leasing-officer",
-  templateUrl: "./leasing-officer.component.html",
-  styleUrls: ["./leasing-officer.component.css"]
+  selector: 'app-leasing-officer',
+  templateUrl: './leasing-officer.component.html',
+  styleUrls: ['./leasing-officer.component.css']
 })
 export class LeasingOfficerComponent implements OnInit {
   public users = [];
@@ -25,12 +27,13 @@ export class LeasingOfficerComponent implements OnInit {
 
   constructor(
     private retrievalService: FormsToBackService,
-    private updateService: FormsToBackService
+    private updateService: FormsToBackService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.retrievalService.retrieveUsers().then(data => {
-      (this.size = 0), this.item;
+      (this.size = 0);
       for (this.item in data) {
         if (data.hasOwnProperty(this.item)) {
           this.size++;
@@ -43,13 +46,17 @@ export class LeasingOfficerComponent implements OnInit {
     });
   }
 
+  showError(){
+    this.snackBar.openFromComponent(ErrorSnackBarComponent, {duration: 2000, verticalPosition: 'top'});
+  }
+
   createCustomers() {
     for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].lease.leaseType == "Private") {
+      if (this.users[i].lease.leaseType === 'Private') {
         this.privateCustomers.push(
           new PrivateCustomer(this.users[i].lease, this.users[i].customer)
         );
-      } else if (this.users[i].lease.leaseType == "Corporate") {
+      } else if (this.users[i].lease.leaseType === 'Corporate') {
         this.corporateCustomers.push(
           new CorporateCustomer(this.users[i].lease, this.users[i].customer)
         );
@@ -58,30 +65,31 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   checkStatus(privateCustomer) {
-    if (privateCustomer.status != "Waiting") return true;
-    else return false;
+    if (privateCustomer.status !== 'Waiting') { return true; } else { return false; }
   }
 
   approveLease(customer) {
-    //customer.status = "Accepted";
     this.lease = new BackLeaseData(customer, "Accepted");
     this.updateService
       .updateApprovedLease(this.lease)
       .then(data => {
         customer.status = "Accepted";
       })
-      .catch(error => {});
+      .catch(error => {
+        this.showError();
+      });
   }
 
   declineLease(customer) {
-    //customer.status = "Rejected";
     this.lease = new BackLeaseData(customer, "Rejected");
     this.updateService
       .updateDeclinedLease(this.lease)
       .then(data => {
         customer.status = "Rejected";
       })
-      .catch(error => {});
+      .catch(error => {
+        this.showError();
+      });
   }
 }
 

@@ -1,71 +1,80 @@
-<h4 align="center">Private users waiting for review</h4>
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let privateCustomer of privateCustomers">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Current status: {{privateCustomer.status}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <h5>Client info</h5>
-    <p>First name: {{privateCustomer.firstName}}</p>
-    <p>Last Name: {{privateCustomer.lastName}}</p>
-    <p>Personal Code: {{privateCustomer.personalCode}}</p>
-    <p>Address: {{privateCustomer.address}}</p>
-    <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
-    <p>Email: {{privateCustomer.email}}</p>
-    <h5>Lease info</h5>
-    <p>Asset Type: {{privateCustomer.assetType}}</p>
-    <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
-    <p>Year made: {{privateCustomer.years}}</p>
-    <p>Engine Power: {{privateCustomer.enginePower}} kW</p>
-    <p>Asset Price: {{privateCustomer.assetPrice}} EUR</p>
-    <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage}} %</p>
-    <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount}} EUR</p>
-    <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-    <p>Margin: {{privateCustomer.margin}} %</p>
-    <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
-    <p>Payment Day: {{privateCustomer.paymentDate}}</p>
-    <mat-action-row>
-      <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
-      <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
-<h4 align="center">Corporate users waiting for review</h4>
-<mat-accordion>
-  <mat-expansion-panel *ngFor="let corporateCustomer of corporateCustomers">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Current status: {{corporateCustomer.status}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <h5>Client info</h5>
-    <p>First name: {{corporateCustomer.companyName}}</p>
-    <p>Personal Code: {{corporateCustomer.companyCode}}</p>
-    <p>Address: {{corporateCustomer.address}}</p>
-    <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
-    <p>Email: {{corporateCustomer.email}}</p>
-    <h5>Lease info</h5>
-    <p>Asset Type: {{corporateCustomer.assetType}}</p>
-    <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
-    <p>Year made: {{corporateCustomer.years}}</p>
-    <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
-    <p>Asset Price: {{corporateCustomer.assetPrice}} EUR</p>
-    <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage}} %</p>
-    <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount}} EUR</p>
-    <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-    <p>Margin: {{corporateCustomer.margin}} %</p>
-    <p>Contract Fee: {{corporateCustomer.contractFee}} EUR</p>
-    <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
-    <mat-action-row>
-      <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
-      <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
-    </mat-action-row>
-  </mat-expansion-panel>
-</mat-accordion>
+<!-- <h4 align="center">Private users waiting for review</h4> -->
+<mat-tab-group>
+  <mat-tab label="Private Clients">
+
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let privateCustomer of privateCustomers" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Current status: {{privateCustomer.status}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h5>Client info</h5>
+        <p>First name: {{privateCustomer.firstName}}</p>
+        <p>Last Name: {{privateCustomer.lastName}}</p>
+        <p>Personal Code: {{privateCustomer.personalCode}}</p>
+        <p>Address: {{privateCustomer.address}}</p>
+        <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
+        <p>Email: {{privateCustomer.email}}</p>
+        <h5>Lease info</h5>
+        <p>Asset Type: {{privateCustomer.assetType}}</p>
+        <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
+        <p>Year made: {{privateCustomer.years}}</p>
+        <p>Engine Power: {{privateCustomer.enginePower}} kW</p>
+        <p>Asset Price: {{privateCustomer.assetPrice}} EUR</p>
+        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage}} %</p>
+        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
+        <p>Margin: {{privateCustomer.margin}} %</p>
+        <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
+        <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+        <mat-action-row>
+          <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
+          <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+  <!-- <h4 align="center">Corporate users waiting for review</h4> -->
+  <mat-tab label="Corporate clients">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let corporateCustomer of corporateCustomers" (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Current status: {{corporateCustomer.status}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h5>Client info</h5>
+        <p>First name: {{corporateCustomer.companyName}}</p>
+        <p>Personal Code: {{corporateCustomer.companyCode}}</p>
+        <p>Address: {{corporateCustomer.address}}</p>
+        <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
+        <p>Email: {{corporateCustomer.email}}</p>
+        <h5>Lease info</h5>
+        <p>Asset Type: {{corporateCustomer.assetType}}</p>
+        <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
+        <p>Year made: {{corporateCustomer.years}}</p>
+        <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
+        <p>Asset Price: {{corporateCustomer.assetPrice}} EUR</p>
+        <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage}} %</p>
+        <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
+        <p>Margin: {{corporateCustomer.margin}} %</p>
+        <p>Contract Fee: {{corporateCustomer.contractFee}} EUR</p>
+        <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+        <mat-action-row>
+          <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
+          <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+</mat-tab-group>

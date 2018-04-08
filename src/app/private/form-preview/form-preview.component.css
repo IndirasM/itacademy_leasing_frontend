@@ -5,3 +5,23 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+
+
+.formwidth {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  border: 1px solid lightgrey;
+}
+
+.fullwidth {
+  width: 100%;
+}
+.formwidthred {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  border: 1px solid red;
+}

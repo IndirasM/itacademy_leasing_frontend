@@ -1,4 +1,4 @@
-<div *ngIf="userReady && sendReady">
+<div *ngIf="(userReady || corporateReady) && sendReady">
     <div>
         <label>Customer type: {{leaseData.leaseType}}</label></div>
     <div>
@@ -6,45 +6,76 @@
     <div>
         <label>Make: {{leaseData.carBrand}}</label> </div>
     <div>
+        <label>Model: {{leaseData.carModel}}</label>
+    </div>
+    <div> <label>Year: {{leaseData.years}}</label>
+    </div>
+    <div><label>Engine power (kW): {{leaseData.enginePower}}</label>
+    </div>
+    <div><label>Asset price: {{leaseData.assetPrice}}</label>
+    </div>
+    <div> <label>Advance payment percentage: {{leaseData.advancePaymentPercentage}}</label>
+    </div>
+    <div> <label>Advance payment amount: {{leaseData.advancePaymentAmount}}</label>
+    </div>
+    <div><label>Lease period: {{leaseData.leasePeriod}}</label>
+    </div>
+    <div><label>Margin: {{leaseData.margin}}</label>
+    </div>
+    <div><label>Contract fee: {{leaseData.contractFee}}</label>
+    </div>
+    <div><label>Payment date: {{leaseData.paymentDate}}</label>
+    </div>
 
-    <label>Model: {{leaseData.carModel}}</label>
-</div>
-<div> <label>Year: {{leaseData.years}}</label>
-</div>
-<div><label>Engine power (kW): {{leaseData.enginePower}}</label>
-</div>
-<div><label>Asset price: {{leaseData.assetPrice}}</label>
-</div>
-<div> <label>Advance payment percentage: {{leaseData.advancePaymentPercentage}}</label>
-</div>
-<div> <label>Advance payment amount: {{leaseData.advancePaymentAmount}}</label>
-</div>
-<div><label>Lease period: {{leaseData.leasePeriod}}</label>
-</div>
-<div><label>Margin: {{leaseData.margin}}</label>
-</div>
-<div><label>Contract fee: {{leaseData.contractFee}}</label>
-</div>
-<div><label>Payment date: {{leaseData.paymentDate}}</label>
-</div>
-<div><label>First Name: {{userData.firstName}}</label>
-</div>
-<div><label>Last Name: {{userData.lastName}}</label>
-</div>
-<div><label>Personal code: {{userData.personalCode}}</label>
-</div>
-<div><label>Phone number: {{userData.phoneNumber}}</label>
-</div>
-<div><label>Email: {{userData.email}}</label>
-</div>
-<div><label>Address: {{userData.address}}</label>
-</div>
-<button mat-raised-button color="primary" matStepperPrevious>Back</button>
-<button mat-raised-button color="primary" (click)="sendToDb()">Submit</button>
-</div>
+    <div *ngIf="leaseData.leaseType === 'Private'">
+        <div>
+            <label>First Name: {{userData.firstName}}</label>
+        </div>
 
+        <div>
+            <label>Last Name: {{userData.lastName}}</label>
+        </div>
+
+        <div>
+            <label>Personal code: {{userData.personalCode}}</label>
+        </div>
+
+        <div>
+            <label>Phone number: {{userData.phoneNumber}}</label>
+        </div>
+
+        <div>
+            <label>Email: {{userData.email}}</label>
+        </div>
+
+        <div>
+            <label>Address: {{userData.address}}</label>
+        </div>
+    </div>
+
+    <div *ngIf="leaseData.leaseType === 'Corporate'">
+        <div><label>Company Name: {{corporateUserData.companyName}}</label>
+        </div>
+        <div><label>Company Code: {{corporateUserData.companyCode}}</label>
+        </div>
+        <div><label>Phone number: {{corporateUserData.phoneNumber}}</label>
+        </div>
+        <div><label>Email: {{corporateUserData.email}}</label>
+        </div>
+        <div><label>Address: {{corporateUserData.address}}</label>
+        </div>
+    </div>
+    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+    <button mat-raised-button color="primary" (click)="sendToDb()">Submit</button>
 
 <div *ngIf="errorMessages">
-    {{ errorMessages }}
+  <form class="formwidthred">
+    <table class="fullwidth" cellspacing="0">
+      {{ errorMessages }}
+    </table>
+  </form>
+
+<div *ngIf="clicked === true">
+    <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="clicked === true"><mat-spinner></mat-spinner></div>
+
