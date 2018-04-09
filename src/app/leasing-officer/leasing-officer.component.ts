@@ -100,7 +100,6 @@ export class LeasingOfficerComponent implements OnInit {
       .updateApprovedLease(this.lease)
       .then(data => {
         customer.status = "Accepted";
-        this.showError();
       })
       .catch(error => {
         this.showError();
