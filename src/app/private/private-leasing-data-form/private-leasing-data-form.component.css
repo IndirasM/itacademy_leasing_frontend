@@ -1,0 +1,4 @@
+mat-table.mat-table {
+  height: 30em;
+  overflow-y: auto;
+}
