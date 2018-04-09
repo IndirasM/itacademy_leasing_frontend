@@ -1,32 +1,8 @@
-/* .formwidth {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px;
-    border: 1px solid lightgrey;
-}
-
-.fullwidth {
-    width: 100%;
-} */
-
-/* .example-container {
-    display: flex;
-    flex-direction: column;
-    max-height: 500px;
-    min-width: 300px;
-} */
-
-/* .mat-table {
-    overflow: auto;
-    max-height: 500px;
-} */
 .sub-entry {
     width: 49.5%;
     float: left;
     column-gap:30px;
 }
-
 .container{
     text-align:center;
     width: 50%;
@@ -37,7 +13,6 @@
 .container .sub-entry:first-child{
     border-right:1px solid #e8ecef;
 }
-
 @media only screen and (min-width: 1100px){
     #calculations-popup{
         padding: 10px;
@@ -48,5 +23,4 @@
         border-radius: 15px;
         top: 60px;
     }
-
 }

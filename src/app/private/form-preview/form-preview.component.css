@@ -1,11 +1,11 @@
-.example-icon {
+/* .example-icon {
     padding: 0 14px;
 }
 
 .example-spacer {
     flex: 1 1 auto;
 }
-
+ */
 
 .formwidth {
   width: 500px;
@@ -18,15 +18,18 @@
 .fullwidth {
   width: 100%;
 }
-.formwidthred {
+/* .formwidthred {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
   border: 1px solid red;
-}
+} */
 .content-wrapper label{
   font-weight: 600;
+}
+.contact-container{
+  display: inherit;
 }
 .content-wrapper span{
   font-weight: 300;
@@ -39,4 +42,7 @@
 }
 .button-wrapper {
   margin-top: 30px;
+}
+.container{
+  padding: 0.5% !important;
 }

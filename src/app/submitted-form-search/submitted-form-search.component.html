@@ -6,13 +6,16 @@
   <button mat-raised-button (click)="findLease()" color="primary">enter</button>
   <div *ngIf="error">Could not retrieve form with specified ID</div>
 </div>
-<div>
-  <label>Status: </label>
+<div align="center" class="divWidth" *ngIf="retrieved && type === 'Private'">
+  <label>Status: {{privateCustomer.status}}</label>
+</div>
+<div align="center" class="divWidth" *ngIf="retrieved && type === 'Private'">
+  <label>Status: {{privateCustomer.status}}</label>
 </div>
 <div align="center" class="divWidth" *ngIf="retrieved && type === 'Private'">
   <table class="fullWidth" cellspacing="0">
     <tr>
-      <div><label></label></div>
+      <div><label>{{privateCustomer.status}}</label></div>
       <div>
         <label>Customer type: <span>{{privateCustomer.leaseType}}</span></label>
       </div>
@@ -77,6 +80,7 @@
 <div align="center" class="divWidth" *ngIf="retrieved && type ===  'Corporate' ">
   <table class="fullWidth" cellspacing="0">
     <tr>
+      <div><label>{{corporateCustomer.status}}</label></div>
       <div>
         <label>Customer type: <span>{{corporateCustomer.leaseType}}</span></label>
       </div>
