@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LeaseToUserService } from '../services/leasing-to-user.service';
+import {Component, OnInit} from '@angular/core';
+import {LeaseToUserService} from '../services/leasing-to-user.service';
 
 @Component({
   selector: 'app-end-screen',
@@ -8,14 +8,23 @@ import { LeaseToUserService } from '../services/leasing-to-user.service';
 })
 export class EndScreenComponent implements OnInit {
 
-  constructor(private leaseService: LeaseToUserService) { }
+  constructor(private leaseService: LeaseToUserService) {
+  }
 
   messageReady: boolean;
   message: string;
-
+  leaseId: string;
+  idReady = false;
 
   ngOnInit() {
+    this.leaseService.toSendLeaseId.subscribe(leaseId => {
+      if (leaseId) {
+        this.idReady = true;
+        this.leaseId = leaseId;
+      }
+    });
   }
+
   completed() {
     this.leaseService.changeStep(0);
   }

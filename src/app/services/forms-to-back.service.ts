@@ -41,4 +41,11 @@ export class FormsToBackService {
     const id = leaseToUpdate.id;
     return this.http.put(this.formsUrl + '/lease/' + id + '/status/rejected', leaseToUpdate, this.httpOptions).toPromise();
   }
+
+  retrieveLeaseById(leaseId): any {
+    return this.http
+      .get(this.formsUrl + '/lease/' + leaseId + '/with-customer')
+      .toPromise();
+  }
+
 }
