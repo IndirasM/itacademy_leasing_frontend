@@ -1,4 +1,7 @@
 mat-table.mat-table {
-    height: 30em;
-    overflow-y: auto;
+  height: 30em;
+  overflow-y: auto;
+}
+.calculations-popup{
+    margin-right:15%;
 }

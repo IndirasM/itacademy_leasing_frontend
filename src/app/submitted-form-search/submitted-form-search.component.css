@@ -10,9 +10,21 @@
   width: 100%;
 } */
 .search-container{
-  margin-top: 10%;
+  margin-top: 5%;
 }
 .container h3{
   margin-left:auto;
   color:rgb(70, 67, 67);
+}
+.container{
+  height: 80%;
+  margin: auto;
+}
+.status{
+  background-color: #A5D6A7;
+  width:100%;
+  
+}
+.label{
+  display:inline;
 }
