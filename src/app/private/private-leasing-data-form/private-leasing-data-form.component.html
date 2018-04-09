@@ -79,7 +79,7 @@
                     <div class="form-group" align="center">
                         <!-- <label>Advance payment percentage</label> -->
                         <mat-form-field >
-                            <input matInput placeholder="Advance payment precentage" formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel
+                            <input matInput placeholder="Advance payment percentage" formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel
                                 (input)="pitch($event)" required>
                         </mat-form-field>%
                     </div>
@@ -90,7 +90,7 @@
                                     required>
                             </mat-form-field>%
                     </div>
-                   
+
 
                     <div class="form-group" align="center">
                         <label>Lease Period</label>
@@ -101,10 +101,10 @@
                     </div>
 
                     <div class="form-group" align="center">
-                            <label> Advance payment amount: 
+                            <label> Advance payment amount:
                                  <span>{{ advancePaymentAmount.toFixed(2) }}</span>
                             </label>
-                            
+
                     </div>
 
                     <div align="center">
@@ -135,7 +135,7 @@
                             <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
                     </div>
-                   
+
             </div>
             <div id="buttons" align="center">
                     <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>

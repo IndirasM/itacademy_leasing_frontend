@@ -7,65 +7,126 @@
   <div *ngIf="error">Could not retrieve form with specified ID</div>
 </div>
 
-<div align="center" class="divWidth" *ngIf="retrieved">
+<div align="center" class="divWidth" *ngIf="retrieved && type === 'Private'">
   <table class="fullWidth" cellspacing="0">
     <tr>
       <div>
-        <label>Customer type: {{privateCustomer.leaseType}}</label>
+        <label>Customer type: <span>{{privateCustomer.leaseType}}</span></label>
       </div>
       <div>
-        <label>Asset Type: {{privateCustomer.assetType}}</label>
+        <label>Asset Type: <span>{{privateCustomer.assetType}}</span></label>
       </div>
       <div>
-        <label>Make: {{privateCustomer.carBrand}}</label>
+        <label>Make: <span>{{privateCustomer.carBrand}}</span></label>
       </div>
       <div>
-        <label>Model: {{privateCustomer.carModel}}</label>
+        <label>Model: <span>{{privateCustomer.carModel}}</span></label>
       </div>
       <div>
-        <label>Year: {{privateCustomer.years}}</label>
+        <label>Year: <span>{{privateCustomer.years}}</span></label>
       </div>
       <div>
-        <label>Engine power (kW): {{privateCustomer.enginePower}}</label>
+        <label>Engine power (kW): <span>{{privateCustomer.enginePower}}</span></label>
       </div>
       <div>
-        <label>Asset price: {{privateCustomer.assetPrice}}</label>
+        <label>Asset price: <span>{{privateCustomer.assetPrice}}</span></label>
       </div>
       <div>
-        <label>Advance payment percentage: {{privateCustomer.advancePaymentPercentage}}</label>
+        <label>Advance payment percentage: <span>{{privateCustomer.advancePaymentPercentage}}</span></label>
       </div>
       <div>
-        <label>Advance payment amount: {{privateCustomer.advancePaymentAmount}}</label>
+        <label>Advance payment amount: <span>{{privateCustomer.advancePaymentAmount}}</span></label>
       </div>
       <div>
-        <label>Lease period: {{privateCustomer.leasePeriod}}</label>
+        <label>Lease period: <span>{{privateCustomer.leasePeriod}}</span></label>
       </div>
       <div>
-        <label>Margin: {{privateCustomer.margin}}</label>
+        <label>Margin: <span>{{privateCustomer.margin}}</span></label>
       </div>
       <div>
-        <label>Contract fee: {{privateCustomer.contractFee}}</label>
+        <label>Contract fee: <span>{{privateCustomer.contractFee}}</span></label>
       </div>
       <div>
-        <label>Payment date: {{privateCustomer.paymentDate}}</label>
+        <label>Payment date: <span>{{privateCustomer.paymentDate}}</span></label>
       </div>
       <div>
-        <label>First Name: {{privateCustomer.firstName}}</label>
+        <label>First Name: <span>{{privateCustomer.firstName}}</span></label>
       </div>
       <div>
-        <label>Last Name: {{privateCustomer.lastName}}</label>
+        <label>Last Name: <span>{{privateCustomer.lastName}}</span></label>
       </div>
       <div>
-        <label>Personal code: {{privateCustomer.personalCode}}</label>
+        <label>Personal code: <span>{{privateCustomer.personalCode}}</span></label>
       </div>
       <div>
-        <label>Phone number: {{privateCustomer.phoneNumber}}</label>
+        <label>Phone number: <span>{{privateCustomer.phoneNumber}}</span></label>
       </div>
       <div>
-        <label>Email: {{privateCustomer.email}}</label>
+        <label>Email: <span>{{privateCustomer.email}}</span></label>
       </div>
       <div>
-        <label>Address: {{privateCustomer.address}}</label>
+        <label>Address: <span>{{privateCustomer.address}}</span></label>
+      </div>
+    </tr>
+  </table>
+</div>
+
+<div align="center" class="divWidth" *ngIf="retrieved && type ===  'Corporate' ">
+  <table class="fullWidth" cellspacing="0">
+    <tr>
+      <div>
+        <label>Customer type: <span>{{corporateCustomer.leaseType}}</span></label>
+      </div>
+      <div>
+        <label>Asset Type: <span>{{corporateCustomer.assetType}}</span></label>
+      </div>
+      <div>
+        <label>Make: <span>{{corporateCustomer.carBrand}}</span></label>
+      </div>
+      <div>
+        <label>Model: <span>{{corporateCustomer.carModel}}</span></label>
+      </div>
+      <div>
+        <label>Year: <span>{{corporateCustomer.years}}</span></label>
+      </div>
+      <div>
+        <label>Engine power (kW): <span>{{corporateCustomer.enginePower}}</span></label>
+      </div>
+      <div>
+        <label>Asset price: <span>{{corporateCustomer.assetPrice}}</span></label>
+      </div>
+      <div>
+        <label>Advance payment percentage: <span>{{corporateCustomer.advancePaymentPercentage}}</span></label>
+      </div>
+      <div>
+        <label>Advance payment amount: <span>{{corporateCustomer.advancePaymentAmount}}</span></label>
+      </div>
+      <div>
+        <label>Lease period: <span>{{corporateCustomer.leasePeriod}}</span></label>
+      </div>
+      <div>
+        <label>Margin: <span>{{corporateCustomer.margin}}</span></label>
+      </div>
+      <div>
+        <label>Contract fee: <span>{{corporateCustomer.contractFee}}</span></label>
+      </div>
+      <div>
+        <label>Payment date: <span>{{corporateCustomer.paymentDate}}</span></label>
+      </div>
+      <div>
+        <label>First Name: <span>{{corporateCustomer.companyName}}</span></label>
+      </div>
+      <div>
+        <label>Last Name: <span>{{corporateCustomer.companyCode}}</span></label>
+      </div>
+      <div>
+        <label>Phone number: <span>{{corporateCustomer.phoneNumber}}</span></label>
+      </div>
+      <div>
+        <label>Email: <span>{{corporateCustomer.email}}</span></label>
+      </div>
+      <div>
+        <label>Address: <span>{{corporateCustomer.address}}</span></label>
       </div>
     </tr>
   </table>
