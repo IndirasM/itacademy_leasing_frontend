@@ -1,10 +1,14 @@
-<div align="center" class="divWidth">
+<div class="search-container">
+ 
+<div align="center" class="container">
+    <h3 >Find your lease here: </h3>
   <mat-form-field mat-f [formGroup]="customerForm">
     <input matInput placeholder="lease ID" formControlName="leaseId" required>
     <mat-error *ngIf="!retrieved">Valid ID code is required</mat-error>
   </mat-form-field>
   <button mat-raised-button (click)="findLease()" color="primary">enter</button>
   <div *ngIf="error">Could not retrieve form with specified ID</div>
+</div>
 </div>
 
 <div align="center" class="divWidth" *ngIf="retrieved && type === 'Private'">

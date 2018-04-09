@@ -1,4 +1,4 @@
-.divWidth {
+/* .divWidth {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -8,4 +8,11 @@
 
 .fullWidth {
   width: 100%;
+} */
+.search-container{
+  margin-top: 10%;
+}
+.container h3{
+  margin-left:auto;
+  color:rgb(70, 67, 67);
 }
