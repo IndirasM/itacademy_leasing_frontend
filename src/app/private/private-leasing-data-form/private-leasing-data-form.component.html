@@ -83,6 +83,14 @@
                                 (input)="pitch($event)" required>
                         </mat-form-field>%
                     </div>
+
+              <div class="form-group" align="center">
+                <label> Advance payment amount:
+                  <span>{{ advancePaymentAmount.toFixed(2) }}</span>
+                </label>
+
+              </div>
+
                     <div class="form-group" align="center">
                             <!-- <label>Margin</label> -->
                             <mat-form-field>
@@ -90,26 +98,11 @@
                                     required>
                             </mat-form-field>%
                     </div>
-                   
 
                     <div class="form-group" align="center">
                         <label>Lease Period</label>
-                        <label></label>
-                        <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"
-                            required></mat-slider>
-                        {{leasePeriod}}
-                    </div>
-
-                    <div class="form-group" align="center">
-                            <label> Advance payment amount: 
-                                 <span>{{ advancePaymentAmount.toFixed(2) }}</span>
-                            </label>
-                            
-                    </div>
-
-                    <div align="center">
-                        <label> Contract Fee: {{ contractFee.toFixed(2) }}</label>
-
+                      <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" (input)="pitch($event)" required></mat-slider>
+                      <p>{{leasePeriod}} months</p>
                     </div>
 
                     <div class="form-group" align="center">
@@ -135,7 +128,7 @@
                             <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
                     </div>
-                   
+
             </div>
             <div id="buttons" align="center">
                     <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>

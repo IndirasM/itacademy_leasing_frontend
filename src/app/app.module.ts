@@ -40,7 +40,9 @@ import { MatListModule } from "@angular/material/list";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { ErrorSnackBarComponent } from './leasing-officer/errorComponent';
-
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { GestureConfig } from '@angular/material';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,7 @@ import { ErrorSnackBarComponent } from './leasing-officer/errorComponent';
     MatSnackBarModule,
     MatTabsModule
   ],
-  providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService],
+  providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService, { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
   bootstrap: [AppComponent],
   entryComponents: [ErrorSnackBarComponent]
 
