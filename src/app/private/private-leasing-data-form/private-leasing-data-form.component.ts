@@ -36,9 +36,11 @@ import { FormsToBackService } from '../../services/forms-to-back.service';
 export class PrivateLeasingDataFormComponent implements OnInit {
   showDataList = false;
   displayedColumns = [
+    'index',
     'notRedeemedAssetValue',
     'assetRedemptionFees',
     'interestPayments',
+    'contractFee',
     'totalMonthlyPaymentValue'
   ];
   dataSource: any;
@@ -47,6 +49,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   partialLeaseDataForSchedulePromise: ScheduleOfContributionDataPromise;
   partialLeaseDataForSchedule: ScheduleOfContributionData;
   userType: string;
+  public index: string;
 
   assetTypes = [{ value: 'Vehicle', viewValue: 'Vehicle' }];
 
@@ -123,6 +126,7 @@ export class PrivateLeasingDataFormComponent implements OnInit {
   assetPriceValidator(min: number): FormControl {
     return new FormControl(null, [
       Validators.required,
+      Validators.max(10000000),
       Validators.min(min)
     ]);
   }
@@ -187,17 +191,11 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     );
   }
 
-  get totalPayment() {
-    return (
-      this.totalInterest +
-      this.financingAmount +
-      this.contractFee +
-      0.7 * this.leasePeriod
-    );
-  }
-
   get totalMonthlyPayment() {
-    return this.totalPayment / this.carLeasingForm.get('leasePeriod').value;
+    const r = (this.margin / 100) / 12;
+    const denominator = (1 - ( 1 / Math.pow((1 + r), this.carLeasingForm.get('leasePeriod').value))) / r;
+
+    return (this.assetPrice.value - this.advancePaymentAmount) / denominator;
   }
 
   reset() {
@@ -274,31 +272,31 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     this.brandsAfterChangeEvent = this.models.filter(p => p.type === assetType);
   }
 
-  applyBorder(){
-    
-    let stateCheck = setInterval(() => {
+  applyBorder() {
+
+    const stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(stateCheck);
         document.getElementById("calculations-popup").setAttribute("style","border: 1px solid #e8ecef ");
       }
     }, 100);
-    
-   
+
+
       //document.getElementById("calculations-popup").setAttribute("style"," border: 1px solid #e8ecef ");
-    
+
   }
-  disableBorder(){
-    let stateCheck = setInterval(() => {
+  disableBorder() {
+    const stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(stateCheck);
         document.getElementById("calculations-popup").setAttribute("style"," border:none ");
       }
     }, 100);
-    
-  
- 
+
+
+
       //document.getElementById("calculations-popup").setAttribute("style"," border: none");
-    
+
     // document.getElementById("calculations-popup").setAttribute("style"," border: none");
   }
 

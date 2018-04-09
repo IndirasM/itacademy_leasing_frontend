@@ -11,9 +11,9 @@ import { LeaseData } from '../private-leasing-data-form/private-leasing-data';
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Component({
-  selector: "app-private-user-data-form",
-  templateUrl: "./private-user-data-form.component.html",
-  styleUrls: ["../styles.css","./private-user-data-form.component.css"]
+  selector: 'app-private-user-data-form',
+  templateUrl: './private-user-data-form.component.html',
+  styleUrls: ['../styles.css', './private-user-data-form.component.css']
 })
 export class PrivateUserDataFormComponent implements OnInit {
   public userForm: FormGroup;
@@ -40,7 +40,7 @@ export class PrivateUserDataFormComponent implements OnInit {
       ],
       personalCode: [
         null,
-        [Validators.pattern("(^[3456])[0-9]{2}(0[1-9]|1[0-2])(0[1-9]||[1-2][0-9]|3[0-1])[0-9]{4}"), Validators.maxLength(11)] 
+        [Validators.pattern('(^[3456])[0-9]{2}(0[1-9]|1[0-2])(0[1-9]||[1-2][0-9]|3[0-1])[0-9]{4}'), Validators.maxLength(11)]
       ],
       phoneNumber: [
         null,

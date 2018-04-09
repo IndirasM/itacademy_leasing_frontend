@@ -54,7 +54,7 @@ export class LeasingOfficerComponent implements OnInit {
     });
   }
 
-  showError(){
+  showError() {
     this.snackBar.openFromComponent(ErrorSnackBarComponent, {duration: 2000, verticalPosition: 'top'});
   }
 
@@ -73,20 +73,20 @@ export class LeasingOfficerComponent implements OnInit {
     this.createListsByStatus(this.privateCustomers, this.corporateCustomers);
   }
 
-  createListsByStatus(privateCustomers, corporateCustomers){
-    for (let i = 0; i < privateCustomers.length; i++){
-      if(privateCustomers[i].status == "Waiting"){
+  createListsByStatus(privateCustomers, corporateCustomers) {
+    for (let i = 0; i < privateCustomers.length; i++) {
+      if (privateCustomers[i].status == 'Waiting') {
         this.privateWaiting.push(privateCustomers[i]);
-      } else if(privateCustomers[i].status == "Accepted"){
+      } else if (privateCustomers[i].status == 'Accepted') {
         this.privateAccepted.push(privateCustomers[i]);
-      } else this.privateDeclined.push(privateCustomers[i]);
+      } else { this.privateDeclined.push(privateCustomers[i]); }
     }
-    for (let i = 0; i < corporateCustomers.length; i++){
-      if(corporateCustomers[i].status == "Waiting"){
+    for (let i = 0; i < corporateCustomers.length; i++) {
+      if (corporateCustomers[i].status == 'Waiting') {
         this.corporateWaiting.push(corporateCustomers[i]);
-      } else if(corporateCustomers[i].status == "Accepted"){
+      } else if (corporateCustomers[i].status == 'Accepted') {
         this.corporateAccepted.push(corporateCustomers[i]);
-      } else this.corporateDeclined.push(corporateCustomers[i]);
+      } else { this.corporateDeclined.push(corporateCustomers[i]); }
     }
   }
 
@@ -95,11 +95,11 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   approveLease(customer) {
-    this.lease = new BackLeaseData(customer, "Accepted");
+    this.lease = new BackLeaseData(customer, 'Accepted');
     this.updateService
       .updateApprovedLease(this.lease)
       .then(data => {
-        customer.status = "Accepted";
+        customer.status = 'Accepted';
       })
       .catch(error => {
         this.showError();
@@ -107,11 +107,11 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   declineLease(customer) {
-    this.lease = new BackLeaseData(customer, "Declined");
+    this.lease = new BackLeaseData(customer, 'Declined');
     this.updateService
       .updateDeclinedLease(this.lease)
       .then(data => {
-        customer.status = "Declined";
+        customer.status = 'Declined';
       })
       .catch(error => {
         this.showError();
