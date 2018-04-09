@@ -101,7 +101,7 @@
 
                     <div class="form-group" align="center">
                         <label>Lease Period</label>
-                      <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" (input)="pitch($event)" required></mat-slider>
+                      <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)" required></mat-slider>
                       <p>{{leasePeriod}} months</p>
                     </div>
 
