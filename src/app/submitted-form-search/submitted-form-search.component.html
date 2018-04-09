@@ -1,14 +1,15 @@
 <div align="center" class="divWidth">
   <mat-form-field>
-    <input placeholder="ID code" formControlName="IDCode" required>
-    <mat-error *ngIf="!IDCode">Valid ID code is required</mat-error>
+    <input placeholder="lease ID" formControlName="leaseId" required>
+    <mat-error *ngIf="!leaseID">Valid ID code is required</mat-error>
+    <button  (click)="onSubmit()">enter</button>
   </mat-form-field>
 </div>
 
-<div align="center" class="divWidth" >
+<div align="center" class="divWidth" *ngIf="!leaseID">
   <table class="fullWidth" cellspacing="0" >
     <tr>
-      <div>
+      <!--<div>
         <label>Customer type: {{leaseData.leaseType}}</label></div>
       <div>
         <label>Asset Type: {{leaseData.assetType}}</label></div>
@@ -47,7 +48,8 @@
       <div><label>Email: {{userData.email}}</label>
       </div>
       <div><label>Address: {{userData.address}}</label>
-      </div>
+      </div>-->
+      <div><label>fuck</label></div>
     </tr>
   </table>
 </div>

@@ -4,6 +4,8 @@ import {FormsToBackService} from '../services/forms-to-back.service';
 import {LeaseData} from '../private/private-leasing-data-form/private-leasing-data';
 import {PrivateUserData} from '../private/private-user-data-form/privateUserData';
 import {CorporateUserData} from '../corporate/corporate-user-data-form/corporateUserData';
+import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-submitted-form-search',
@@ -12,28 +14,35 @@ import {CorporateUserData} from '../corporate/corporate-user-data-form/corporate
 })
 export class SubmittedFormSearchComponent implements OnInit {
 
-  constructor(
-    private leaseService: LeaseToUserService,
-    ) {}
-
+  public customerForm: FormGroup;
   public leaseData: LeaseData;
   public userData: PrivateUserData;
   private corporateUserData: CorporateUserData;
 
-  ngOnInit() {
-    this.leaseService.toSend.subscribe(leaseData => {
-      if (leaseData) {
-        this.leaseData = leaseData;
-      }
-    });
-    this.leaseService.toSendUser.subscribe(userData => {
-      if (userData) {
-        this.userData = userData;
-      }
-    });
-    this.leaseService.toSendCorporate.subscribe(corporateUserData => {
-      this.corporateUserData = corporateUserData;
+  constructor(fb: FormBuilder,
+              private leaseService: LeaseToUserService,
+              private retrievalService: FormsToBackService) {
+    this.customerForm = fb.group({
+      leaseId: new FormControl(null, Validators.required)
     });
   }
 
+
+  ngOnInit() {
+  }
+
+  get leaseID() {
+    console.log('hello', this.customerForm.get('leaseId').value);
+    return this.customerForm.get('leaseId').value;
+  }
+
+  onSubmit() {
+    // fb.leaseId: this.customerForm.value['leaseId'];
+    // console.log(5ac677d3050fa700044da116)
+    console.log(this.leaseID);
+    // this.retrievalService.retrieveLeaseById
+    // (this.customerForm.get('leaseId').value).then(data => {
+    //   console.log(data);
+    // }
+  }
 }

@@ -58,8 +58,7 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   checkStatus(privateCustomer) {
-    if (privateCustomer.status != 'Waiting') { return true; }
-    else { return false; }
+    if (privateCustomer.status != 'Waiting') { return true; } else { return false; }
   }
 
   approveLease(customer) {
