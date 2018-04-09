@@ -1,6 +1,5 @@
 ///<reference path="../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import {Component, OnInit} from '@angular/core';
-import {LeaseToUserService} from '../services/leasing-to-user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +8,8 @@ import {LeaseToUserService} from '../services/leasing-to-user.service';
 })
 export class HomeComponent implements OnInit {
 
-  customerType: string;
-
-  onPrivate() {
-    this.customerType = 'Private';
-    this.customerTypeService.changeUserType(this.customerType);
+  constructor() {
   }
-
-  onCorporate() {
-    this.customerType = 'Corporate';
-    this.customerTypeService.changeUserType(this.customerType);
-  }
-
-  constructor(private customerTypeService: LeaseToUserService) {
-
-  }
-
-
   ngOnInit() {
   }
 
