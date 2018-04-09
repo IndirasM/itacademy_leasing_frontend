@@ -8,7 +8,7 @@ import {LeaseData} from '../../private/private-leasing-data-form/private-leasing
 @Component({
   selector: 'app-corporate-user-data-form',
   templateUrl: './corporate-user-data-form.component.html',
-  styleUrls: ['./corporate-user-data-form.component.css']
+  styleUrls: ['./corporate-user-data-form.component.css','../../private/styles.css']
 })
 export class CorporateUserDataFormComponent implements OnInit {
 

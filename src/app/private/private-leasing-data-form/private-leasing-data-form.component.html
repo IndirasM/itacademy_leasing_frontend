@@ -1,168 +1,188 @@
 <body>
     <div id="c1" align="center" class="container">
-        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" >
+        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm">
             <div class="sub-entry">
-                    <div class="form-group" align="center">
-                        <mat-form-field>
-                            <mat-select placeholder="Asset Type" formControlName="assetType" required>
-                                <mat-option *ngFor="let assetType of assetTypes" [value]="assetType.value">
-                                    {{ assetType.viewValue }}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="!assetType">Asset must be selected</mat-error>
+                <div class="form-group" align="center">
+                    <mat-form-field>
+                        <mat-select placeholder="Asset Type" formControlName="assetType" required>
+                            <mat-option *ngFor="let assetType of assetTypes" [value]="assetType.value">
+                                {{ assetType.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!assetType">Asset must be selected</mat-error>
 
-                        </mat-form-field>
-                    </div>
+                    </mat-form-field>
+                </div>
 
-                    <div class="form-group" align="center">
-                        <mat-form-field>
-                            <mat-select placeholder="Brand" formControlName="brand" required>
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let brand of brands" [value]="brand">{{brand}}</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="!brand">Brand must be selected</mat-error>
-                        </mat-form-field>
-                    </div>
+                <div class="form-group" align="center">
+                    <mat-form-field>
+                        <mat-select placeholder="Brand" formControlName="brand" required>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let brand of brands" [value]="brand">{{brand}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!brand">Brand must be selected</mat-error>
+                    </mat-form-field>
+                </div>
 
-                    <div class="form-group" align="center">
-                        <mat-form-field>
-                            <mat-select placeholder="Model" formControlName="model" required>
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let p of models |productFilter:carLeasingForm.get('brand').value" [value]="p.name">{{p.name}}</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="!model">Model Must be selected</mat-error>
-                            <span class="help-block"></span>
-                            <mat-hint>(total models:{{(models|productFilter:carLeasingForm.get('brand').value).length}})</mat-hint>
-                        </mat-form-field>
+                <div class="form-group" align="center">
+                    <mat-form-field>
+                        <mat-select placeholder="Model" formControlName="model" required>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let p of models |productFilter:carLeasingForm.get('brand').value" [value]="p.name">{{p.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="!model">Model Must be selected</mat-error>
+                        <span class="help-block"></span>
+                    </mat-form-field>
 
-                    </div>
+                </div>
 
-                    <div class="form-group" align="center">
-                        <mat-form-field>
-                            <mat-select placeholder="Year" formControlName="year" required>
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="year.invalid && year.touched && !(year.value!=None)" class="form-text text-danger">Year must be selected</mat-error>
-                            <span class="help-block"></span>
-                        </mat-form-field>
-                    </div>
+                <div class="form-group" align="center">
+                    <mat-form-field>
+                        <mat-select placeholder="Year" formControlName="year" required>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let year of years" [value]="year">{{year}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="year.invalid && year.touched && !(year.value!=None)" class="form-text text-danger">Year must be selected</mat-error>
+                        <span class="help-block"></span>
+                    </mat-form-field>
+                </div>
 
-                    <div class="form-group" align="center">
-                        <mat-form-field>
-                            <input matInput placeholder="Engine Power" type=number formControlName="enginePower" required maxlength="3">
-                            <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value < 50" class="form-text text-danger">Engine power is too low</mat-error>
-                            <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value > 1500" class="form-text text-danger">Engine power is too high</mat-error>
-                            <span class="help-block"></span>
-                            <mat-hint>(required engine power: min 50 max 1500)</mat-hint>
+                <div class="form-group" align="center">
+                    <mat-form-field>
+                        <input matInput placeholder="Engine Power" type=number formControlName="enginePower" required maxlength="3">
+                        <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value < 50" class="form-text text-danger">Engine power is too low</mat-error>
+                        <mat-error *ngIf="enginePower.invalid && enginePower.touched && enginePower.value > 1500" class="form-text text-danger">Engine power is too high</mat-error>
+                        <span class="help-block"></span>
+                        <mat-hint>Min: 50 Max: 1500</mat-hint>
 
-                        </mat-form-field>
-                    </div>
+                    </mat-form-field>
+                </div>
             </div>
-            <div class= "sub-entry">
+            <div class="sub-entry">
 
-                    <div class="form-group" align="center">
-                        <mat-form-field>
+                <div class="form-group" align="center">
+                    <mat-form-field>
 
-                            <input matInput placeholder="Asset Price" type="number" formControlName="assetPrice" [maxlength]="10" required>
-                            <mat-error *ngIf="assetPrice.invalid && userType == 'Private' && assetPrice.touched && assetPrice.value < 5000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
-                            <mat-hint *ngIf="userType == 'Private'"> Asset price (min is 5000 max 10 000 000)</mat-hint>
+                        <input matInput placeholder="Asset Price" type="number" formControlName="assetPrice" [maxlength]="10" required>
+                        <mat-error *ngIf="assetPrice.invalid && userType == 'Private' && assetPrice.touched && assetPrice.value < 5000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
+                        <mat-hint *ngIf="userType == 'Private'"> Min: 5 000 Max: 10 000 000</mat-hint>
 
-                            <mat-error *ngIf="assetPrice.invalid && userType == 'Corporate' && assetPrice.touched && assetPrice.value < 10000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
-                            <mat-hint *ngIf="userType == 'Corporate'"> Asset price (min is 10000 max 10 000 000)</mat-hint>
+                        <mat-error *ngIf="assetPrice.invalid && userType == 'Corporate' && assetPrice.touched && assetPrice.value < 10000 && assetPrice.value > 10000000" class="form-text text-danger">Asset price is too low</mat-error>
+                        <mat-hint *ngIf="userType == 'Corporate'"> Min: 10 000 Max: 10 000 000</mat-hint>
 
 
-                        </mat-form-field>
+                    </mat-form-field>
 
-                    </div>
+                </div>
 
-                    <div class="form-group" align="center">
-                        <!-- <label>Advance payment percentage</label> -->
-                        <mat-form-field >
-                            <input matInput placeholder="Advance payment precentage" formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel
-                                (input)="pitch($event)" required>
-                        </mat-form-field>%
-                    </div>
-                    <div class="form-group" align="center">
-                            <!-- <label>Margin</label> -->
-                            <mat-form-field>
-                                <input matInput placeholder="Margin" formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)"
-                                    required>
-                            </mat-form-field>%
-                    </div>
-                   
+                <div class="form-group" align="center">
+                    <!-- <label>Advance payment percentage</label> -->
+                    <mat-form-field>
+                        <input matInput placeholder="Advance payment precentage" formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                    </mat-form-field>%
+                </div>
 
-                    <div class="form-group" align="center">
-                        <label>Lease Period</label>
+                <div class="form-group" align="center">
+                    <label> Advance payment amount: 
+                        <span>{{ advancePaymentAmount.toFixed(2) }}</span>
+                    </label>
+
+                </div>
+
+
+                <div class="form-group" align="center">
+                    <!-- <label>Margin</label> -->
+                    <mat-form-field>
+                        <input matInput placeholder="Margin" formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)" required>
+                    </mat-form-field>%
+                </div>
+
+
+                <div class="form-group" align="center">
+                    <label>Lease Period: {{leasePeriod}} months</label>
+                    <label></label>
+                    <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)" required></mat-slider>
+                      
+                </div>
+
+
+                <div class="form-group" align="center">
+                    <mat-radio-group formControlName="paymentDate" required>
+                        <label>Payment day</label>
                         <label></label>
-                        <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"
-                            required></mat-slider>
-                        {{leasePeriod}}
-                    </div>
+                        <mat-radio-button color="primary" value="15">15</mat-radio-button>
+                        <mat-radio-button color="primary" value="30 ">30</mat-radio-button>
+                    </mat-radio-group>
+                </div>
 
-                    <div class="form-group" align="center">
-                            <label> Advance payment amount: 
-                                 <span>{{ advancePaymentAmount.toFixed(2) }}</span>
-                            </label>
-                            
+                <div class="form-group" id="calculations-popup" align="center" *ngIf="userType === 'Private'">
+                    <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center">
+                        <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
                     </div>
-
-                    <div align="center">
-                        <label> Contract Fee: {{ contractFee.toFixed(2) }}</label>
-
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0" align="center">
+                        <label> Contract fee {{ contractFee.toFixed(2) }}</label>
                     </div>
-
-                    <div class="form-group" align="center">
-                        <mat-radio-group formControlName="paymentDate" required>
-                            <label>Payment day</label>
-                            <label></label>
-                            <mat-radio-button color="primary" value="15 ">15</mat-radio-button>
-                            <mat-radio-button color="primary" value="30 ">30</mat-radio-button>
-                        </mat-radio-group>
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
+                        <label> Total interest {{ totalInterest.toFixed(2) }}</label>
                     </div>
-
-                    <div class="form-group" id="calculations-popup" align="center" >
-                        <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center" >
-                            <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
-                        </div>
-                        <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0" align="center">
-                            <label> Contract fee {{ contractFee.toFixed(2) }}</label>
-                        </div>
-                        <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                            <label> Total interest {{ totalInterest.toFixed(2) }}</label>
-                        </div>
-                        <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                            <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
-                        </div>
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
+                        <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
                     </div>
-                   
+                </div>
+
+                <div class="form-group" id="calculations-popup" align="center" *ngIf="userType === 'Corporate'">
+                    <div class="form-group" *ngIf="assetPrice.value >= 10000" align="center">
+                        <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
+                    </div>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0" align="center">
+                        <label> Contract fee {{ contractFee.toFixed(2) }}</label>
+                    </div>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
+                        <label> Total interest {{ totalInterest.toFixed(2) }}</label>
+                    </div>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
+                        <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
+                    </div>
+                </div>
+
             </div>
             <div id="buttons" align="center">
-                    <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>
-                    <button mat-raised-button color="primary" matStepperNext [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
-                    <button mat-raised-button color="primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
-           </div>
+                <button mat-raised-button color="primary" matStepperNext [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
+                <button mat-raised-button color="primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Close' : 'Payment Schedule'}}</button>
+            </div>
 
 
             <div class="example-container mat-elevation-z8" *ngIf='showDataList'>
                 <mat-table #table [dataSource]="dataSource">
 
+                    <ng-container matColumnDef="index">
+
+                        <mat-header-cell *matHeaderCellDef> Nr </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.index}} </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="notRedeemedAssetValue">
-                        <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Not Redeemed Asset Value, Eur </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.notRedeemedAssetValue.toFixed(2)}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="assetRedemptionFees">
-                        <mat-header-cell *matHeaderCellDef> Asset Redemption Fees </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Asset Redemption Fees, Eur </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.assetRedemptionFees.toFixed(2)}} </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="interestPayments">
-                        <mat-header-cell *matHeaderCellDef> Interest Payments </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Interest Payments, Eur </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.interestPayments.toFixed(2)}} </mat-cell>
                     </ng-container>
+
+                    <ng-container matColumnDef="contractFee">
+                        <mat-header-cell *matHeaderCellDef> Contract Fee, Eur </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.contractFee}} </mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="totalMonthlyPaymentValue">
-                        <mat-header-cell *matHeaderCellDef> Total Monthly Payment </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef> Total Monthly Payment, Eur </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.totalMonthlyPaymentValue.toFixed(2)}} </mat-cell>
                     </ng-container>
 
@@ -171,5 +191,5 @@
                 </mat-table>
             </div>
         </form>
-        </div>
-        </body>
+    </div>
+</body>

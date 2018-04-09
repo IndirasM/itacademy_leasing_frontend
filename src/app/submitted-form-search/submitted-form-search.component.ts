@@ -1,25 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { LeaseToUserService } from "../services/leasing-to-user.service";
-import { FormsToBackService } from "../services/forms-to-back.service";
-import { LeaseData } from "../private/private-leasing-data-form/private-leasing-data";
-import { PrivateUserData } from "../private/private-user-data-form/privateUserData";
-import { CorporateUserData } from "../corporate/corporate-user-data-form/corporateUserData";
+import { Component, OnInit } from '@angular/core';
+import { LeaseToUserService } from '../services/leasing-to-user.service';
+import { FormsToBackService } from '../services/forms-to-back.service';
+import { LeaseData } from '../private/private-leasing-data-form/private-leasing-data';
+import { PrivateUserData } from '../private/private-user-data-form/privateUserData';
+import { CorporateUserData } from '../corporate/corporate-user-data-form/corporateUserData';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validator,
   Validators
-} from "@angular/forms";
+} from '@angular/forms';
 import {
   PrivateCustomer,
   CorporateCustomer
-} from "../leasing-officer/leasing-officer.component";
+} from '../leasing-officer/leasing-officer.component';
 
 @Component({
-  selector: "app-submitted-form-search",
-  templateUrl: "./submitted-form-search.component.html",
-  styleUrls: ["./submitted-form-search.component.css"]
+  selector: 'app-submitted-form-search',
+  templateUrl: './submitted-form-search.component.html',
+  styleUrls: ['./submitted-form-search.component.css']
 })
 export class SubmittedFormSearchComponent implements OnInit {
   public customerForm: FormGroup;
@@ -30,12 +30,17 @@ export class SubmittedFormSearchComponent implements OnInit {
   public corporateCustomer: CorporateCustomer;
   public retrieved = false;
   public error = false;
+  userType: string;
+  public user;
+  public type: string;
 
   constructor(
-    fb: FormBuilder,
-    private leaseService: LeaseToUserService,
+  fb: FormBuilder,
+    private leasingData: LeaseToUserService,
     private retrievalService: FormsToBackService
   ) {
+    this.leasingData.toSendType.subscribe(userType => this.userType = userType);
+
     this.customerForm = fb.group({
       leaseId: new FormControl(null, Validators.required)
     });
@@ -49,17 +54,30 @@ export class SubmittedFormSearchComponent implements OnInit {
   // }
 
   findLease() {
-    const user = this.retrievalService.retrieveLeaseById(
-      this.customerForm.value["leaseId"]
+<<<<<<< HEAD
+     this.user = this.retrievalService.retrieveLeaseById(
+      this.customerForm.value['leaseId']
     ).then(user => {
       this.retrieved = true;
-      if (user.lease.leaseType === "Private") {
+      console.log(user.lease.leaseType);
+      this.type = user.lease.leaseType;
+=======
+    const user = this.retrievalService.retrieveLeaseById(
+      this.customerForm.value['leaseId']
+    ).then(user => {
+      this.retrieved = true;
+>>>>>>> 15f7ce9908a45abb1d55a938b110d876b247f9e0
+      if (user.lease.leaseType === 'Private') {
         this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
-      } else if (user.lease.leaseType === "Corporate") {
+      } else if (user.lease.leaseType === 'Corporate') {
         this.corporateCustomer = new CorporateCustomer(user.lease, user.customer);
       }
     }
-  ).catch(error => {this.error = true;});
+<<<<<<< HEAD
+  ).catch(error => { this.error = true; });
+=======
+  ).catch(error => {this.error = true; });
+>>>>>>> 15f7ce9908a45abb1d55a938b110d876b247f9e0
 }
 }
 

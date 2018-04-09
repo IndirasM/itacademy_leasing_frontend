@@ -1,10 +1,9 @@
-<div class="formwidth">
-<div class="text">
-  Your application has been accepted and is being processed right now. You should receive the decision within 3 days.
-</div>
-<div class="text" *ngIf="idReady">All information about your application can be found 
-  <b>{{leaseId}}</b>
-</div>
-
-<button class="button" mat-raised-button color="primary" matStepperNext (click)="completed()" routerLink="../home">Finish</button>
+<div class="container">
+  <div class="text" *ngIf="idReady"> 
+    Your application has been accepted and is being processed right now. You should receive the decision within 3 days. Please use this code to check your application status: 
+    <b>{{leaseId}}</b>
+  </div>
+  <div id="finishBtn">
+    <button class="button" align="center" mat-raised-button color="primary" matStepperNext (click)="completed()" routerLink="../home">Finish</button>
+  </div>
 </div>

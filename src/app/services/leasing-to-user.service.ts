@@ -11,7 +11,7 @@ export class LeaseToUserService {
   corporateSrc: CorporateUserData;
   src: LeaseData;
   userSrc: PrivateUserData;
-  leaseIdSrc:string;
+  leaseIdSrc: string;
   currentStep = 0;
   public homeSource = new BehaviorSubject<string>(this.homeSrc);
   public dataSource = new BehaviorSubject<LeaseData>(this.src);
@@ -57,7 +57,7 @@ export class LeaseToUserService {
     this.setCurrentStep(index);
     this.successSource.next(index);
   }
-  changeLeaseId(LeaseId: string): any{
+  changeLeaseId(LeaseId: string): any {
     this.leaseIdSource.next(LeaseId);
   }
 

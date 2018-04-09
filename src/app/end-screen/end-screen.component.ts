@@ -4,7 +4,7 @@ import {LeaseToUserService} from '../services/leasing-to-user.service';
 @Component({
   selector: 'app-end-screen',
   templateUrl: './end-screen.component.html',
-  styleUrls: ['./end-screen.component.css']
+  styleUrls: ['./end-screen.component.css','../private/styles.css']
 })
 export class EndScreenComponent implements OnInit {
 
