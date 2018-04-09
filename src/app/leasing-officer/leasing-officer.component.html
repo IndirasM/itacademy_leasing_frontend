@@ -25,13 +25,13 @@
         <p>Asset Type: {{privateCustomer.assetType}}</p>
         <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
         <p>Year made: {{privateCustomer.years}}</p>
-        <p>Engine Power: {{privateCustomer.enginePower}} kW</p>
-        <p>Asset Price: {{privateCustomer.assetPrice}} EUR</p>
-        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage}} %</p>
-        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+        <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
         <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-        <p>Margin: {{privateCustomer.margin}} %</p>
-        <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
+        <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+        <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
         <p>Payment Day: {{privateCustomer.paymentDate}}</p>
         <mat-action-row>
           <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
@@ -68,13 +68,13 @@
         <p>Asset Type: {{privateCustomer.assetType}}</p>
         <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
         <p>Year made: {{privateCustomer.years}}</p>
-        <p>Engine Power: {{privateCustomer.enginePower}} kW</p>
-        <p>Asset Price: {{privateCustomer.assetPrice}} EUR</p>
-        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage}} %</p>
-        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+        <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
         <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-        <p>Margin: {{privateCustomer.margin}} %</p>
-        <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
+        <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+        <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
         <p>Payment Day: {{privateCustomer.paymentDate}}</p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -106,13 +106,13 @@
         <p>Asset Type: {{privateCustomer.assetType}}</p>
         <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
         <p>Year made: {{privateCustomer.years}}</p>
-        <p>Engine Power: {{privateCustomer.enginePower}} kW</p>
-        <p>Asset Price: {{privateCustomer.assetPrice}} EUR</p>
-        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage}} %</p>
-        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+        <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+        <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+        <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
         <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-        <p>Margin: {{privateCustomer.margin}} %</p>
-        <p>Contract Fee: {{privateCustomer.contractFee}} EUR</p>
+        <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+        <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
         <p>Payment Day: {{privateCustomer.paymentDate}}</p>
       </mat-expansion-panel>
     </mat-accordion>
@@ -143,13 +143,13 @@
         <p>Asset Type: {{corporateCustomer.assetType}}</p>
         <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
         <p>Year made: {{corporateCustomer.years}}</p>
-        <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
-        <p>Asset Price: {{corporateCustomer.assetPrice}} EUR</p>
-        <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage}} %</p>
-        <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount}} EUR</p>
+        <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
+        <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+        <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+        <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
         <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-        <p>Margin: {{corporateCustomer.margin}} %</p>
-        <p>Contract Fee: {{corporateCustomer.contractFee}} EUR</p>
+        <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+        <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
         <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
         <mat-action-row>
           <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
@@ -184,13 +184,13 @@
           <p>Asset Type: {{corporateCustomer.assetType}}</p>
           <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
           <p>Year made: {{corporateCustomer.years}}</p>
-          <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
-          <p>Asset Price: {{corporateCustomer.assetPrice}} EUR</p>
-          <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage}} %</p>
-          <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount}} EUR</p>
+          <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
+          <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+          <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+          <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
           <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{corporateCustomer.margin}} %</p>
-          <p>Contract Fee: {{corporateCustomer.contractFee}} EUR</p>
+          <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+          <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
           <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
         </mat-expansion-panel>
       </mat-accordion>
@@ -222,12 +222,12 @@
             <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
             <p>Year made: {{corporateCustomer.years}}</p>
             <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
-            <p>Asset Price: {{corporateCustomer.assetPrice}} EUR</p>
-            <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage}} %</p>
-            <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount}} EUR</p>
+            <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+            <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+            <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
             <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-            <p>Margin: {{corporateCustomer.margin}} %</p>
-            <p>Contract Fee: {{corporateCustomer.contractFee}} EUR</p>
+            <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+            <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
             <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
           </mat-expansion-panel>
         </mat-accordion>
