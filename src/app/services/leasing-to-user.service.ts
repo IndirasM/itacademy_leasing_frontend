@@ -57,7 +57,7 @@ export class LeaseToUserService {
     this.setCurrentStep(index);
     this.successSource.next(index);
   }
-  changeLeaseId(LeaseId: string){
+  changeLeaseId(LeaseId: string): any{
     this.leaseIdSource.next(LeaseId);
   }
 

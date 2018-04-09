@@ -1,6 +1,10 @@
-<div>
+<div class="formwidth">
+<div class="text">
   Your application has been accepted and is being processed right now. You should receive the decision within 3 days.
 </div>
-<div *ngIf="idReady">All information about your application can be found {{leaseId}}</div>
+<div class="text" *ngIf="idReady">All information about your application can be found 
+  <b>{{leaseId}}</b>
+</div>
 
-<button mat-raised-button color="primary" matStepperNext (click)="completed()" routerLink="../home">Finish</button>
+<button class="button" mat-raised-button color="primary" matStepperNext (click)="completed()" routerLink="../home">Finish</button>
+</div>

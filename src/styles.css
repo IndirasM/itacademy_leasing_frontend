@@ -16,13 +16,14 @@ h3 {
 }
 
 body {
-    margin: 2em;
+    margin: auto;
+   
 }
 
 body,
 input[text],
 button {
-    color: #888;
+    color: #000;
     font-family: Cambria, Georgia;
 }
 
@@ -36,7 +37,7 @@ body {
 }
 
 .basic-container {
-    padding: 5px;
+    padding: 20px;
 }
 
 .version-info {
@@ -49,4 +50,4 @@ body {
 }
 
 
-.buttonBlack {background-color: #555555;} /* Black */
+.buttonBlack {background-color: #555555;} 

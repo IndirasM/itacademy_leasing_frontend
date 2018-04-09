@@ -9,7 +9,7 @@ export class FormsToBackService {
 
   constructor(private http: HttpClient) {}
 
-  sendLeasingForm(leaseData) {
+  sendLeasingForm(leaseData): any {
     return this.http
       .post(this.formsUrl + "/complete-lease/add", leaseData, this.httpOptions)
       .toPromise();

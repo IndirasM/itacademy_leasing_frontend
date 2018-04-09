@@ -9,8 +9,25 @@ section.sec1 {
   height: 100vh;
   box-sizing: border-box;
   background: url('../../assets/images/home.jpg');
-  background-size: cover;
+  /* background-size: cover;
+  margin: 0;
+  padding: 0; */
 }
+/* .image-container{
+  background: url('../../assets/images/car1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:350px;
+  height:50%;
+  display:block;
+  margin: auto;
+  top: 0;
+  right:0;
+  bottom:0;
+  left:0;
+
+  position: absolute;
+} */
 
 nav {
   position: fixed;

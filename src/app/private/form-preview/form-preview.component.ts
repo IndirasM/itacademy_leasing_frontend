@@ -9,7 +9,7 @@ import { CorporateUserData } from "../../corporate/corporate-user-data-form/corp
 @Component({
   selector: "app-form-preview",
   templateUrl: "./form-preview.component.html",
-  styleUrls: ["./form-preview.component.css"]
+  styleUrls: ["./form-preview.component.css","../styles.css"]
 })
 export class FormPreviewComponent implements OnInit {
   constructor(
@@ -90,4 +90,4 @@ export class FormPreviewComponent implements OnInit {
 //   constructor(){
 //     this.leaseId= data.leaseId;
 //   }
-}
+

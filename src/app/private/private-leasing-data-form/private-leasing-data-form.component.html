@@ -1,8 +1,7 @@
 <body>
     <div id="c1" align="center" class="container">
-        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" class="formwidth">
-            <table class="fullwidth" cellspacing="0">
-                <tr>
+        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" >
+            <div class="sub-entry">
                     <div class="form-group" align="center">
                         <mat-form-field>
                             <mat-select placeholder="Asset Type" formControlName="assetType" required>
@@ -59,7 +58,8 @@
 
                         </mat-form-field>
                     </div>
-
+            </div>
+            <div class= "sub-entry">
 
                     <div class="form-group" align="center">
                         <mat-form-field>
@@ -74,35 +74,38 @@
                     </div>
 
                     <div class="form-group" align="center">
-                        <label>Advance payment percentage</label>
-                        <mat-form-field>
-                            <input matInput formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel
+                        <!-- <label>Advance payment percentage</label> -->
+                        <mat-form-field >
+                            <input matInput placeholder="Advance payment precentage" formControlName="advancePaymentPercentage" min="10" max="50" step="0.1" value="10" tickInterval="0.1" thumbLabel
                                 (input)="pitch($event)" required>
                         </mat-form-field>%
                     </div>
-
                     <div class="form-group" align="center">
-                        <label> Advance payment amount {{ advancePaymentAmount.toFixed(2) }}</label>
+                            <!-- <label>Margin</label> -->
+                            <mat-form-field>
+                                <input matInput placeholder="Margin" formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)"
+                                    required>
+                            </mat-form-field>%
                     </div>
+                   
 
                     <div class="form-group" align="center">
                         <label>Lease Period</label>
                         <label></label>
-                        <mat-slider formControlName="leasePeriod" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"
+                        <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)"
                             required></mat-slider>
                         {{leasePeriod}}
                     </div>
 
                     <div class="form-group" align="center">
-                        <label>Margin</label>
-                        <mat-form-field>
-                            <input matInput formControlName="margin" min="3.2" max="99" step="0.1" value="3.2" tickInterval="0.1" thumbLabel (input)="pitch($event)"
-                                required>
-                        </mat-form-field>%
+                            <label> Advance payment amount: 
+                                 <span>{{ advancePaymentAmount.toFixed(2) }}</span>
+                            </label>
+                            
                     </div>
 
                     <div align="center">
-                        <label> Contract Fee {{ contractFee.toFixed(2) }}</label>
+                        <label> Contract Fee: {{ contractFee.toFixed(2) }}</label>
 
                     </div>
 
@@ -110,13 +113,13 @@
                         <mat-radio-group formControlName="paymentDate" required>
                             <label>Payment day</label>
                             <label></label>
-                            <mat-radio-button value="15 ">15</mat-radio-button>
-                            <mat-radio-button value="30 ">30</mat-radio-button>
+                            <mat-radio-button color="primary" value="15 ">15</mat-radio-button>
+                            <mat-radio-button color="primary" value="30 ">30</mat-radio-button>
                         </mat-radio-group>
                     </div>
 
-                    <div class="form-group" align="center">
-                        <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center">
+                    <div class="form-group" id="calculations-popup" align="center" >
+                        <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center" >
                             <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
                         </div>
                         <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0" align="center">
@@ -129,13 +132,13 @@
                             <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
                         </div>
                     </div>
-                    <div>
-                        <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>
-                        <button mat-raised-button color="primary" matStepperNext [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
-                        <button mat-raised-button color="primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
-                    </div>
-                </tr>
-            </table>
+                   
+            </div>
+            <div id="buttons" align="center">
+                    <button mat-raised-button color="primary" matStepperPrevious routerLink="../home">Back</button>
+                    <button mat-raised-button color="primary" matStepperNext [disabled]="!carLeasingForm.valid" (click)="onSubmit()">Next</button>
+                    <button mat-raised-button color="primary" on-click="toggleDataList()" [disabled]="!isDataListValid">{{showDataList? 'Hide' : 'Show'}}</button>
+           </div>
 
 
             <div class="example-container mat-elevation-z8" *ngIf='showDataList'>
@@ -164,3 +167,6 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 </mat-table>
             </div>
+        </form>
+        </div>
+        </body>
