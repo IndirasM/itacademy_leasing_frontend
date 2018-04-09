@@ -6,6 +6,8 @@ import {
 } from '../private/private-leasing-data-form/private-leasing-data';
 import { PrivateUserData } from '../private/private-user-data-form/privateUserData';
 import { CorporateUserData } from '../corporate/corporate-user-data-form/corporateUserData';
+import { MatSnackBar } from '@angular/material';
+import { ErrorSnackBarComponent } from './errorComponent';
 
 @Component({
   selector: 'app-leasing-officer',
@@ -16,16 +18,25 @@ export class LeasingOfficerComponent implements OnInit {
   public users = [];
   public privateCustomers = [];
   public corporateCustomers = [];
+  public privateAccepted = [];
+  public privateDeclined = [];
+  public privateWaiting = [];
+  public corporateAccepted = [];
+  public corporateDeclined = [];
+  public corporateWaiting = [];
   public size = 0;
   public item;
   panelOpenState = false;
   public privateUser: PrivateUserData;
   public lease;
   public statusChanged = false;
+  public selectedIndex = 0;
+  public selectedTabIndex = 0;
 
   constructor(
     private retrievalService: FormsToBackService,
-    private updateService: FormsToBackService
+    private updateService: FormsToBackService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -43,6 +54,10 @@ export class LeasingOfficerComponent implements OnInit {
     });
   }
 
+  showError(){
+    this.snackBar.openFromComponent(ErrorSnackBarComponent, {duration: 2000, verticalPosition: 'top'});
+  }
+
   createCustomers() {
     for (let i = 0; i < this.users.length; i++) {
       if (this.users[i].lease.leaseType === 'Private') {
@@ -55,6 +70,24 @@ export class LeasingOfficerComponent implements OnInit {
         );
       }
     }
+    this.createListsByStatus(this.privateCustomers, this.corporateCustomers);
+  }
+
+  createListsByStatus(privateCustomers, corporateCustomers){
+    for (let i = 0; i < privateCustomers.length; i++){
+      if(privateCustomers[i].status == "Waiting"){
+        this.privateWaiting.push(privateCustomers[i]);
+      } else if(privateCustomers[i].status == "Accepted"){
+        this.privateAccepted.push(privateCustomers[i]);
+      } else this.privateDeclined.push(privateCustomers[i]);
+    }
+    for (let i = 0; i < corporateCustomers.length; i++){
+      if(corporateCustomers[i].status == "Waiting"){
+        this.corporateWaiting.push(corporateCustomers[i]);
+      } else if(corporateCustomers[i].status == "Accepted"){
+        this.corporateAccepted.push(corporateCustomers[i]);
+      } else this.corporateDeclined.push(corporateCustomers[i]);
+    }
   }
 
   checkStatus(privateCustomer) {
@@ -62,15 +95,27 @@ export class LeasingOfficerComponent implements OnInit {
   }
 
   approveLease(customer) {
-    customer.status = 'Accepted';
-    this.lease = new BackLeaseData(customer);
-    this.updateService.updateApprovedLease(this.lease);
+    this.lease = new BackLeaseData(customer, "Accepted");
+    this.updateService
+      .updateApprovedLease(this.lease)
+      .then(data => {
+        customer.status = "Accepted";
+      })
+      .catch(error => {
+        this.showError();
+      });
   }
 
   declineLease(customer) {
-    customer.status = 'Rejected';
-    this.lease = new BackLeaseData(customer);
-    this.updateService.updateDeclinedLease(this.lease);
+    this.lease = new BackLeaseData(customer, "Declined");
+    this.updateService
+      .updateDeclinedLease(this.lease)
+      .then(data => {
+        customer.status = "Declined";
+      })
+      .catch(error => {
+        this.showError();
+      });
   }
 }
 

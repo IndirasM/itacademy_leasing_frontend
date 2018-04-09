@@ -1,42 +1,72 @@
-<mat-accordion>
-  <mat-expansion-panel class="nig">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        FirstName Surname LeaseType and Some other info
-      </mat-panel-title>
-      <mat-panel-description>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <P>
-      Customer type</P><p>
+<div align="center" class="divWidth">
+  <mat-form-field mat-f [formGroup]="customerForm">
+    <input matInput placeholder="lease ID" formControlName="leaseId" required>
+    <mat-error *ngIf="!retrieved">Valid ID code is required</mat-error>
+  </mat-form-field>
+  <button mat-raised-button (click)="findLease()" color="primary">enter</button>
+  <div *ngIf="error">Could not retrieve form with specified ID</div>
+</div>
 
-      Asset Type </p><p>
-
-      Make </p><p>
-
-
-      Model </p><p>
-
-      Year </p><p>
-
-      Engine power (kW) </p><p>
-
-      Asset price </p><p>
-
-      Advance payment percentage </p><p>
-
-      Advance payment amount </p><p>
-
-      Lease period </p><p>
-
-      Margin </p><p>
-
-      Contract fee </p><p>
-
-      Payment date </p>
-    <mat-action-row>
-      <button md-colors="green">Approve</button>
-      <button md-colors="red">Disapprove</button>
-    </mat-action-row>
-  </mat-expansion-panel> 
-</mat-accordion>
+<div align="center" class="divWidth" *ngIf="retrieved">
+  <table class="fullWidth" cellspacing="0">
+    <tr>
+      <div>
+        <label>Customer type: {{privateCustomer.leaseType}}</label>
+      </div>
+      <div>
+        <label>Asset Type: {{privateCustomer.assetType}}</label>
+      </div>
+      <div>
+        <label>Make: {{privateCustomer.carBrand}}</label>
+      </div>
+      <div>
+        <label>Model: {{privateCustomer.carModel}}</label>
+      </div>
+      <div>
+        <label>Year: {{privateCustomer.years}}</label>
+      </div>
+      <div>
+        <label>Engine power (kW): {{privateCustomer.enginePower}}</label>
+      </div>
+      <div>
+        <label>Asset price: {{privateCustomer.assetPrice}}</label>
+      </div>
+      <div>
+        <label>Advance payment percentage: {{privateCustomer.advancePaymentPercentage}}</label>
+      </div>
+      <div>
+        <label>Advance payment amount: {{privateCustomer.advancePaymentAmount}}</label>
+      </div>
+      <div>
+        <label>Lease period: {{privateCustomer.leasePeriod}}</label>
+      </div>
+      <div>
+        <label>Margin: {{privateCustomer.margin}}</label>
+      </div>
+      <div>
+        <label>Contract fee: {{privateCustomer.contractFee}}</label>
+      </div>
+      <div>
+        <label>Payment date: {{privateCustomer.paymentDate}}</label>
+      </div>
+      <div>
+        <label>First Name: {{privateCustomer.firstName}}</label>
+      </div>
+      <div>
+        <label>Last Name: {{privateCustomer.lastName}}</label>
+      </div>
+      <div>
+        <label>Personal code: {{privateCustomer.personalCode}}</label>
+      </div>
+      <div>
+        <label>Phone number: {{privateCustomer.phoneNumber}}</label>
+      </div>
+      <div>
+        <label>Email: {{privateCustomer.email}}</label>
+      </div>
+      <div>
+        <label>Address: {{privateCustomer.address}}</label>
+      </div>
+    </tr>
+  </table>
+</div>

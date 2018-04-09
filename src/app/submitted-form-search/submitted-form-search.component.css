@@ -1,0 +1,11 @@
+.divWidth {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  border: 1px solid black;
+}
+
+.fullWidth {
+  width: 100%;
+}

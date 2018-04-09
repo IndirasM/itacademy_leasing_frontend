@@ -7,9 +7,9 @@ import { FormsToBackService } from '../../services/forms-to-back.service';
 import { CorporateUserData } from '../../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: 'app-form-preview',
-  templateUrl: './form-preview.component.html',
-  styleUrls: ['./form-preview.component.css']
+  selector: "app-form-preview",
+  templateUrl: "./form-preview.component.html",
+  styleUrls: ["./form-preview.component.css","../styles.css"]
 })
 export class FormPreviewComponent implements OnInit {
   constructor(
@@ -49,7 +49,6 @@ export class FormPreviewComponent implements OnInit {
   }
 
   sendToDb() {
-    console.log(this.leaseData.leaseType);
     this.clicked = true;
     let dataArray;
     if ((this.leaseData.leaseType === 'Private')) {
@@ -66,6 +65,8 @@ export class FormPreviewComponent implements OnInit {
     this.sendService
       .sendLeasingForm(JSON.stringify(dataArray))
       .then(data => {
+         this.leaseService.changeLeaseId(data.leaseId);
+         console.log(data.leaseId);
         this.leaseService.changeStep(3);
       })
       .catch(error => {
@@ -89,3 +90,8 @@ export class FormPreviewComponent implements OnInit {
     this.errorMessages = '';
   }
 }
+// export class LeaseId (data: LeaseData){
+//  leaseId: string;
+//   constructor(){
+//     this.leaseId= data.leaseId;
+//   }

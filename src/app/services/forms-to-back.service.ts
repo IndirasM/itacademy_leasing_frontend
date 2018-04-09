@@ -14,7 +14,7 @@ export class FormsToBackService {
     })
   };
 
-  sendLeasingForm(leaseData) {
+  sendLeasingForm(leaseData): any {
     return this.http
       .post(this.formsUrl + '/complete-lease/add', leaseData, this.httpOptions)
       .toPromise();
@@ -41,4 +41,11 @@ export class FormsToBackService {
     const id = leaseToUpdate.id;
     return this.http.put(this.formsUrl + '/lease/' + id + '/status/rejected', leaseToUpdate, this.httpOptions).toPromise();
   }
+
+  retrieveLeaseById(leaseId): any {
+    return this.http
+      .get(this.formsUrl + '/lease/' + leaseId + '/with-customer')
+      .toPromise();
+  }
+
 }
