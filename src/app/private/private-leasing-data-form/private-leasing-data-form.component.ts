@@ -368,7 +368,17 @@ export class PrivateLeasingDataFormComponent implements OnInit {
 
   get isDataListValid() {
     if (
+      this.userType === 'Private' &&
       this.carLeasingForm.value['assetPrice'] >= 5000 &&
+      this.carLeasingForm.value['assetPrice'] <= 10000000 &&
+      this.carLeasingForm.value['paymentDate'] != null
+    ) {
+      return true;
+    }
+
+    if (
+      this.userType === 'Corporate' &&
+      this.carLeasingForm.value['assetPrice'] >= 10000 &&
       this.carLeasingForm.value['assetPrice'] <= 10000000 &&
       this.carLeasingForm.value['paymentDate'] != null
     ) {
