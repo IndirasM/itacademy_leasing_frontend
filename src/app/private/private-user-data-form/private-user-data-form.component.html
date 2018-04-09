@@ -1,35 +1,37 @@
 <div class="container" align="center">
-  <form class="container" [formGroup]="userForm" class="formwidth">
-    <table class="fullwidth" cellspacing="0">
-      <tr>
-        <mat-form-field [floatLabel]="userForm.value.hideRequired">
-          <input matInput maxlength="13" placeholder="Name" formControlName="firstName" required>
-          <mat-error *ngIf="!firstName">Valid name is required</mat-error>
-        </mat-form-field>
-        <mat-form-field [floatLabel]="userForm.value.hideRequired">
-          <input matInput maxlength="13" placeholder="Surname" formControlName="lastName" required>
-          <mat-error *ngIf="!lastName">Valid surname is required</mat-error>
-        </mat-form-field>
-                <mat-form-field [floatLabel]="userForm.value.hideRequired">
-                    <input matInput maxlength="11" placeholder="Personal number" formControlName="personalCode" required>
-                    <mat-error *ngIf="!personalCode">Valid personal number is required</mat-error>
-                </mat-form-field>
+  <form [formGroup]="userForm">
+    <div class="sub-entry">
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="13" placeholder="Name" formControlName="firstName" required>
+        <mat-error *ngIf="!firstName">Valid name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="13" placeholder="Surname" formControlName="lastName" required>
+        <mat-error *ngIf="!lastName">Valid surname is required</mat-error>
+      </mat-form-field>
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="11" placeholder="Personal number" formControlName="personalCode" required>
+        <mat-error *ngIf="!personalCode">Valid personal number is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="sub-entry">
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="12" placeholder="Phone number" formControlName="phoneNumber" required>
+        <mat-error *ngIf="!phoneNumber">Valid phone number is required</mat-error>
+      </mat-form-field>
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="64" placeholder="Email" formControlName="email" required>
+        <mat-error *ngIf="!email">Valid email is required</mat-error>
+      </mat-form-field>
 
-        <mat-form-field [floatLabel]="userForm.value.hideRequired">
-          <input matInput maxlength="12" placeholder="Phone number" formControlName="phoneNumber" required>
-          <mat-error *ngIf="!phoneNumber">Valid phone number is required</mat-error>
-        </mat-form-field>
-        <mat-form-field [floatLabel]="userForm.value.hideRequired">
-          <input matInput maxlength="64" placeholder="Email" formControlName="email" required>
-          <mat-error *ngIf="!email">Valid email is required</mat-error>
-        </mat-form-field>
-                <mat-form-field [floatLabel]="userForm.value.hideRequired">
-                    <input matInput maxlength="64" placeholder="Address" formControlName="address" required>
-                    <mat-error *ngIf="!address">Valid address is required</mat-error>
-                </mat-form-field>
-                <div>
-                <button mat-raised-button color="primary" matStepperPrevious >Back</button>
-                <button mat-raised-button color="primary" [disabled]="!userForm.valid" matStepperNext (click)="send()">Next</button>
-                </div>
-            </tr>
-        </table>
+      <mat-form-field [floatLabel]="userForm.value.hideRequired">
+        <input matInput maxlength="64" placeholder="Address" formControlName="address" required>
+        <mat-error *ngIf="!address">Valid address is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" [disabled]="!userForm.valid" matStepperNext (click)="send()">Next</button>
+    </div>
+  </form>
+</div>

@@ -14,7 +14,7 @@ export class FormsToBackService {
     })
   };
 
-  sendLeasingForm(leaseData) {
+  sendLeasingForm(leaseData): any {
     return this.http
       .post(this.formsUrl + '/complete-lease/add', leaseData, this.httpOptions)
       .toPromise();

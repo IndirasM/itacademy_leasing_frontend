@@ -13,7 +13,7 @@ import { Directive, ViewContainerRef } from "@angular/core";
 @Component({
   selector: "app-private-user-data-form",
   templateUrl: "./private-user-data-form.component.html",
-  styleUrls: ["./private-user-data-form.component.css"]
+  styleUrls: ["../styles.css","./private-user-data-form.component.css"]
 })
 export class PrivateUserDataFormComponent implements OnInit {
   public userForm: FormGroup;

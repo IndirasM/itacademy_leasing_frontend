@@ -7,9 +7,9 @@ import { FormsToBackService } from '../../services/forms-to-back.service';
 import { CorporateUserData } from '../../corporate/corporate-user-data-form/corporateUserData';
 
 @Component({
-  selector: 'app-form-preview',
-  templateUrl: './form-preview.component.html',
-  styleUrls: ['./form-preview.component.css']
+  selector: "app-form-preview",
+  templateUrl: "./form-preview.component.html",
+  styleUrls: ["./form-preview.component.css","../styles.css"]
 })
 export class FormPreviewComponent implements OnInit {
   constructor(
