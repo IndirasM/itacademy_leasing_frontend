@@ -90,9 +90,10 @@ import 'hammerjs';
     MatSnackBarModule,
     MatTabsModule
   ],
-  providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService, { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }],
+  providers: [LeaseToUserService, BrandsAndModelsService, FormsToBackService, {provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}],
   bootstrap: [AppComponent],
   entryComponents: [ErrorSnackBarComponent]
 
 })
-export class AppModule {}
+export class AppModule {
+}
