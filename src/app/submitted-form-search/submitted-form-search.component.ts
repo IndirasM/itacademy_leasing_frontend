@@ -29,6 +29,7 @@ export class SubmittedFormSearchComponent implements OnInit {
   public privateCustomer: PrivateCustomer;
   public corporateCustomer: CorporateCustomer;
   public retrieved = false;
+  public error = false;
 
   constructor(
     fb: FormBuilder,
@@ -48,20 +49,18 @@ export class SubmittedFormSearchComponent implements OnInit {
   // }
 
   findLease() {
-    const user = this.retrievalService
-      .retrieveLeaseById(this.customerForm.value("leaseId"))
-      .then(user => {
-        this.retrieved = true;
-        if (user.lease.leaseType === "Private") {
-          this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
-        } else if (user.lease.leaseType === "Corporate") {
-          this.corporateCustomer = new CorporateCustomer(
-            user.lease,
-            user.customer
-          );
-        }
-      });
-  }
+    const user = this.retrievalService.retrieveLeaseById(
+      this.customerForm.value["leaseId"]
+    ).then(user => {
+      this.retrieved = true;
+      if (user.lease.leaseType === "Private") {
+        this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
+      } else if (user.lease.leaseType === "Corporate") {
+        this.corporateCustomer = new CorporateCustomer(user.lease, user.customer);
+      }
+    }
+  ).catch(error => {this.error = true;});
+}
 }
 
 // onSubmit() {
