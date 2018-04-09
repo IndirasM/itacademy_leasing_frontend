@@ -75,16 +75,16 @@ export class LeasingOfficerComponent implements OnInit {
 
   createListsByStatus(privateCustomers, corporateCustomers) {
     for (let i = 0; i < privateCustomers.length; i++) {
-      if (privateCustomers[i].status == 'Waiting') {
+      if (privateCustomers[i].status === 'Waiting') {
         this.privateWaiting.push(privateCustomers[i]);
-      } else if (privateCustomers[i].status == 'Accepted') {
+      } else if (privateCustomers[i].status === 'Accepted') {
         this.privateAccepted.push(privateCustomers[i]);
       } else { this.privateDeclined.push(privateCustomers[i]); }
     }
     for (let i = 0; i < corporateCustomers.length; i++) {
-      if (corporateCustomers[i].status == 'Waiting') {
+      if (corporateCustomers[i].status === 'Waiting') {
         this.corporateWaiting.push(corporateCustomers[i]);
-      } else if (corporateCustomers[i].status == 'Accepted') {
+      } else if (corporateCustomers[i].status === 'Accepted') {
         this.corporateAccepted.push(corporateCustomers[i]);
       } else { this.corporateDeclined.push(corporateCustomers[i]); }
     }

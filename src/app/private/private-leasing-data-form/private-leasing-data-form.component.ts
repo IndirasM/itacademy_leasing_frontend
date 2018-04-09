@@ -27,10 +27,10 @@ import { ScheduleOfContributionDataPromise } from './../../models/schedule-of-co
 import { FormsToBackService } from '../../services/forms-to-back.service';
 
 @Component({
-  selector: "app-private-leasing-data-form",
-  styles: ["input.ng-invalid {border-color: red}"],
-  templateUrl: "./private-leasing-data-form.component.html",
-  styleUrls: ["../styles.css",'./private-leasing-data-form.component.css'],
+  selector: 'app-private-leasing-data-form',
+  styles: ['input.ng-invalid {border-color: red}'],
+  templateUrl: './private-leasing-data-form.component.html',
+  styleUrls: ['../styles.css', './private-leasing-data-form.component.css'],
   providers: []
 })
 export class PrivateLeasingDataFormComponent implements OnInit {
@@ -277,25 +277,25 @@ export class PrivateLeasingDataFormComponent implements OnInit {
     const stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(stateCheck);
-        document.getElementById("calculations-popup").setAttribute("style","border: 1px solid #e8ecef ");
+        document.getElementById('calculations-popup').setAttribute('style', 'border: 1px solid #e8ecef ');
       }
     }, 100);
 
 
-      //document.getElementById("calculations-popup").setAttribute("style"," border: 1px solid #e8ecef ");
+      // document.getElementById("calculations-popup").setAttribute("style"," border: 1px solid #e8ecef ");
 
   }
   disableBorder() {
     const stateCheck = setInterval(() => {
       if (document.readyState === 'complete') {
         clearInterval(stateCheck);
-        document.getElementById("calculations-popup").setAttribute("style"," border:none ");
+        document.getElementById('calculations-popup').setAttribute('style', ' border:none ');
       }
     }, 100);
 
 
 
-      //document.getElementById("calculations-popup").setAttribute("style"," border: none");
+      // document.getElementById("calculations-popup").setAttribute("style"," border: none");
 
     // document.getElementById("calculations-popup").setAttribute("style"," border: none");
   }
