@@ -1,6 +1,6 @@
 <div align="center" class="divWidth">
-  <mat-form-field>
-    <input placeholder="lease ID" formControlName="leaseId" required>
+  <mat-form-field  mat-f [formGroup]="customerForm">
+    <input matInput placeholder="lease ID" formControlName="leaseId" required>
     <mat-error *ngIf="!retrieved">Valid ID code is required</mat-error>
     <button (click)="findLease()">enter</button>
   </mat-form-field>

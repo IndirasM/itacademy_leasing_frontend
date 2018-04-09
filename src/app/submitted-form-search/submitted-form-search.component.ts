@@ -41,7 +41,7 @@ export class SubmittedFormSearchComponent implements OnInit {
   // }
 
   findLease() {
-    const user = this.retrievalService.retrieveLeaseById(this.customerForm.value('leaseId'));
+    const user = this.retrievalService.retrieveLeaseById(this.customerForm.value['leaseId']);
     this.retrieved = true;
     if (user.lease.leaseType === 'Private') {
         this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
