@@ -21,6 +21,7 @@ export class SubmittedFormSearchComponent implements OnInit {
   private corporateUserData: CorporateUserData;
   public privateCustomer: PrivateCustomer;
   public corporateCustomer: CorporateCustomer;
+  public retrieved = false;
 
   constructor(fb: FormBuilder,
               private leaseService: LeaseToUserService,
@@ -39,8 +40,9 @@ export class SubmittedFormSearchComponent implements OnInit {
   //   return this.customerForm.get('leaseId').value;
   // }
 
-  findLease(){
-    let user = this.retrievalService.retrieveLeaseById(this.customerForm.value("leaseId"));
+  findLease() {
+    const user = this.retrievalService.retrieveLeaseById(this.customerForm.value('leaseId'));
+    this.retrieved = true;
     if (user.lease.leaseType === 'Private') {
         this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
     } else if (user.lease.leaseType === 'Corporate') {
@@ -48,6 +50,9 @@ export class SubmittedFormSearchComponent implements OnInit {
       }
   }
 }
+
+
+
 
   // onSubmit() {
   //   // fb.leaseId: this.customerForm.value['leaseId'];
