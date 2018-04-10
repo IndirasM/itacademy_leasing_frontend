@@ -14,13 +14,32 @@
 
   <div class="container" *ngIf="retrieved && type === 'Private'">
     <div>
-      <div class="status container">
+
+
+      <div *ngIf="privateCustomer.status === 'Accepted'" class="status accepted container">
         <div *ngIf="retrieved && type === 'Private'">
           <label>Status:
             <b>{{privateCustomer.status}}</b>
           </label>
         </div>
       </div>
+
+      <div *ngIf="privateCustomer.status === 'Rejected'" class="status declined container">
+        <div *ngIf="retrieved && type === 'Private'">
+          <label>Status:
+            <b>{{privateCustomer.status}}</b>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="privateCustomer.status === 'Waiting'" class="status waiting container">
+        <div *ngIf="retrieved && type === 'Private'">
+          <label>Status:
+            <b>{{privateCustomer.status}}</b>
+          </label>
+        </div>
+      </div>
+
       <div class="content-wrapper">
         <label>Customer:
           <span>{{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.personalCode}}</span>
@@ -70,13 +89,31 @@
 
   <div class="container" *ngIf="retrieved && type === 'Corporate'">
     <div>
-      <div class="status container">
-        <div *ngIf="retrieved && type === 'Private'">
+
+      <div *ngIf="corporateCustomer.status === 'Accepted'" class="status accepted container">
+        <div *ngIf="retrieved && type === 'Corporate'">
           <label>Status:
             <b>{{corporateCustomer.status}}</b>
           </label>
         </div>
       </div>
+
+      <div *ngIf="corporateCustomer.status === 'Rejected'" class="status declined container">
+        <div *ngIf="retrieved && type === 'Corporate'">
+          <label>Status:
+            <b>{{corporateCustomer.status}}</b>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="corporateCustomer.status === 'Waiting'" class="status waiting container">
+        <div *ngIf="retrieved && type === 'Corporate'">
+          <label>Status:
+            <b>{{corporateCustomer.status}}</b>
+          </label>
+        </div>
+      </div>
+
       <div class="content-wrapper">
         <label>Customer:
           <span>{{corporateCustomer.companyName}} {{corporateCustomer.companyCode}}</span>
