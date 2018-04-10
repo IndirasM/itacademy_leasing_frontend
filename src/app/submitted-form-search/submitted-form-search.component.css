@@ -24,9 +24,34 @@
   /*padding: 0.5% !important*/
 }
 
+/*.accepted {*/
+  /*background-color: #A5D6A7;*/
+/*}*/
+
+/*.declined {*/
+  /*background-color: #d61b1a;*/
+/*}*/
+
+/*.waiting {*/
+  /*background-color: rgba(227, 210, 227, 0.79);*/
+/*}*/
+
 .status {
-  background-color: #A5D6A7;
   width: 100%;
+  text-align: center;
+}
+
+.waiting {
+background-color: rgba(227, 210, 227, 0.79);
+}
+
+
+.declined {
+  background-color: #d61b1a;
+}
+
+.accepted {
+  background-color: #A5D6A7;
 }
 
 .content-wrapper label {
@@ -44,6 +69,6 @@
 
 .content-wrapper{
   display: inline-grid;
-  width: 100%;
+  width: 75%;
   align-content: left;
 }
