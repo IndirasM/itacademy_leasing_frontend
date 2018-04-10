@@ -168,6 +168,7 @@
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateAccepted">
           <mat-expansion-panel-header>
             <mat-panel-title>
+              <!--Current status: {{corporateCustomer.status}}-->
                 {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>

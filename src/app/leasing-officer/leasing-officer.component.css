@@ -5,3 +5,15 @@
 .decline-button {
     margin-left: 20px;
 }
+.waiting {
+  background-color: rgb(230, 230, 230);
+}
+
+
+.declined {
+  background-color: #ff8080;
+}
+
+.accepted {
+  background-color: #A5D6A7;
+}
