@@ -51,7 +51,7 @@ md-select.mat-radio-button.mat-accent .mat-radio-inner-circle {
 }
 
 @media only screen and (min-width: 1100px){
-    #calculations-popup{
+    #calculations-popup-private{
         padding: 10px;
         position: fixed;
         z-index: 999;
@@ -60,6 +60,15 @@ md-select.mat-radio-button.mat-accent .mat-radio-inner-circle {
         border-radius: 15px;
         top: 60px;
     }
+  #calculations-popup-corporate{
+    padding: 10px;
+    position: fixed;
+    z-index: 999;
+    right: 50px;
+    border: 1px solid #e8ecef;
+    border-radius: 15px;
+    top: 60px;
+  }
 
 }
 /* .buttons-container{

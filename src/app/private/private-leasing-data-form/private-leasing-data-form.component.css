@@ -5,3 +5,19 @@ mat-table.mat-table {
 .calculations-popup{
     margin-right:15%;
 }
+.content-wrapper span{
+  float: right;
+}
+.content-wrapper{
+  line-height: 1.5;
+  margin-top: 10px;
+  text-align: left;
+}
+/*.blue{*/
+  /*font-weight: bold;*/
+  /*color: #3f51B5;*/
+/*}*/
+
+.align-push{
+  padding-left: 55px;
+}
