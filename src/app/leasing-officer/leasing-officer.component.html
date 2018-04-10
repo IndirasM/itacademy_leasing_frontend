@@ -9,10 +9,11 @@
         <mat-expansion-panel *ngFor="let privateCustomer of privateWaiting">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{privateCustomer.status}}
+                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}}
+                <div *ngIf="checkStatus(privateCustomer)"> Status changed to: {{privateCustomer.status}}</div>
+              <!-- {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}} -->
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>
@@ -42,7 +43,6 @@
       </mat-accordion>
     </mat-expansion-panel>
   </mat-accordion>
-  <!-- <h4 align="center">Corporate users waiting for review</h4> -->
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -52,10 +52,9 @@
         <mat-expansion-panel *ngFor="let privateCustomer of privateAccepted">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{privateCustomer.status}}
+                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>
@@ -90,10 +89,9 @@
         <mat-expansion-panel *ngFor="let privateCustomer of privateDeclined">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{privateCustomer.status}}
+                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>
@@ -128,10 +126,11 @@
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateWaiting">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{corporateCustomer.status}}
+                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}}
+                <div *ngIf="checkStatus(corporateCustomer)"> Status changed to: {{corporateCustomer.status}}</div>
+              <!-- {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}} -->
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>
@@ -169,10 +168,9 @@
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateAccepted">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{corporateCustomer.status}}
+                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>
@@ -206,10 +204,9 @@
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateDeclined">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Current status: {{corporateCustomer.status}}
+                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
             </mat-panel-title>
             <mat-panel-description>
-              {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <h5>Client info</h5>

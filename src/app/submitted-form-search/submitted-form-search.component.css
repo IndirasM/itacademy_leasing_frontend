@@ -33,6 +33,7 @@
   /*display: inline-block !important;*/
   font-weight: 600;
   float: left;
+  text-align: justify;
 }
 
 .content-wrapper span {
