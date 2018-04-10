@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PrivateUserDataFormComponent} from '../private/private-user-data-form/private-user-data-form.component';
 import {LeaseToUserService} from '../services/leasing-to-user.service';
 import {PrivateLeasingDataFormComponent} from '../private/private-leasing-data-form/private-leasing-data-form.component';
@@ -10,7 +10,8 @@ import {Validators} from '@angular/forms';
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.css']
+  styleUrls: ['./stepper.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent implements OnInit {
   @ViewChild('stepper') stepper;

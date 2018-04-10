@@ -24,7 +24,6 @@
         top: 60px;
     }
 } */
-.mat-horizontal-stepper{
-    margin:auto;
-    width: 50%;
+.mat-horizontal-stepper-header-container {
+    padding: 0 200px;
 }

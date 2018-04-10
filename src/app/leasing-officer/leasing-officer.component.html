@@ -1,9 +1,9 @@
 <!-- <h4 align="center">Private users waiting for review</h4> -->
-<div class="officer-container">
+<div class="officer-container" *ngIf="privateWaiting">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Private customers awaiting review</mat-panel-title>
+        <mat-panel-title>Private Customers: Waiting</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let privateCustomer of privateWaiting">
@@ -37,7 +37,7 @@
           <p>Payment Day: {{privateCustomer.paymentDate}}</p>
           <mat-action-row>
             <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
-            <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
+            <button class="decline-button" mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -46,7 +46,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Accepted private customers</mat-panel-title>
+        <mat-panel-title>Private Customers: Accepted</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let privateCustomer of privateAccepted">
@@ -83,7 +83,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Declined private customers</mat-panel-title>
+        <mat-panel-title>Private Customers: Declined</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let privateCustomer of privateDeclined">
@@ -120,7 +120,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Corporate customers awaiting review</mat-panel-title>
+        <mat-panel-title>Corporate Customers: Waiting</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateWaiting">
@@ -153,7 +153,7 @@
           <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
           <mat-action-row>
             <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
-            <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
+            <button class="decline-button" mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
@@ -162,7 +162,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Accepted corporate customers</mat-panel-title>
+        <mat-panel-title>Corporate Customers: Accepted</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateAccepted">
@@ -198,7 +198,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Declined corporate customers</mat-panel-title>
+        <mat-panel-title>Corporate Customers: Declined</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let corporateCustomer of corporateDeclined">

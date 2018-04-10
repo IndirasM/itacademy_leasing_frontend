@@ -120,7 +120,7 @@
                     </mat-radio-group>
                 </div>
 
-                <div class="content-wrapper" id="calculations-popup-private" *ngIf="userType === 'Private'">
+                <div class="content-wrapper" id="calculations-popup-private" *ngIf="userType === 'Private' && assetPrice.value > 0">
                     <div class="form-group" *ngIf="assetPrice.value >= 5000">
                       <label > Financing amount:
                         <span >{{ financingAmount.toFixed(2) }}</span>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
 
-                <div class="content-wrapper" id="calculations-popup-corporate" *ngIf="userType === 'Corporate'">
+                <div class="content-wrapper" id="calculations-popup-corporate" *ngIf="userType === 'Corporate' && assetPrice.value > 0">
                     <div class="form-group" *ngIf="assetPrice.value >= 10000">
                         <label> Financing amount
                           <span>{{ financingAmount.toFixed(2) }}</span>

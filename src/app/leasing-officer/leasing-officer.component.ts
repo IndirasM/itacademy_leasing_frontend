@@ -40,6 +40,10 @@ export class LeasingOfficerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
     this.retrievalService.retrieveUsers().then(data => {
       (this.size = 0);
       for (this.item in data) {
@@ -99,6 +103,7 @@ export class LeasingOfficerComponent implements OnInit {
     this.updateService
       .updateApprovedLease(this.lease)
       .then(data => {
+        this.fetchUsers();
         customer.status = 'Accepted';
       })
       .catch(error => {
