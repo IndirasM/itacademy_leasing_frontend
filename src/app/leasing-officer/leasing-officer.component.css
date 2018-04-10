@@ -1,0 +1,12 @@
+.waiting {
+  background-color: rgba(227, 210, 227, 0.79);
+}
+
+
+.declined {
+  background-color: #d61b1a;
+}
+
+.accepted {
+  background-color: #A5D6A7;
+}
