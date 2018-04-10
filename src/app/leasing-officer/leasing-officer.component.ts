@@ -117,6 +117,10 @@ export class LeasingOfficerComponent implements OnInit {
         this.showError();
       });
   }
+
+  moveLease(){
+
+  }
 }
 
 export class PrivateCustomer {
