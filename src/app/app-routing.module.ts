@@ -7,22 +7,24 @@ import { FormPreviewComponent } from './private/form-preview/form-preview.compon
 import { CorporateUserDataFormComponent } from './corporate/corporate-user-data-form/corporate-user-data-form.component';
 import { HomeComponent } from './home/home.component';
 import { StepperComponent } from './stepper/stepper.component';
-import { CorporateLeasingDataFormComponent } from './corporate/corporate-leasing-data-form/corporate-leasing-data-form.component';
 import { EndScreenComponent } from './end-screen/end-screen.component';
+import { LeasingOfficerComponent } from './leasing-officer/leasing-officer.component';
+import { SubmittedFormSearchComponent } from './submitted-form-search/submitted-form-search.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'private', component: PrivateLeasingDataFormComponent},
-  {path: 'corporate', component: CorporateLeasingDataFormComponent},
-  {path: 'form', component: PrivateUserDataFormComponent},
-  {path: 'preview', component: FormPreviewComponent},
-  {path: 'home',component: HomeComponent},
-  {path: 'stepper',component: StepperComponent},
-  {path: 'finish',component: EndScreenComponent}
+  { path: '', component: HomeComponent },
+  { path: 'private', component: PrivateLeasingDataFormComponent },
+  { path: 'form', component: PrivateUserDataFormComponent },
+  { path: 'preview', component: FormPreviewComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'stepper', component: StepperComponent },
+  { path: 'finish', component: EndScreenComponent },
+  { path: 'officer', component: LeasingOfficerComponent },
+  { path: 'search', component: SubmittedFormSearchComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

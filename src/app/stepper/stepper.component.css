@@ -1,0 +1,30 @@
+/* .sub-entry {
+    width: 49.5%;
+    float: left;
+    column-gap:30px;
+}
+.container{
+    text-align:center;
+    width: 50%;
+    border: 1px solid #e8ecef;
+    padding: 20px;
+    border-radius: 15px;
+}
+.container .sub-entry:first-child{
+    border-right:1px solid #e8ecef;
+}
+@media only screen and (min-width: 1100px){
+    #calculations-popup{
+        padding: 10px;
+        position: fixed;
+        z-index: 999;
+        right: 50px;
+        border: 1px solid #e8ecef;
+        border-radius: 15px;
+        top: 60px;
+    }
+} */
+.mat-horizontal-stepper{
+    margin:auto;
+    width: 50%;
+}

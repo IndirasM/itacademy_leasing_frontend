@@ -6,12 +6,13 @@ describe('PrivateUserDataFormComponent', () => {
   let component: PrivateUserDataFormComponent;
   let fixture: ComponentFixture<PrivateUserDataFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PrivateUserDataFormComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [PrivateUserDataFormComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrivateUserDataFormComponent);
