@@ -1,235 +1,241 @@
 <!-- <h4 align="center">Private users waiting for review</h4> -->
 <div class="officer-container" *ngIf="privateWaiting">
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Private Customers: Waiting</mat-panel-title>
-      </mat-expansion-panel-header>
+  <mat-tab-group>
+    <mat-tab label="Private">
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let privateCustomer of privateWaiting">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-                <div *ngIf="checkStatus(privateCustomer)"> Status changed to: {{privateCustomer.status}}</div>
-              <!-- {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}} -->
-            </mat-panel-description>
+            <mat-panel-title>Waiting</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{privateCustomer.firstName}}</p>
-          <p>Last Name: {{privateCustomer.lastName}}</p>
-          <p>Personal Code: {{privateCustomer.personalCode}}</p>
-          <p>Address: {{privateCustomer.address}}</p>
-          <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
-          <p>Email: {{privateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{privateCustomer.assetType}}</p>
-          <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
-          <p>Year made: {{privateCustomer.years}}</p>
-          <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
-          <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{privateCustomer.paymentDate}}</p>
-          <mat-action-row>
-            <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
-            <button class="decline-button" mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
-          </mat-action-row>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let privateCustomer of privateWaiting">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  <div *ngIf="checkStatus(privateCustomer)"> Status changed to: {{privateCustomer.status}}</div>
+                  <!-- {{privateCustomer.firstName}} {{privateCustomer.lastName}} {{privateCustomer.applicationDate}} {{privateCustomer.leaseType}} -->
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{privateCustomer.firstName}}</p>
+              <p>Last Name: {{privateCustomer.lastName}}</p>
+              <p>Personal Code: {{privateCustomer.personalCode}}</p>
+              <p>Address: {{privateCustomer.address}}</p>
+              <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
+              <p>Email: {{privateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{privateCustomer.assetType}}</p>
+              <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
+              <p>Year made: {{privateCustomer.years}}</p>
+              <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+              <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="checkStatus(privateCustomer)" color="primary" (click)="approveLease(privateCustomer)">Accept</button>
+                <button class="decline-button" mat-raised-button [disabled]="checkStatus(privateCustomer)" color="warn" (click)="declineLease(privateCustomer)">Decline</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Private Customers: Accepted</mat-panel-title>
-      </mat-expansion-panel-header>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let privateCustomer of privateAccepted">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
+            <mat-panel-title>Accepted</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{privateCustomer.firstName}}</p>
-          <p>Last Name: {{privateCustomer.lastName}}</p>
-          <p>Personal Code: {{privateCustomer.personalCode}}</p>
-          <p>Address: {{privateCustomer.address}}</p>
-          <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
-          <p>Email: {{privateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{privateCustomer.assetType}}</p>
-          <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
-          <p>Year made: {{privateCustomer.years}}</p>
-          <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
-          <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let privateCustomer of privateAccepted">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{privateCustomer.firstName}}</p>
+              <p>Last Name: {{privateCustomer.lastName}}</p>
+              <p>Personal Code: {{privateCustomer.personalCode}}</p>
+              <p>Address: {{privateCustomer.address}}</p>
+              <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
+              <p>Email: {{privateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{privateCustomer.assetType}}</p>
+              <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
+              <p>Year made: {{privateCustomer.years}}</p>
+              <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+              <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Private Customers: Declined</mat-panel-title>
-      </mat-expansion-panel-header>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let privateCustomer of privateDeclined">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
+            <mat-panel-title>Declined</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{privateCustomer.firstName}}</p>
-          <p>Last Name: {{privateCustomer.lastName}}</p>
-          <p>Personal Code: {{privateCustomer.personalCode}}</p>
-          <p>Address: {{privateCustomer.address}}</p>
-          <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
-          <p>Email: {{privateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{privateCustomer.assetType}}</p>
-          <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
-          <p>Year made: {{privateCustomer.years}}</p>
-          <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
-          <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let privateCustomer of privateDeclined">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{privateCustomer.firstName}} {{privateCustomer.lastName}} - {{privateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{privateCustomer.firstName}}</p>
+              <p>Last Name: {{privateCustomer.lastName}}</p>
+              <p>Personal Code: {{privateCustomer.personalCode}}</p>
+              <p>Address: {{privateCustomer.address}}</p>
+              <p>Phone Number: {{privateCustomer.phoneNumber}}</p>
+              <p>Email: {{privateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{privateCustomer.assetType}}</p>
+              <p>Car: {{privateCustomer.carBrand}} {{privateCustomer.carModel}}</p>
+              <p>Year made: {{privateCustomer.years}}</p>
+              <p>Engine Power: {{privateCustomer.enginePower.toFixed(2)}} kW</p>
+              <p>Asset Price: {{privateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{privateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{privateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{privateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{privateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{privateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{privateCustomer.paymentDate}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Corporate Customers: Waiting</mat-panel-title>
-      </mat-expansion-panel-header>
+    </mat-tab>
+    <mat-tab label="Corporate">
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let corporateCustomer of corporateWaiting">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-                <div *ngIf="checkStatus(corporateCustomer)"> Status changed to: {{corporateCustomer.status}}</div>
-              <!-- {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}} -->
-            </mat-panel-description>
+            <mat-panel-title>Waiting</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{corporateCustomer.companyName}}</p>
-          <p>Personal Code: {{corporateCustomer.companyCode}}</p>
-          <p>Address: {{corporateCustomer.address}}</p>
-          <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
-          <p>Email: {{corporateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{corporateCustomer.assetType}}</p>
-          <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
-          <p>Year made: {{corporateCustomer.years}}</p>
-          <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
-          <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
-          <mat-action-row>
-            <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
-            <button class="decline-button" mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
-          </mat-action-row>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let corporateCustomer of corporateWaiting">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  <div *ngIf="checkStatus(corporateCustomer)"> Status changed to: {{corporateCustomer.status}}</div>
+                  <!-- {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} {{corporateCustomer.applicationDate}} {{corporateCustomer.leaseType}} -->
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{corporateCustomer.companyName}}</p>
+              <p>Personal Code: {{corporateCustomer.companyCode}}</p>
+              <p>Address: {{corporateCustomer.address}}</p>
+              <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
+              <p>Email: {{corporateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{corporateCustomer.assetType}}</p>
+              <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
+              <p>Year made: {{corporateCustomer.years}}</p>
+              <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
+              <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+              <mat-action-row>
+                <button mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="primary" (click)="approveLease(corporateCustomer)">Accept</button>
+                <button class="decline-button" mat-raised-button [disabled]="checkStatus(corporateCustomer)" color="warn" (click)="declineLease(corporateCustomer)">Decline</button>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Corporate Customers: Accepted</mat-panel-title>
-      </mat-expansion-panel-header>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let corporateCustomer of corporateAccepted">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              <!--Current status: {{corporateCustomer.status}}-->
-                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
+            <mat-panel-title>Accepted</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{corporateCustomer.companyName}}</p>
-          <p>Personal Code: {{corporateCustomer.companyCode}}</p>
-          <p>Address: {{corporateCustomer.address}}</p>
-          <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
-          <p>Email: {{corporateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{corporateCustomer.assetType}}</p>
-          <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
-          <p>Year made: {{corporateCustomer.years}}</p>
-          <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
-          <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let corporateCustomer of corporateAccepted">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <!--Current status: {{corporateCustomer.status}}-->
+                  {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{corporateCustomer.companyName}}</p>
+              <p>Personal Code: {{corporateCustomer.companyCode}}</p>
+              <p>Address: {{corporateCustomer.address}}</p>
+              <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
+              <p>Email: {{corporateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{corporateCustomer.assetType}}</p>
+              <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
+              <p>Year made: {{corporateCustomer.years}}</p>
+              <p>Engine Power: {{corporateCustomer.enginePower.toFixed(2)}} kW</p>
+              <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Corporate Customers: Declined</mat-panel-title>
-      </mat-expansion-panel-header>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let corporateCustomer of corporateDeclined">
+        <mat-expansion-panel>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
+            <mat-panel-title>Declined</mat-panel-title>
           </mat-expansion-panel-header>
-          <h5>Client info</h5>
-          <p>First name: {{corporateCustomer.companyName}}</p>
-          <p>Personal Code: {{corporateCustomer.companyCode}}</p>
-          <p>Address: {{corporateCustomer.address}}</p>
-          <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
-          <p>Email: {{corporateCustomer.email}}</p>
-          <h5>Lease info</h5>
-          <p>Asset Type: {{corporateCustomer.assetType}}</p>
-          <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
-          <p>Year made: {{corporateCustomer.years}}</p>
-          <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
-          <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
-          <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
-          <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
-          <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
-          <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
-          <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
-          <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+          <mat-accordion>
+            <mat-expansion-panel *ngFor="let corporateCustomer of corporateDeclined">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{corporateCustomer.companyName}} {{corporateCustomer.companyCode}} - {{corporateCustomer.applicationDate}}
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h5>Client info</h5>
+              <p>First name: {{corporateCustomer.companyName}}</p>
+              <p>Personal Code: {{corporateCustomer.companyCode}}</p>
+              <p>Address: {{corporateCustomer.address}}</p>
+              <p>Phone Number: {{corporateCustomer.phoneNumber}}</p>
+              <p>Email: {{corporateCustomer.email}}</p>
+              <h5>Lease info</h5>
+              <p>Asset Type: {{corporateCustomer.assetType}}</p>
+              <p>Car: {{corporateCustomer.carBrand}} {{corporateCustomer.carModel}}</p>
+              <p>Year made: {{corporateCustomer.years}}</p>
+              <p>Engine Power: {{corporateCustomer.enginePower}} kW</p>
+              <p>Asset Price: {{corporateCustomer.assetPrice.toFixed(2)}} EUR</p>
+              <p>Advance Payment Percentage: {{corporateCustomer.advancePaymentPercentage.toFixed(2)}} %</p>
+              <p>Advance Payment Amount: {{corporateCustomer.advancePaymentAmount.toFixed(2)}} EUR</p>
+              <p>Lease Period: {{corporateCustomer.leasePeriod}} months</p>
+              <p>Margin: {{corporateCustomer.margin.toFixed(2)}} %</p>
+              <p>Contract Fee: {{corporateCustomer.contractFee.toFixed(2)}} EUR</p>
+              <p>Payment Day: {{corporateCustomer.paymentDate}}</p>
+            </mat-expansion-panel>
+          </mat-accordion>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-expansion-panel>
-  </mat-accordion>
+    </mat-tab>
+  </mat-tab-group>
 </div>
