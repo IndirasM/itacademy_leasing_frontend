@@ -1,6 +1,6 @@
 <body>
     <div id="c1" align="center" class="container">
-        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm">
+        <form [formGroup]="carLeasingForm" role="form" novalidate #editForm="ngForm" >
             <div class="sub-entry">
                 <div class="form-group" align="center">
                     <mat-form-field>
@@ -75,6 +75,8 @@
 
                 </div>
 
+                <div><label><h6></h6></label></div>
+
                 <div class="form-group" align="center">
                     <!-- <label>Advance payment percentage</label> -->
                     <mat-form-field>
@@ -82,13 +84,16 @@
                     </mat-form-field>%
                 </div>
 
-                <div class="form-group" align="center">
-                    <label> Advance payment amount: 
-                        <span>{{ advancePaymentAmount.toFixed(2) }}</span>
+                <div class="form-group" align="left">
+                  <div class="align-push">
+                    <label> Advance payment amount:
+                        <span><b>{{ advancePaymentAmount.toFixed(2) }}</b></span>
                     </label>
-
+                  </div>
                 </div>
 
+                <div><label><h6></h6></label></div>
+                <div><label></label></div>
 
                 <div class="form-group" align="center">
                     <!-- <label>Margin</label> -->
@@ -99,10 +104,10 @@
 
 
                 <div class="form-group" align="center">
-                    <label>Lease Period: {{leasePeriod}} months</label>
+                  <label>Lease Period: <b>{{leasePeriod}}</b> months</label>
                     <label></label>
                     <mat-slider formControlName="leasePeriod" color="primary" min="6" max="84" step="6" value="6" tickInterval="1" thumbLabel (input)="pitch($event)" required></mat-slider>
-                      
+
                 </div>
 
 
@@ -115,33 +120,51 @@
                     </mat-radio-group>
                 </div>
 
-                <div class="form-group" id="calculations-popup" align="center" *ngIf="userType === 'Private'">
-                    <div class="form-group" *ngIf="assetPrice.value >= 5000" align="center">
-                        <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
+                <div class="content-wrapper" id="calculations-popup-private" *ngIf="userType === 'Private'">
+                    <div class="form-group" *ngIf="assetPrice.value >= 5000">
+                      <label > Financing amount:
+                        <span >{{ financingAmount.toFixed(2) }}</span>
+                      </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0" align="center">
-                        <label> Contract fee {{ contractFee.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000 && contractFee > 0">
+                        <label> Contract fee:
+                          <span>{{ contractFee.toFixed(2) }}</span>
+                        </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                        <label> Total interest {{ totalInterest.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000">
+                        <label> Total interest:
+                          <span>{{ totalInterest.toFixed(2) }}</span>
+                        </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 5000" align="center">
-                        <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 5000">
+                      <b>
+                        <label> Total monthly payment:
+                          <span>&nbsp;&nbsp;&nbsp;{{ totalMonthlyPayment.toFixed(2)}}</span>
+                        </label>
+                      </b>
                     </div>
                 </div>
 
-                <div class="form-group" id="calculations-popup" align="center" *ngIf="userType === 'Corporate'">
-                    <div class="form-group" *ngIf="assetPrice.value >= 10000" align="center">
-                        <label> Financing amount {{ financingAmount.toFixed(2) }}</label>
+                <div class="content-wrapper" id="calculations-popup-corporate" *ngIf="userType === 'Corporate'">
+                    <div class="form-group" *ngIf="assetPrice.value >= 10000">
+                        <label> Financing amount
+                          <span>{{ financingAmount.toFixed(2) }}</span>
+                        </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0" align="center">
-                        <label> Contract fee {{ contractFee.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000 && contractFee > 0">
+                      <label> Contract fee
+                        <span>{{ contractFee.toFixed(2) }}</span>
+                        </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
-                        <label> Total interest {{ totalInterest.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000">
+                        <label> Total interest
+                          <span>{{ totalInterest.toFixed(2) }}</span>
+                        </label>
                     </div>
-                    <div class="form-group " *ngIf="assetPrice.value >= 10000" align="center">
-                        <label> Total monthly payment {{ totalMonthlyPayment.toFixed(2) }}</label>
+                    <div class="form-group " *ngIf="assetPrice.value >= 10000">
+                        <label> Total monthly payment
+                          <span>&nbsp;&nbsp;&nbsp;{{ totalMonthlyPayment.toFixed(2) }}</span>
+                        </label>
                     </div>
                 </div>
 

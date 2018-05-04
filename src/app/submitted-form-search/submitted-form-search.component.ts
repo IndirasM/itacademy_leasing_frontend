@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'app-submitted-form-search',
   templateUrl: './submitted-form-search.component.html',
-  styleUrls: ['./submitted-form-search.component.css']
+  styleUrls: ['./submitted-form-search.component.css','../private/styles.css']
 })
 export class SubmittedFormSearchComponent implements OnInit {
   public customerForm: FormGroup;
@@ -54,30 +54,19 @@ export class SubmittedFormSearchComponent implements OnInit {
   // }
 
   findLease() {
-<<<<<<< HEAD
      this.user = this.retrievalService.retrieveLeaseById(
       this.customerForm.value['leaseId']
     ).then(user => {
       this.retrieved = true;
       console.log(user.lease.leaseType);
       this.type = user.lease.leaseType;
-=======
-    const user = this.retrievalService.retrieveLeaseById(
-      this.customerForm.value['leaseId']
-    ).then(user => {
-      this.retrieved = true;
->>>>>>> 15f7ce9908a45abb1d55a938b110d876b247f9e0
       if (user.lease.leaseType === 'Private') {
         this.privateCustomer = new PrivateCustomer(user.lease, user.customer);
       } else if (user.lease.leaseType === 'Corporate') {
         this.corporateCustomer = new CorporateCustomer(user.lease, user.customer);
       }
     }
-<<<<<<< HEAD
   ).catch(error => { this.error = true; });
-=======
-  ).catch(error => {this.error = true; });
->>>>>>> 15f7ce9908a45abb1d55a938b110d876b247f9e0
 }
 }
 

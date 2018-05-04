@@ -1,4 +1,4 @@
-.sub-entry {
+/* .sub-entry {
     width: 49.5%;
     float: left;
     column-gap:30px;
@@ -23,4 +23,8 @@
         border-radius: 15px;
         top: 60px;
     }
+} */
+.mat-horizontal-stepper{
+    margin:auto;
+    width: 50%;
 }

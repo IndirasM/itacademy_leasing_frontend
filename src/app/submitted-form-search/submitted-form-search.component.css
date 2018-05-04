@@ -1,4 +1,4 @@
-.divWidth {
+/* .divWidth {
   width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -8,4 +8,67 @@
 
 .fullWidth {
   width: 100%;
+} */
+.search-container {
+  margin-top: 5%;
+}
+
+.container h3 {
+  margin-left: auto;
+  color: rgb(70, 67, 67);
+}
+
+.container {
+  height: 80%;
+  margin: auto;
+  /*padding: 0.5% !important*/
+}
+
+/*.accepted {*/
+  /*background-color: #A5D6A7;*/
+/*}*/
+
+/*.declined {*/
+  /*background-color: #d61b1a;*/
+/*}*/
+
+/*.waiting {*/
+  /*background-color: rgba(227, 210, 227, 0.79);*/
+/*}*/
+
+.status {
+  width: 100%;
+  text-align: center;
+}
+
+.waiting {
+  background-color: rgb(230, 230, 230);
+}
+
+
+.declined {
+  background-color: #ff8080;
+}
+
+.accepted {
+  background-color: #A5D6A7;
+}
+
+.content-wrapper label {
+  /*display: inline-block !important;*/
+  font-weight: 600;
+  float: left;
+  text-align: justify;
+}
+
+.content-wrapper span {
+  font-weight: 300;
+  float: right;
+  /*display: inline-block;*/
+}
+
+.content-wrapper{
+  display: inline-grid;
+  width: 75%;
+  align-content: left;
 }

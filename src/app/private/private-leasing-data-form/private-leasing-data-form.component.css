@@ -1,4 +1,24 @@
 mat-table.mat-table {
-    height: 30em;
-    overflow-y: auto;
+  height: 30em;
+  overflow-y: auto;
+}
+.calculations-popup{
+    margin-right:15%;
+}
+.content-wrapper span{
+  float: right;
+}
+.content-wrapper{
+  background-color: rgb(250, 250, 250);
+  line-height: 1.5;
+  margin-top: 10px;
+  text-align: left;
+}
+/*.blue{*/
+  /*font-weight: bold;*/
+  /*color: #3f51B5;*/
+/*}*/
+
+.align-push{
+  padding-left: 55px;
 }
